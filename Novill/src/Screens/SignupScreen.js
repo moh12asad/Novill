@@ -1,13 +1,13 @@
-import React, { useState,useContext } from 'react';
-import {View,StyleSheet} from 'react-native';
+import React, { useState,useContext,  } from 'react';
+import {View,StyleSheet,TouchableOpacity} from 'react-native';
 import {Text,Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
+import SigninScreen from './SigninScreen';
 const SignupScreen=({navigation})=>{
     const {state,signup}=useContext(AuthContext);
     const [email,setEmail]=useState('');
     const [password,setPassword] = useState('');
-
     return( 
     <>
         <View style={styles.container}>
@@ -32,6 +32,10 @@ const SignupScreen=({navigation})=>{
             />
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <Button title="Signup" onPress={()=>signup({email,password})}/>
+            <Spacer/>
+            <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
+                <Text>Already have an account? Sign in here</Text>
+            </TouchableOpacity>
         </View>
     </>
     );

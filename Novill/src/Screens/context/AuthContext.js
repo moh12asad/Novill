@@ -1,5 +1,6 @@
 import CreateDataContext from "./CreateDataContext";
-import tracker from "../api/tracker";
+import tracker from "../api/Server";
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 const authReducer=(state,action)=>{
     switch(action.type){
         case 'add_error':
@@ -9,14 +10,14 @@ const authReducer=(state,action)=>{
     };
 };
 
-const signup= dispatch=>{
+const signup= dispatch =>{
     return async ({email,password})=>{
         try{
             const response = await tracker.post('/signup',{email,password});
             console.log(response.data);
         }catch(err){
-            dispatch({type:'add_error',payload:'Somethin went wrong with sign up'});
-            console.log('Invaild signup');
+            dispatch({type:'add_error',payload:'Something went wrong with sign up'});
+            //console.log('Invaild signup');
         }
         
     }

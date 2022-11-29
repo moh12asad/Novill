@@ -1,18 +1,13 @@
-import React, { useState,useContext } from 'react';
-import {View,StyleSheet,TouchableOpacity} from 'react-native';
-import {Text,Input, Button} from 'react-native-elements';
-import Spacer from './Components/Spacer'
-import { Context as AuthContext} from './context/AuthContext';
-import { NavigationEvents } from 'react-navigation';
+import React,{useState} from "react";
+import {View,StyleSheet} from 'react-native';
+import {Text,Button,Input} from 'react-native-elements';
 
 
-const SigninScreen=({navigation})=>{
-    const {state,signin,clearErrorMessage}=useContext(AuthContext);
+const AuthForm=({headerText,errorMessage,onSubmit, submitButtonText})=>{
     const [email,setEmail]=useState('');
     const [password,setPassword] = useState('');
     return (
         <View style={styles.container}>
-            <NavigationEvents onWillFocus={clearErrorMessage}/>
         <Spacer/>
         <Text h3> Sign In</Text>
         <Spacer/>
@@ -33,32 +28,18 @@ const SigninScreen=({navigation})=>{
         autoCorrect={false}
         />
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-        <Button title="Sign In" onPress={()=>signin({email,password})}/>
+        <Button title="Signup" onPress={()=>signip({email,password})}/>
         <Spacer/>
         <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
                 <Text>Dont have an account? Sign Up here</Text>
         </TouchableOpacity>
         </View>
     )
+    
 };
 
-SigninScreen.navigationOptions = () => {
-    return {
-      headerShown: false,
-    };
-  };
 
-const styles=StyleSheet.create({
-    container:{
+const styles=StyleSheet.create({});
 
-        flex:1,
-        justifyContent:'center',
-        marginBottom:150
-    },
-    errormsg:{
-        fontSize:16,
-        color:'red'
-    }
-});
 
-export default SigninScreen;
+export default AuthForm;

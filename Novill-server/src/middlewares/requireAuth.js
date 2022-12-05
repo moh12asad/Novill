@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Pharm=mongoose.model('Pharm');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
@@ -17,6 +18,7 @@ module.exports = (req, res, next) => {
     }
 
     const { userId } = payload;
+    
 
     const user = await User.findById(userId);
     req.user = user;

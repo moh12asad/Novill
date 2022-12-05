@@ -10,8 +10,24 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  Confirmpassword:{
+    type: String,
+    required: true
+  },
+  Fname:{
+    type: String,
+    required: true
+  },
+  Lname:{
+    type: String,
+    required: true
+  },
+  utype:{
+    type:String,
+    required:false
   }
-
+  
 });
 
 userSchema.pre('save', function(next) {
@@ -52,5 +68,4 @@ userSchema.methods.comparePassword = function(candidatePassword) {
     });
   });
 };
-
 mongoose.model('User', userSchema);

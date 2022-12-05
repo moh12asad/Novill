@@ -4,15 +4,17 @@ import {Text,Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
-const SignupScreen=({navigation})=>{
-    const {state,signup,clearErrorMessage}=useContext(AuthContext);
+const SignupPharmScreen=({navigation})=>{
+    const {state,signupPharm,clearErrorMessage}=useContext(AuthContext);
     const [email,setEmail]=useState('');
     const [Fname,setFname]=useState('');
     const [Lname,setLname]=useState('');
     const [password,setPassword] = useState('');
     const [Confirmpassword,setConfirmpassword] = useState('');
-    const utype="user";
-
+    const [location,setlocation] = useState('');
+    const [pname,setpname] = useState('');
+    const AdminAccept=false;
+    const utype="pharm";
 
     return( 
     <>
@@ -25,7 +27,7 @@ const SignupScreen=({navigation})=>{
             <Spacer/>
             <Spacer/>
             <Spacer/>
-            <Text h3> Sign Up</Text>
+            <Text h3> join Us!</Text>
             <Spacer/>
             <Input
                 placeholder='First Name' 
@@ -51,6 +53,21 @@ const SignupScreen=({navigation})=>{
                 autoCorrect={false}
             />
             <Input
+                placeholder='Location' 
+                label="Location"
+                value={location}
+                onChangeText={setlocation}
+                autoCorrect={false}
+            />
+            <Input
+                placeholder='Pharm name' 
+                label="Pharm name"
+                value={pname}
+                onChangeText={setpname}
+                autoCorrect={false}
+            />
+            
+            <Input
             secureTextEntry={true}
             label="Password"
             value={password}
@@ -68,7 +85,7 @@ const SignupScreen=({navigation})=>{
             />
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-            <Button title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype})}/>
+            <Button title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})}/>
             <Spacer/>
             <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
                 <Text>Already have an account? Sign in here</Text>
@@ -77,7 +94,7 @@ const SignupScreen=({navigation})=>{
     </>
     );
 };
-SignupScreen.navigationOptions = () => {
+SignupPharmScreen.navigationOptions = () => {
     return {
       headerShown: false,
     };
@@ -96,4 +113,4 @@ const styles=StyleSheet.create({
     }
 });
 
-export default SignupScreen;
+export default SignupPharmScreen;

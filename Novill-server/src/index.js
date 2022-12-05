@@ -1,5 +1,6 @@
 require("./models/User");
 require("./models/Track");
+require("./models/Pharm");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -17,7 +18,7 @@ const mongoUri = "mongodb+srv://moh12asad:PasswordPassword@cluster0.rcv9zfd.mong
 
 if (!mongoUri) {
   throw new Error(
-    `MongoURI was not supplied.  Make sure you watch the video on setting up Mongo DB!`
+    `MongoURI was not supplied.  Make sure you connected it currectly`
   );
 }
 mongoose.connect(mongoUri, {

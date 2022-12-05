@@ -4,18 +4,17 @@ import { SafeAreaView } from 'react-navigation';
 import {View,Button,StyleSheet,Text} from 'react-native';
 import Spacer from './Components/Spacer';
 
-const AccountScreen=(props)=>{
+const PharmsListScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
     console.log(props);
 
 
     return(
          <SafeAreaView forceInset={{top:'always'}}>
-            <Text style={{fontSize: 48}}> Account Screen </Text>
+            <Text style={{fontSize: 48}}> Pharms List </Text>
             <Spacer/>
             <Button title="Sign out" onPress={signout}/>
             <Spacer/>
-            <Button title="Pharms" onPress={getPharms}/>
             <Spacer/>
         </SafeAreaView>
         );
@@ -23,4 +22,4 @@ const AccountScreen=(props)=>{
 
 const styles=StyleSheet.create({});
 
-export default AccountScreen;
+export default PharmsListScreen;

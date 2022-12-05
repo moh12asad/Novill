@@ -1,21 +1,44 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
 import AccountScreen from "./src/Screens/AccountScreen";
 import SigninScreen from "./src/Screens/SigninScreen";
 import SignupScreen from "./src/Screens/SignupScreen";
 import LoadingScreen from './src/Screens/LoadingScreen';
+import PageScreen from './src/Screens/PageScreen';
+import PharmsListScreen from './src/Screens/PharmsListScreen';
+import HomeScreen from './src/Screens/HomeScreen';
+import UserScreen from './src/Screens/UserScreen';
+import PharmScreen from './src/Screens/PharmScreen';
+import SignupPharmScreen from './src/Screens/SignupPharmScreen';
+import WaitingForAdmin from './src/Screens/WaitingForAdmin';
+import SigninPharmScreen from './src/Screens/SigninPharmScreen';
+import PharmAccountScreen from './src/Screens/PharmAccount';
+
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
 const switchNavigator=createSwitchNavigator({
-  Loading:LoadingScreen,
+  //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
-    Signup: SignupScreen,
+    Home:HomeScreen,
+    //Account:AccountScreen,tryLocalSignin
+  }),
+  UserFlow: createStackNavigator({
+    User:UserScreen,
+    Signup:SignupScreen,
     Signin:SigninScreen,
-    //Account:AccountScreen,
+    Account:AccountScreen,
+    PharmsList:PharmsListScreen,
+  }),
+  PharmFlow:createStackNavigator({
+    Pharm:PharmScreen,
+    SignupPharm:SignupPharmScreen,
+    SigninPharm:SigninPharmScreen,
+    PharmAccount:PharmAccountScreen,
+    WaitingAdmin:WaitingForAdmin,
   }),
   mainFlow: createStackNavigator({
     Account: AccountScreen,
+    Page: PageScreen,
 
   })
 });

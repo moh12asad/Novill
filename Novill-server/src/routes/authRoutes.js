@@ -49,7 +49,7 @@ router.post('/signupPharm', async (req, res) => {
 
 router.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email,password);
+  console.log("AuthRoutes:",email,password);
 
   if (!email || !password) {
     return res.status(422).send({ error: 'Must provide email and password' });

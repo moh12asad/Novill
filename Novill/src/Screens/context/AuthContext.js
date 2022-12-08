@@ -44,6 +44,7 @@ const clearErrorMessage=dispatch=>()=>{
 const signup= (dispatch) =>{
     return async ({email,password,Confirmpassword,Fname,Lname,utype})=>{
         try{
+            //console.log(email,password,Confirmpassword,Fname,Lname,utype);
             const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype});
             console.log('Response! V');
             await AsyncStorage.setItem('token',response.data.token);
@@ -64,7 +65,9 @@ const signin=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signin',{email,password});
+            console.log("ASDASD");
             await AsyncStorage.setItem('token',response.data.token);
+
             dispatch({type:'signin',payload:response.data.token});
             navigate('Account');
         }catch(err){

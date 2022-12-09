@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Button,StyleSheet,Text} from 'react-native';
+import {View,Button,StyleSheet,Text,ImageBackground} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Spacer from './Components/Spacer';
 
@@ -7,17 +7,47 @@ import Spacer from './Components/Spacer';
 
 const PharmScreen=({navigation})=>{
     return(
+    <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
         <View> 
-            <Text style={{fontSize: 48}}> Pharm Screen </Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('SigninPharm')}>
-                    <Text h3>Already have an account? Sign in here</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('SigninPharm')}
+              style={{
+        backgroundColor:'#86c260',
+         borderRadius:100 ,
+        alignItems: 'center',
+        width:280,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        marginRight:75,
+        marginTop:200
+    }}
+            >
+                    <Text style={{ color:'#000',fontSize:12,
+   fontWeight:"bold"}}>Already have an account? Sign in here</Text>
             </TouchableOpacity>
             <Spacer/>
-            <TouchableOpacity onPress={()=>navigation.navigate('SignupPharm')}>
-                <Text>If you are client, join us here</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('SignupPharm')}
+            style={{
+        backgroundColor:'#86c260',
+         borderRadius:100 ,
+        alignItems: 'center',
+        width:280,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        marginRight:75,
+        marginTop:50,
+        
+    }}
+            
+            
+            >
+                <Text style={{ color:'#000',fontSize:12,
+   fontWeight:"bold"}} >Don't have a pharmacy account? Sign Up here</Text>
             </TouchableOpacity>
             <Spacer/>
         </View>
+</ImageBackground>
     );
 }
 

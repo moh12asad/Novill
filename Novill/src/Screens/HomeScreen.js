@@ -74,6 +74,7 @@ const HomeScreen=({navigation})=>{
         marginVertical:10,
         alignSelf:'flex-end',
         marginRight:25,
+        
 
 
     }}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Button,StyleSheet,Text} from 'react-native';
+import {View,Button,StyleSheet,Text,ImageBackground} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Spacer from './Components/Spacer';
 
@@ -7,17 +7,49 @@ import Spacer from './Components/Spacer';
 
 const UserScreen=({navigation})=>{
     return(
+        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
         <View> 
-            <Text style={{fontSize: 48}}> User Screen </Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
-                    <Text h3>Already have an account? Sign in here</Text>
+            <TouchableOpacity
+             style={{
+        backgroundColor:'#86c260',
+         borderRadius:100 ,
+        alignItems: 'center',
+        width:280,
+        paddingVertical:15,
+    
+        alignSelf:'flex-end',
+        marginRight:75,
+        
+        marginTop:200
+    }}
+            
+             onPress={()=>navigation.navigate('Signin')}>
+                    <Text style={{ color:'#000',fontSize:12,
+   fontWeight:"bold"}}>Already have an account? Sign in here</Text>
             </TouchableOpacity>
             <Spacer/>
-            <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
-                <Text>If you are client, join us here</Text>
+            <TouchableOpacity
+            style={{
+        backgroundColor:'#86c260',
+         borderRadius:100 ,
+        alignItems: 'center',
+        width:280,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        marginRight:75,
+        marginTop:50
+    }}
+      
+             onPress={()=>navigation.navigate('Signup')}>
+                <Text
+                style={{ color:'#000',fontSize:12,
+   fontWeight:"bold"}}
+                >Dont have an account? Sign Up here</Text>
             </TouchableOpacity>
             <Spacer/>
         </View>
+        </ImageBackground>
     );
 }
 

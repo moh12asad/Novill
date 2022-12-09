@@ -55,7 +55,7 @@ const AccountScreen=(props)=>{
         marginTop:15,
         top:40
 
-    }} title="Pharms" onPress={getPharms}>
+    }} title="Pharms">
      <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >My Profile</Text> 
     </TouchableOpacity>

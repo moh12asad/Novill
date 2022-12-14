@@ -52,7 +52,7 @@ const AccountScreen=(props)=>{
         marginTop:15,
         top:40
 
-    }} title="Pharms" onPress={getPharms}>
+    }} title="Pharms">
      <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >My Profile</Text> 
     </TouchableOpacity>
@@ -66,9 +66,9 @@ const AccountScreen=(props)=>{
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
-        width:'40%',
+        width:'30%',
         left:200,
-        marginTop:360,
+        marginTop:370,
         borderWidth:0
         
         }} title="Sign out" onPress={signout}>

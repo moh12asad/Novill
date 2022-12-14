@@ -7,9 +7,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const AccountScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
-    console.log(props);
-
-
     return(
           <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
 
@@ -22,7 +19,7 @@ const AccountScreen=(props)=>{
             top:20,
             
             
-            }}> My Account </Text>
+            }}> My Account</Text>
             <Spacer/>
             <View>
                        <TouchableOpacity    style={{

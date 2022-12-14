@@ -61,7 +61,7 @@ router.post('/signin', async (req, res) => {
     try {
       await user.comparePassword(password);
       const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
-      res.send({ token });
+      res.send({token});
     } catch (err) {
       return res.status(422).send({ error: 'Invalid password or email' });
     }
@@ -70,9 +70,35 @@ router.post('/signin', async (req, res) => {
   {
     return res.status(422).send({ error: 'Invalid password or email' });
   }
-
-
 });
+
+router.post('/SigninAdmin', async (req, res) => {
+  const { email, password } = req.body;
+  console.log("AuthRoutes:",email,password);
+
+  if (!email || !password) {
+    return res.status(422).send({ error: 'Must provide email and password' });
+  }
+
+  const user = await User.findOne({ email });
+  console.log(user);
+  if(user && user.utype=='admin'){
+    try {
+      console.log("fotet el try");
+      await user.comparePassword(password);
+      const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
+      console.log('mosh moshkelet al route');
+      res.send({token});
+    } catch (err) {
+      return res.status(422).send({ error: 'Invalid password or email' });
+    }
+  }
+  if(!user || user.utype!='admin')
+  {
+    return res.status(422).send({ error: 'Invalid password or email' });
+  }
+});
+
 
 
 router.post('/signinPharm', async (req, res) => {
@@ -98,8 +124,24 @@ router.post('/signinPharm', async (req, res) => {
 
 router.get('/getPharms', async (req, res) => {
   const pharms = await Pharm.find();
-  console.log(pharms);
-  res.send(pharms);
+  const pharmsArray=[];
+  pharms.forEach(pharm=>{
+    pharmsArray.push(pharm);
+  })
+  //console.log(pharms);
+  res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
+});
+
+router.get('/getWaitingPharms', async (req, res) => {
+  const pharms = await Pharm.find();
+  const pharmsArray=[];
+  pharms.forEach(pharm=>{
+    if(pharm.AdminAccept===false){
+      pharmsArray.push(pharm);
+    }
+  })
+  //console.log(pharms);
+  res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
 });
 
 router.get('/getUserType', async (req, res) => {

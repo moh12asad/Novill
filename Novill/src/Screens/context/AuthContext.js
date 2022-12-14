@@ -2,6 +2,7 @@ import CreateDataContext from "./CreateDataContext";
 import server from "../api/Server";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {navigate} from '../navigationRef'
+import React from "react";
 
 const authReducer=(state,action)=>{
     switch(action.type){
@@ -9,7 +10,7 @@ const authReducer=(state,action)=>{
             return {...state, errorMessage:action.payload};
         case 'signup':
             return {errorMessage:'', token:action.payload};
-        case 'signup':
+        case 'signin':
             return {errorMessage:'', token:action.payload};
         case 'clearErrorMessage':
             return {...state, errorMessage:''};
@@ -23,6 +24,8 @@ const authReducer=(state,action)=>{
             return state;
     };
 };
+
+
 
 /*const tryLocalSignin=dispatch=>async()=>{
     const token = await AsyncStorage.getItem('token');
@@ -70,6 +73,28 @@ const signin=(dispatch)=>{
 
             dispatch({type:'signin',payload:response.data.token});
             navigate('Account');
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+
+    }
+}
+
+const signinAdmin=(dispatch)=>{
+    return async ({email,password})=>{
+        console.log(email,password);
+        try{
+            console.log('asdasdasdasd');
+            const response = await server.post('/SigninAdmin',{email,password});
+            console.log("admin Sign in in authcontex");
+            await AsyncStorage.setItem('token',response.data.token);
+            dispatch({type:'signin',payload:response.data.token});
+            console.log('navigation t7et');
+            navigate('Admin');
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -130,7 +155,7 @@ const getPharms = dispatch=>{
     return async()=>{
         const response=await server.get('/getPharms');
         dispatch({type:'getPharms',payload:response.data});
-        console.log(response);
+        //console.log(response);
         navigate('PharmsList');
 
     }
@@ -138,7 +163,6 @@ const getPharms = dispatch=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin},
     {token:null, errorMessage:''}
 );
-

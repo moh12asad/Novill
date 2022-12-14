@@ -13,9 +13,13 @@ import SignupPharmScreen from './src/Screens/SignupPharmScreen';
 import WaitingForAdmin from './src/Screens/WaitingForAdmin';
 import SigninPharmScreen from './src/Screens/SigninPharmScreen';
 import PharmAccountScreen from './src/Screens/PharmAccount';
+import AddProductsScreen from './src/Screens/AddProductsScreen';
+import AdminScreen from './src/Screens/AdminScreen';
+import WaitingPharmsScreen from './src/Screens/WaitingPharmsScreen';
 
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
+import SigninAdminScreen from './src/Screens/SigninAdmin';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -35,6 +39,13 @@ const switchNavigator=createSwitchNavigator({
     SigninPharm:SigninPharmScreen,
     PharmAccount:PharmAccountScreen,
     WaitingAdmin:WaitingForAdmin,
+    AddProducts:AddProductsScreen,
+  }),
+  AdminFlow: createStackNavigator({
+    SigninAdmin: SigninAdminScreen,
+    Admin: AdminScreen,
+    WaitingPharms:WaitingPharmsScreen,
+
   }),
   mainFlow: createStackNavigator({
     Account: AccountScreen,

@@ -6,16 +6,14 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 
-const PharmsListScreen=(pharms)=>{
+const WaitingPharmsScreen=(pharms)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [pharmsCollection,setPharmsCollection]=useState();
-    //let pharmsCollection=[];
     const myuserpharms=useContext(GlobalContex);
-    //let a=[];
     useEffect(() => {(async () => {
             try {
-                const response = await Server.get('/getPharms') 
+                const response = await Server.get('/getWaitingPharms') 
                 updateloaded(false);
                 const pharmsArray = response.data.pharms1;
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
@@ -56,7 +54,7 @@ const PharmsListScreen=(pharms)=>{
 
 const styles=StyleSheet.create({});
 
-export default PharmsListScreen;
+export default WaitingPharmsScreen;
 
 /*
               <FlatList  style={{ flex: 1, padding: 10 }} data={myuserpharms}

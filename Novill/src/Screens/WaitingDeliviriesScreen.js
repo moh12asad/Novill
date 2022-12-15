@@ -6,23 +6,21 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 
-const PharmsListScreen=(pharms)=>{
+const WaitingDeliviriesScreen=(pharms)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
-    const [pharmsCollection,setPharmsCollection]=useState();
-    //let pharmsCollection=[];
-    const myuserpharms=useContext(GlobalContex);
-    //let a=[];
+    const [delsCollection,setDelsCollection]=useState();
+    //const myuserpharms=useContext(GlobalContex);
     useEffect(() => {(async () => {
             try {
-                const response = await Server.get('/getPharms') 
-                updateloaded(true);
-                const pharmsArray = response.data.pharms1;
+                const response = await Server.get('/getWaitingDeliviries') 
+                updateloaded(false);
+                const delsArray = response.data.dels1;
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
-                setPharmsCollection(pharmsArray);
+                setDelsCollection(delsArray);
                 //pharmsCollection.set(pharmsArray);
                 //pharmsCollection=pharmsArray;
-                console.log('Pharm collection length is:',pharmsCollection.length)
+                //console.log('Pharm collection length is:',pharmsCollection.length)
                 //pharmsCollection=pharmsArray;
 
             } catch (err) {
@@ -46,17 +44,17 @@ const PharmsListScreen=(pharms)=>{
         </SafeAreaView>*/
 
         <SafeAreaView>
-            <Text h3> Pharm stores</Text>
+            <Text h3> Delivery Employees</Text>
             <Spacer/>
-            <FlatList data={pharmsCollection} 
-                renderItem={({item})=>{return <Text>{item.pname}</Text>}}/>
+            <FlatList data={delsCollection} 
+                renderItem={({item})=>{return <Text>{item.email}</Text>}}/>
         </SafeAreaView>
         );
 }
 
 const styles=StyleSheet.create({});
 
-export default PharmsListScreen;
+export default WaitingDeliviriesScreen;
 
 /*
               <FlatList  style={{ flex: 1, padding: 10 }} data={myuserpharms}

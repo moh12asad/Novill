@@ -24,7 +24,23 @@ const AdminScreen=({navigation})=>{
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Pharms list</Text>
         </TouchableOpacity>
+        <Spacer/>
 
+        <TouchableOpacity onPress={()=>navigation.navigate('WaitingDels')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:15000 ,
+          alignItems: 'center',
+        width:250,
+        marginRight:25,
+        paddingVertical:10,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Deliviries list</Text>
+        </TouchableOpacity>
         <Spacer>
         <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
         padding:30,

@@ -16,6 +16,13 @@ import PharmAccountScreen from './src/Screens/PharmAccount';
 import AddProductsScreen from './src/Screens/AddProductsScreen';
 import AdminScreen from './src/Screens/AdminScreen';
 import WaitingPharmsScreen from './src/Screens/WaitingPharmsScreen';
+import SignupDeliveryScreen from './src/Screens/SignupDeliveryScreen';
+import DeliveryScreen from './src/Screens/DeliveryScreen';
+import SigninDeliveryScreen from './src/Screens/SigninDeliveryScreen';
+import WaitingAdminDScreen from './src/Screens/WaitingAdminDScreen';
+import DeliveryAccountScreen from './src/Screens/DeliveryAccountScreen';
+import WaitingDeliviriesScreen from './src/Screens/WaitingDeliviriesScreen';
+
 
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
@@ -45,8 +52,18 @@ const switchNavigator=createSwitchNavigator({
     SigninAdmin: SigninAdminScreen,
     Admin: AdminScreen,
     WaitingPharms:WaitingPharmsScreen,
+    WaitingDels:WaitingDeliviriesScreen,
 
   }),
+  DeliveryFlow:createStackNavigator({
+    Delivery:DeliveryScreen,
+    SigninDelivery:SigninDeliveryScreen,
+    SignupDelivery:SignupDeliveryScreen,
+    //DeliveryAccount:DeliveryAccountScreen,
+    DeliveryAccount:DeliveryAccountScreen,
+    WaitingAdminD:WaitingAdminDScreen,
+  }),
+  
   mainFlow: createStackNavigator({
     Account: AccountScreen,
     Page: PageScreen,

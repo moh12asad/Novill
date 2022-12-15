@@ -10,14 +10,18 @@ const authReducer=(state,action)=>{
             return {...state, errorMessage:action.payload};
         case 'signup':
             return {errorMessage:'', token:action.payload};
-        case 'signin':
-            return {errorMessage:'', token:action.payload};
+        /*case 'signin':
+            return {errorMessage:'', token:action.payload};*/
         case 'clearErrorMessage':
             return {...state, errorMessage:''};
         case 'passwordMatch':
             return {errorMessage:'',token:action.payload};
         case 'getPharms':
             return action.payload;
+        case 'signupDelivery':
+            return {errorMessage:'', token:action.payload};
+        case 'signinDelivery':
+            return {errorMessage:'', token:action.payload};
         case 'signout':
             return {token:null, errorMessage:''};
         default:
@@ -68,9 +72,7 @@ const signin=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signin',{email,password});
-            console.log("ASDASD");
             await AsyncStorage.setItem('token',response.data.token);
-
             dispatch({type:'signin',payload:response.data.token});
             navigate('Account');
         }catch(err){
@@ -111,9 +113,14 @@ const signinPharm=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signinpharm',{email,password});
-            await AsyncStorage.setItem('token',response.data.token);
-            dispatch({type:'signinpharm',payload:response.data.token});
-            navigate('PharmAccount',response.data);
+            //await AsyncStorage.setItem('token',response.data.token);
+            if(response.data.pharms1.AdminAccept){
+                navigate('PharmAccount');
+            }
+            else{
+                navigate('WaitingAdmin');
+            }
+
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -151,6 +158,50 @@ const signupPharm=(dispatch) =>{
         }
     }      
 }
+
+const signupDelivery=(dispatch) =>{
+    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})=>{
+        try{
+            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype);
+            const response = await server.post('/signupDelivery',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype});
+            console.log('Response! V');
+            await AsyncStorage.setItem('token',response.data.token);
+            dispatch({type:'signupDelivery',payload:response.data.token});
+            navigate('WaitingAdminD');
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up pharm'
+        });
+            //console.log(err.message);
+        }
+    }      
+}
+
+
+const signinDelivery=(dispatch)=>{
+    return async ({email,password})=>{
+        console.log(email,password);
+        try{
+            const response = await server.post('/signinDelivery',{email,password});
+            if(response.data.del1.AdminAccept){
+            navigate('DeliveryAccount');
+            }
+            else{
+                navigate('WaitingAdminD');
+            }
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+
+    }
+}
+
+
 const getPharms = dispatch=>{
     return async()=>{
         const response=await server.get('/getPharms');
@@ -163,6 +214,6 @@ const getPharms = dispatch=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,},
     {token:null, errorMessage:''}
 );

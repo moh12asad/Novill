@@ -1,6 +1,7 @@
 require("./models/User");
 require("./models/Track");
 require("./models/Pharm");
+require("./models/Delivery");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");

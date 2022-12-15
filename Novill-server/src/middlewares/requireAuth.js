@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Pharm=mongoose.model('Pharm');
+const Delivery=mongoose.model('Delivery');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;

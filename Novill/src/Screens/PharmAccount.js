@@ -32,7 +32,7 @@ const PharmAccountScreen=(props)=>{
         marginTop:15,
         top:40
 
-    }} title ="Pharm store status" onPress={signout}>
+    }} title ="Pharm store status">
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Pharm store status</Text> 
     </TouchableOpacity>

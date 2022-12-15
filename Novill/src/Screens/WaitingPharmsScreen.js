@@ -1,7 +1,7 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,ImageBackground} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
@@ -33,22 +33,23 @@ const WaitingPharmsScreen=(pharms)=>{
 
 
     return(
-        /*
-         <SafeAreaView forceInset={{top:'always'}}>
-            <Text style={{fontSize: 48}}> Pharms List </Text>
-            <Spacer/>
-            <Button title="Sign out" onPress={signout}/>
-            <Spacer/>
-            <Text>Here is</Text>
-            <Spacer/>
-        </SafeAreaView>*/
+<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+
 
         <SafeAreaView>
-            <Text h3> Pharm stores</Text>
+            <Text style={{fontSize: 40,
+              fontWeight:'bold'
+              ,marginVertical:5,
+              left:10,
+            top:20,
+            
+            
+            }}> Pharm stores</Text>
             <Spacer/>
             <FlatList data={pharmsCollection} 
-                renderItem={({item})=>{return <Text>{item.pname}</Text>}}/>
+                renderItem={({item})=>{return <Text style={{fontSize:30}}>{item.pname}</Text>}}/>
         </SafeAreaView>
+        </ImageBackground>
         );
 }
 
@@ -56,14 +57,3 @@ const styles=StyleSheet.create({});
 
 export default WaitingPharmsScreen;
 
-/*
-              <FlatList  style={{ flex: 1, padding: 10 }} data={myuserpharms}
-                        renderItem={({item})=>{
-                            <View>
-                                <Text>
-                                    {item.email}
-                                </Text>
-                            </View>
-                        }}    
-                />
-                */

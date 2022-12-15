@@ -1,7 +1,7 @@
 import React,{useContext,useEffect} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,ImageBackground} from 'react-native';
+import {View,Button,StyleSheet,Text,ImageBackground,Pressable} from 'react-native';
 import Spacer from './Components/Spacer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -20,13 +20,13 @@ const AccountScreen=(props)=>{
             
             
             }}> My Account</Text>
-            <Spacer/>
+           
             <View>
-                       <TouchableOpacity    style={{
+                       <Pressable    style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
           alignItems: 'center',
-        width:180,
+        width:170,
         marginRight:40,
         paddingVertical:5,
         marginVertical:10,
@@ -38,12 +38,12 @@ const AccountScreen=(props)=>{
     }} title="Pharms" onPress={getPharms}>
      <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Pharms</Text> 
-    </TouchableOpacity>
-                     <TouchableOpacity    style={{
+    </Pressable>
+                     <Pressable    style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
           alignItems: 'center',
-        width:180,
+        width:170,
         marginRight:40,
         paddingVertical:5,
         marginVertical:10,
@@ -55,32 +55,44 @@ const AccountScreen=(props)=>{
     }} title="Pharms">
      <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >My Profile</Text> 
-    </TouchableOpacity>
+    </Pressable>
 </View>
 <View>
-            <Spacer/>
-             <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
+          
+<Pressable  style={styles.button} title="Sign out" onPress={signout}>
+        <Text style={styles.text}>Signout</Text> 
+ </Pressable>
+ </View>
+        </SafeAreaView>
+        </ImageBackground>
+        );
+}
+
+const styles=StyleSheet.create({
+  button: {
+   backgroundColor:'#d1f0c7',
         padding:30,
         marginTop:20,
         borderRadius:110,
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
-        width:'30%',
+        width:'40%',
         left:200,
-        marginTop:370,
+        marginTop:420,
         borderWidth:0
-        
-        }} title="Sign out" onPress={signout}>
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signout</Text> 
- </TouchableOpacity>
- </View>
-            <Spacer/>
-        </SafeAreaView>
-        </ImageBackground>
-        );
-}
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#3a8b08',
+  },
 
-const styles=StyleSheet.create({});
+
+
+
+});
 
 export default AccountScreen;

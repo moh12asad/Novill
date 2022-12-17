@@ -208,7 +208,7 @@ const SignupDeliveryScreen=({navigation})=>{
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>
             <Spacer/>
-            <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
+            <TouchableOpacity onPress={()=>navigation.navigate('SigninDelivery')}>
                 <Text style={{
 
                     color: "gray",

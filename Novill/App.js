@@ -22,7 +22,8 @@ import SigninDeliveryScreen from './src/Screens/SigninDeliveryScreen';
 import WaitingAdminDScreen from './src/Screens/WaitingAdminDScreen';
 import DeliveryAccountScreen from './src/Screens/DeliveryAccountScreen';
 import WaitingDeliviriesScreen from './src/Screens/WaitingDeliviriesScreen';
-
+import AcceptPharmsScreen from './src/Screens/AcceptPharmsScreen';
+import AcceptDelsScreen from './src/Screens/AcceptDelsScreen';
 
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
@@ -53,6 +54,8 @@ const switchNavigator=createSwitchNavigator({
     Admin: AdminScreen,
     WaitingPharms:WaitingPharmsScreen,
     WaitingDels:WaitingDeliviriesScreen,
+    AcceptPharms:AcceptPharmsScreen,
+    AcceptDels:AcceptDelsScreen,
 
   }),
   DeliveryFlow:createStackNavigator({

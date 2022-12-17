@@ -44,14 +44,14 @@ const AdminScreen=({navigation})=>{
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Deliviries list</Text>
         </TouchableOpacity>
-        <Spacer>
+
         <View>
         <Pressable  style={styles.button} title="Sign out" onPress={signout}>
         <Text style={styles.text}>Sign out</Text> 
  </Pressable>
    </View>
 
-        </Spacer>
+
         </View>
         </ImageBackground>
 

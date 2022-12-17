@@ -1,12 +1,14 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,ImageBackground} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const WaitingDeliviriesScreen=(pharms)=>{
+
+const WaitingDeliviriesScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [delsCollection,setDelsCollection]=useState();
@@ -48,6 +50,22 @@ const WaitingDeliviriesScreen=(pharms)=>{
             <Spacer/>
             <FlatList data={delsCollection} 
                 renderItem={({item})=>{return <Text>{item.email}</Text>}}/>
+                        <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptDels')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:1500 ,
+          alignItems: 'center',
+        width:200,
+        marginTop:100,
+        marginRight:170,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Accept deliveries</Text>
+        </TouchableOpacity>
         </SafeAreaView>
         );
 }

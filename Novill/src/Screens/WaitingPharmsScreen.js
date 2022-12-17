@@ -5,8 +5,9 @@ import {View,Button,StyleSheet,Text,FlatList,ImageBackground} from 'react-native
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const WaitingPharmsScreen=(pharms)=>{
+const WaitingPharmsScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [pharmsCollection,setPharmsCollection]=useState();
@@ -49,6 +50,22 @@ const WaitingPharmsScreen=(pharms)=>{
             <FlatList data={pharmsCollection} 
                 renderItem={({item})=>{return <Text style={{fontSize:30}}>{item.pname}</Text>}}/>
         </SafeAreaView>
+        <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptPharms')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:1500 ,
+          alignItems: 'center',
+        width:200,
+        marginTop:100,
+        marginRight:170,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Approve pharms</Text>
+        </TouchableOpacity>
         </ImageBackground>
         );
 }

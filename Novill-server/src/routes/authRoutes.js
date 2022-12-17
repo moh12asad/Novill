@@ -205,7 +205,48 @@ router.get('/getPharmStatus', async (req, res) => {
   const p=req.body.email;
   console.log('req.body Is:',p);
   res.send(false);
-})
+});
+
+router.post('/AcceptPharm', async (req, res) => {
+  const  {pname} = req.body;
+  console.log(pname);
+  const pharm = await Pharm.findOne({pname});
+  if(pharm && pharm.AdminAccept==false){
+    try {
+      console.log(pharm);
+      await Pharm.updateOne({pname:pharm.pname},{AdminAccept:true});
+      console.log(pharm);
+      res.status(200).send({message:'pharm updated successfully',pharms1:pharm});
+    } catch (err) {
+      return res.status(422).send({ error: 'Invalid Pharm name' });
+    }
+  }/*
+  if(pharm.AdminAccept==true)
+    return res.status(200).send({message:'Pharm already accepted'});*/
+  if(!pharm)
+  return res.status(422).send({ error: 'Invalid Pharm name' });
+});
+
+
+router.post('/AcceptDel', async (req, res) => {
+  const  {email,location} = req.body;
+  console.log(email,location);
+  const del = await Delivery.findOne({email});
+  if(del && del.AdminAccept==false){
+    try {
+      console.log(del);
+      await Delivery.updateOne({email:del.email},{AdminAccept:true});
+      console.log(del);
+      res.status(200).send({message:'Delivery changed successfully',del1:del});
+    } catch (err) {
+      return res.status(422).send({ error: 'Invalid Delivery name' });
+    }
+  }/*
+  if(pharm.AdminAccept==true)
+    return res.status(200).send({message:'Pharm already accepted'});*/
+  if(!del)
+  return res.status(422).send({ error: 'Invalid Delivery name' });
+});
 
 
 module.exports = router;

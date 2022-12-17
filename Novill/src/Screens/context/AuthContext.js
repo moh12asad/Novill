@@ -212,8 +212,38 @@ const getPharms = dispatch=>{
     }
 }
 
+const acceptpharm=(dispatch)=>{
+    return async ({pname})=>{
+        try{
+            console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);
+            const response = await server.post('/AcceptPharm',{pname});
+            console.log('after response');
+            console.log(response.data.pharms1);
+            console.log('Response! V');
+            navigate('PharmAccount');
+        }catch(err){
+            console.log(err);
+    }
+}};
+
+const acceptdel=(dispatch)=>{
+    return async ({email,location})=>{
+        try{
+            console.log('accept del in auth contex, del name is:',email,location);
+            console.log(email,location);
+            const response = await server.post('/AcceptDel',{email,location});
+            console.log('after response');
+            console.log(response.data.del1);
+            console.log('Response! V');
+            navigate('DeliveryAccount');
+        }catch(err){
+            console.log(err);
+    }
+}};
+
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel},
     {token:null, errorMessage:''}
 );

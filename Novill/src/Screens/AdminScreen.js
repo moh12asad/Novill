@@ -32,11 +32,11 @@ const AdminScreen=({navigation})=>{
         <TouchableOpacity onPress={()=>navigation.navigate('WaitingDels')} 
         style={{
         backgroundColor:'#6ba93a',
-         borderRadius:15000 ,
+         borderRadius:150 ,
           alignItems: 'center',
-        width:250,
-        marginRight:25,
-        paddingVertical:10,
+        width:210,
+        marginRight:160,
+        paddingVertical:12,
         marginVertical:10,
         alignSelf:'flex-end'
         

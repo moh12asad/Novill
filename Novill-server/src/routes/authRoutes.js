@@ -169,8 +169,9 @@ router.get('/getPharms', async (req, res) => {
   const pharms = await Pharm.find();
   const pharmsArray=[];
   pharms.forEach(pharm=>{
-    pharmsArray.push(pharm);
-  })
+    if(pharm.AdminAccept){
+      pharmsArray.push(pharm);
+}})
   //console.log(pharms);
   res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
 });
@@ -185,6 +186,28 @@ router.get('/getWaitingPharms', async (req, res) => {
   })
   //console.log(pharms);
   res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
+});
+
+router.get('/getAllPharms', async (req, res) => {
+  const pharms = await Pharm.find();
+  const pharmsArray=[];
+  pharms.forEach(pharm=>{
+      pharmsArray.push(pharm);
+    }
+  )
+  //console.log(pharms);
+  res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
+});
+
+router.get('/getAllDels', async (req, res) => {
+  const dels = await Delivery.find();
+  const delsArray=[];
+  dels.forEach(del=>{
+      delsArray.push(del);
+    }
+  )
+  //console.log(pharms);
+  res.status(200).send({message:'pharms extracted successfully',dels1:delsArray});
 });
 
 
@@ -246,6 +269,34 @@ router.post('/AcceptDel', async (req, res) => {
     return res.status(200).send({message:'Pharm already accepted'});*/
   if(!del)
   return res.status(422).send({ error: 'Invalid Delivery name' });
+});
+
+
+router.get('/getUsers', async (req, res) => {
+  const users = await User.find();
+  const usersArray=[];
+  users.forEach(user=>{
+    if(user.utype!='admin'){
+      usersArray.push(user);
+    }
+  })
+  res.status(200).send({message:'Users extracted successfully',users1:usersArray});
+});
+
+
+router.post('/DeleteUser',async(req,res)=>{
+   await User.deleteOne({email:req.body.email});
+   res.status(200).send({message:'User deleted successfully'});
+});
+
+router.post('/DeletePharm',async(req,res)=>{
+   await Pharm.deleteOne({pname:req.body.pname});
+   res.status(200).send({message:'User deleted successfully'});
+});
+
+router.post('/DeleteDel',async(req,res)=>{
+   await Delivery.deleteOne({email:req.body.email});
+   res.status(200).send({message:'User deleted successfully'});
 });
 
 

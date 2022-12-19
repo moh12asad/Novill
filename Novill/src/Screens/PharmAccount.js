@@ -36,6 +36,23 @@ const PharmAccountScreen=(props)=>{
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Pharm store status</Text> 
     </TouchableOpacity>
+    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProduct')}   style={{
+         backgroundColor:'#6ba93a',
+         borderRadius:25 ,
+          alignItems: 'center',
+        width:180,
+        marginRight:40,
+        paddingVertical:5,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        right:150,
+        marginTop:15,
+        top:40
+
+    }} title ="Pharm store status">
+ <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Products</Text> 
+    </TouchableOpacity>
            
             <Spacer/>
    <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
@@ -45,7 +62,7 @@ const PharmAccountScreen=(props)=>{
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
-        width:'30%',
+        width:'40%',
         left:200,
         marginTop:370,
         borderWidth:0

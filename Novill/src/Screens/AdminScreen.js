@@ -11,22 +11,7 @@ const AdminScreen=({navigation})=>{
     <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
 
         <View>
-            <TouchableOpacity onPress={()=>navigation.navigate('WaitingPharms')} 
-        style={{
-        backgroundColor:'#6ba93a',
-         borderRadius:1500 ,
-          alignItems: 'center',
-        width:200,
-        marginTop:100,
-        marginRight:170,
-        paddingVertical:15,
-        marginVertical:10,
-        alignSelf:'flex-end'
-        
-    }} >
-                <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Pharm's Waiting List</Text>
-        </TouchableOpacity>
+
         <Spacer/>
 
         <TouchableOpacity onPress={()=>navigation.navigate('UsersList')} 
@@ -58,24 +43,10 @@ const AdminScreen=({navigation})=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >All pharm</Text>
+   fontWeight:"bold"}} >pharm stores</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>navigation.navigate('WaitingDels')} 
-        style={{
-        backgroundColor:'#6ba93a',
-         borderRadius:150 ,
-          alignItems: 'center',
-        width:210,
-        marginRight:160,
-        paddingVertical:12,
-        marginVertical:10,
-        alignSelf:'flex-end'
-        
-    }} >
-                <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Deliviries Waiting List</Text>
-        </TouchableOpacity>
+
 
         <TouchableOpacity onPress={()=>navigation.navigate('AdminDelsList')} 
         style={{
@@ -132,3 +103,42 @@ const styles=StyleSheet.create({
 });
 
 export default AdminScreen;
+
+
+
+/*
+            <TouchableOpacity onPress={()=>navigation.navigate('WaitingPharms')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:1500 ,
+          alignItems: 'center',
+        width:200,
+        marginTop:100,
+        marginRight:170,
+        paddingVertical:15,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Pharm's Waiting List</Text>
+        </TouchableOpacity>
+
+
+
+                <TouchableOpacity onPress={()=>navigation.navigate('WaitingDels')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:150 ,
+          alignItems: 'center',
+        width:210,
+        marginRight:160,
+        paddingVertical:12,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Deliviries Waiting List</Text>
+        </TouchableOpacity>
+*/ 

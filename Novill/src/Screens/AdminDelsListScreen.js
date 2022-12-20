@@ -39,11 +39,18 @@ const AdminDelsListScreen=(props)=>{
             top:20,
             
             
-            }}> Deliviry Employees</Text>
+            }}> Delivery Employees</Text>
             <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteDel')} 
         style={styles.TouchStyle} >
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Remove Delivery</Text>
+   <Spacer/>
+           <TouchableOpacity onPress={()=>props.navigation.navigate('WaitingDels')} 
+        style={styles.TouchStyle}>
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Deliviries Waiting List</Text>
+        </TouchableOpacity>
+
    
         </TouchableOpacity>
             <FlatList  data={delsCollection} 

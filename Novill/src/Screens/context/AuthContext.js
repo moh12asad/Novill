@@ -82,7 +82,6 @@ const signin=(dispatch)=>{
         });
             //console.log(err.message);
         }
-
     }
 }
 
@@ -173,7 +172,6 @@ const signupDelivery=(dispatch) =>{
             dispatch({type:'add_error',
             payload:'Something went wrong with sign up pharm'
         });
-            //console.log(err.message);
         }
     }      
 }
@@ -195,7 +193,6 @@ const signinDelivery=(dispatch)=>{
             dispatch({type:'add_error',
             payload:'Something went wrong with sign in'
         });
-            //console.log(err.message);
         }
 
     }

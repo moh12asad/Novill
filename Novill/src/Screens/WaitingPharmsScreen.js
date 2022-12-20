@@ -19,14 +19,7 @@ const WaitingPharmsScreen=(props)=>{
                 const response = await Server.get('/getWaitingPharms') 
 
                 const wpharmsArray = response.data.pharms1;
-                //console.log("ASDGHGSDF--------------------:",pharmsArray);
                 setWPharmsCollection(wpharmsArray);
-  
-                //pharmsCollection.set(pharmsArray);
-                //pharmsCollection=pharmsArray;
-                //console.log('Pharm collection length is:',pharmsCollection.length)
-                //pharmsCollection=pharmsArray;
-
             } catch (err) {
                 console.log('error in useEffect');
                 console.log(err)
@@ -41,6 +34,7 @@ const WaitingPharmsScreen=(props)=>{
 
 
         <SafeAreaView>
+        <Spacer/>
             <Text style={{fontSize: 40,
               fontWeight:'bold'
               ,marginVertical:5,
@@ -49,11 +43,7 @@ const WaitingPharmsScreen=(props)=>{
             
             
             }}> Pharm stores</Text>
-            <Spacer/>
-            <FlatList data={wpharmsCollection} 
-                renderItem={({item})=>{return <Text style={{fontSize:30}}>{item.pname}</Text>}}/>
-        </SafeAreaView>
-        <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptPharms')} 
+                    <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptPharms')} 
         style={{
         backgroundColor:'#6ba93a',
          borderRadius:1500 ,
@@ -67,8 +57,12 @@ const WaitingPharmsScreen=(props)=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Approve pharms</Text>
+   fontWeight:"bold"}} >Accept pharms</Text>
         </TouchableOpacity>
+            <FlatList data={wpharmsCollection} 
+                renderItem={({item})=>{return <Text style={{fontSize:15,marginVertical:30}}>{item.pname}</Text>}}/>
+        </SafeAreaView>
+
         
         </ImageBackground>
         );

@@ -243,9 +243,7 @@ router.post('/AcceptPharm', async (req, res) => {
     } catch (err) {
       return res.status(422).send({ error: 'Invalid Pharm name' });
     }
-  }/*
-  if(pharm.AdminAccept==true)
-    return res.status(200).send({message:'Pharm already accepted'});*/
+  }
   if(!pharm)
   return res.status(422).send({ error: 'Invalid Pharm name' });
 });

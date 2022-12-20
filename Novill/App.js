@@ -40,7 +40,6 @@ const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
     Home:HomeScreen,
-    //Account:AccountScreen,tryLocalSignin
     Pharm:PharmScreen,
     Delivery:DeliveryScreen,
     User:UserScreen,

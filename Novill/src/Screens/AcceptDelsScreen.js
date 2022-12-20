@@ -23,7 +23,7 @@ const AcceptDelsScreen=()=>{
                      alignItems:'center',
                      right:30
                      }}>
-        <Text >Accept Deliverie Employee</Text>
+        <Text >Accept Delivery Employee</Text>
 
         <TextInput
             placeholder='Email' 

@@ -53,6 +53,13 @@ const AdminPharmListScreen=(props)=>{
    fontWeight:"bold"}} >Remove Pharm</Text>
    
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>props.navigation.navigate('WaitingPharms')} 
+        style={styles.TouchStyle2} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Waiting Pharms</Text>
+   
+        </TouchableOpacity>
             <FlatList  data={pharmsCollection} 
                 renderItem={({item})=>{return <Text style={styles.textStyle}>{item.pname}</Text>}}/>
                 
@@ -72,12 +79,24 @@ const styles=StyleSheet.create({
          borderRadius:1500 ,
           alignItems: 'center',
         width:150,
-        marginTop:100,
-        marginRight:170,
+        marginTop:20,
+        marginRight:150,
         paddingVertical:15,
         marginVertical:10,
-        alignSelf:'flex-end'
+        alignSelf:'flex-start'
         
+    },
+    TouchStyle2:{
+        backgroundColor:'#6ba93a',
+        borderRadius:1500 ,
+         alignItems: 'center',
+       width:150,
+       marginTop:50,
+       marginRight:200,
+       paddingVertical:15,
+       marginVertical:10,
+       alignSelf:'flex-end'
+
     }
 });
 

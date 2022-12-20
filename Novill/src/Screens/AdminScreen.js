@@ -25,9 +25,41 @@ const AdminScreen=({navigation})=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Pharms list</Text>
+   fontWeight:"bold"}} >Pharm's Waiting List</Text>
         </TouchableOpacity>
         <Spacer/>
+
+        <TouchableOpacity onPress={()=>navigation.navigate('UsersList')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:150 ,
+          alignItems: 'center',
+        width:210,
+        marginRight:160,
+        paddingVertical:12,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Users List</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>navigation.navigate('AdminPharmList')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:150 ,
+          alignItems: 'center',
+        width:210,
+        marginRight:160,
+        paddingVertical:12,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >All pharm</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={()=>navigation.navigate('WaitingDels')} 
         style={{
@@ -42,7 +74,23 @@ const AdminScreen=({navigation})=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Deliviries list</Text>
+   fontWeight:"bold"}} >Deliviries Waiting List</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={()=>navigation.navigate('AdminDelsList')} 
+        style={{
+        backgroundColor:'#6ba93a',
+         borderRadius:150 ,
+          alignItems: 'center',
+        width:210,
+        marginRight:160,
+        paddingVertical:12,
+        marginVertical:10,
+        alignSelf:'flex-end'
+        
+    }} >
+                <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >All Deliviries </Text>
         </TouchableOpacity>
 
         <View>

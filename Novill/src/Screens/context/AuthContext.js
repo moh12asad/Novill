@@ -113,7 +113,7 @@ const signinPharm=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signinpharm',{email,password});
-            //await AsyncStorage.setItem('token',response.data.token);
+            console.log(response.data.pharms1);
             if(response.data.pharms1.AdminAccept){
                 navigate('PharmAccount');
             }
@@ -221,7 +221,7 @@ const acceptpharm=(dispatch)=>{
             console.log('after response');
             console.log(response.data.pharms1);
             console.log('Response! V');
-            navigate('PharmAccount');
+            navigate('WaitingPharms');
         }catch(err){
             console.log(err);
     }
@@ -236,14 +236,56 @@ const acceptdel=(dispatch)=>{
             console.log('after response');
             console.log(response.data.del1);
             console.log('Response! V');
-            navigate('DeliveryAccount');
+            navigate('WaitindDels');
         }catch(err){
             console.log(err);
     }
 }};
 
+const deleteuser=(dispatch)=>{
+    return async ({email})=>{
+        try{
+            console.log('User email is:',email);
+            console.log(email);
+            const response = await server.post('/DeleteUser',{email});
+            console.log('after response');
+            navigate('Admin');
+        }catch(err){
+            console.log(err);
+    }
+}};
+
+
+const deletedel=(dispatch)=>{
+    return async ({email})=>{
+        try{
+            console.log('Delivery email is:',email);
+            console.log(email);
+            const response = await server.post('/DeleteDel',{email});
+            console.log('Delivery deleted');
+            navigate('Admin');
+        }catch(err){
+            console.log(err);
+    }
+}};
+
+
+const deletepharm=(dispatch)=>{
+    return async ({pname})=>{
+        try{
+            console.log('pharm name is:',{pname});
+            console.log(pname);
+            const response = await server.post('/DeletePharm',{pname});
+            console.log('Pharm deleted');
+            navigate('Admin');
+        }catch(err){
+            console.log(err);
+    }
+}};
+
+
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,},
     {token:null, errorMessage:''}
 );

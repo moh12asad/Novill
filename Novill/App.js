@@ -24,6 +24,14 @@ import DeliveryAccountScreen from './src/Screens/DeliveryAccountScreen';
 import WaitingDeliviriesScreen from './src/Screens/WaitingDeliviriesScreen';
 import AcceptPharmsScreen from './src/Screens/AcceptPharmsScreen';
 import AcceptDelsScreen from './src/Screens/AcceptDelsScreen';
+import AddProductScreen from './src/Screens/AddProductScreen';
+import UsersListScreen from './src/Screens/UsersListScreen';
+import DeleteUsersScreen from './src/Screens/DeleteUsersScreen';
+import AdminPharmListScreen from './src/Screens/AdminPharmListScreen';
+import DeletePharmScreen from './src/Screens/DeletePharmScreen';
+import DeleteDelsScreen from './src/Screens/DeleteDelsScreen';
+import AdminDelsListScreen from './src/Screens/AdminDelsListScreen';
+
 
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
@@ -33,35 +41,43 @@ const switchNavigator=createSwitchNavigator({
   loginFlow: createStackNavigator({
     Home:HomeScreen,
     //Account:AccountScreen,tryLocalSignin
-  }),
-  UserFlow: createStackNavigator({
+    Pharm:PharmScreen,
+    Delivery:DeliveryScreen,
     User:UserScreen,
     Signup:SignupScreen,
     Signin:SigninScreen,
+    SignupPharm:SignupPharmScreen,
+    SigninPharm:SigninPharmScreen,
+    SigninAdmin: SigninAdminScreen,
+    SigninDelivery:SigninDeliveryScreen,
+    SignupDelivery:SignupDeliveryScreen,
+
+  }),
+  UserFlow: createStackNavigator({
     Account:AccountScreen,
     PharmsList:PharmsListScreen,
   }),
   PharmFlow:createStackNavigator({
-    Pharm:PharmScreen,
-    SignupPharm:SignupPharmScreen,
-    SigninPharm:SigninPharmScreen,
     PharmAccount:PharmAccountScreen,
     WaitingAdmin:WaitingForAdmin,
     AddProducts:AddProductsScreen,
+    AddProduct:AddProductScreen,
   }),
   AdminFlow: createStackNavigator({
-    SigninAdmin: SigninAdminScreen,
     Admin: AdminScreen,
     WaitingPharms:WaitingPharmsScreen,
     WaitingDels:WaitingDeliviriesScreen,
     AcceptPharms:AcceptPharmsScreen,
     AcceptDels:AcceptDelsScreen,
+    UsersList:UsersListScreen,
+    DeleteUser:DeleteUsersScreen,
+    AdminPharmList:AdminPharmListScreen,
+    DeletePharm:DeletePharmScreen,
+    DeleteDel:DeleteDelsScreen,
+    AdminDelsList:AdminDelsListScreen,
 
   }),
   DeliveryFlow:createStackNavigator({
-    Delivery:DeliveryScreen,
-    SigninDelivery:SigninDeliveryScreen,
-    SignupDelivery:SignupDeliveryScreen,
     //DeliveryAccount:DeliveryAccountScreen,
     DeliveryAccount:DeliveryAccountScreen,
     WaitingAdminD:WaitingAdminDScreen,

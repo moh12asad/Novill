@@ -10,7 +10,7 @@ const AcceptPharmsScreen=()=>{
     const {state,acceptpharm,clearErrorMessage}=useContext(AuthContext);
     const [pname,setPnme] = useState(''); 
     return (
-        <ImageBackground source={require("../Screens/images/photo.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
         <NavigationEvents onWillFocus={clearErrorMessage}/>
         <View style={styles.container}>
         <Spacer/>

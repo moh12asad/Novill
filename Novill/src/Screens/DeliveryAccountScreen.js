@@ -14,7 +14,7 @@ const DeliveryAccountScreen=(props)=>{
 
          <SafeAreaView forceInset={{top:'always'}}>
             <Spacer/>
-             <Text style={{fontSize: 38,
+             <Text style={{fontSize: 35,
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
@@ -32,7 +32,7 @@ const DeliveryAccountScreen=(props)=>{
         marginTop:15,
         top:40
 
-    }} title ="Pharm store status" onPress={signout}>
+    }} title ="Pharm store status">
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Delivery status</Text> 
     </TouchableOpacity>
@@ -42,12 +42,12 @@ const DeliveryAccountScreen=(props)=>{
         padding:30,
         marginTop:20,
         borderRadius:110,
-          alignItems: 'center',
+        alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
         width:'30%',
         left:200,
-        marginTop:370,
+        marginTop:420,
         borderWidth:0
         
         }} title="Sign out" onPress={signout}>

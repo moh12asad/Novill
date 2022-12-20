@@ -38,7 +38,7 @@ const WaitingPharmsScreen=(props)=>{
 
 
         <SafeAreaView>
-            <Text style={{fontSize: 40,
+            <Text style={{fontSize: 35,
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
@@ -56,8 +56,8 @@ const WaitingPharmsScreen=(props)=>{
          borderRadius:1500 ,
           alignItems: 'center',
         width:200,
-        marginTop:100,
-        marginRight:170,
+        marginTop:50,
+        marginRight:5,
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end'

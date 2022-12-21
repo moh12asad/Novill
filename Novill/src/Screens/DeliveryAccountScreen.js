@@ -51,7 +51,7 @@ const DeliveryAccountScreen=(props)=>{
         borderWidth:0
         
         }} title="Sign out" onPress={signout}>
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signout</Text> 
+        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Log out</Text> 
             </TouchableOpacity>
 
 

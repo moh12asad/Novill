@@ -31,29 +31,36 @@ const AdminDelsListScreen=(props)=>{
     <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
     
         <SafeAreaView>
-            
-            <Text style={{fontSize: 40,
-              fontWeight:'bold'
-              ,marginVertical:5,
+           <View style={{marginVertical:5,
               left:10,
-            top:20,
-            
-            
-            }}> Delivery Employees</Text>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteDel')} 
-        style={styles.TouchStyle} >
+            top:10,
+            marginTop:27,
+            marginBottom:10
+            }}> 
+            <Text style={{fontSize: 30,
+              fontWeight:'bold'}}> Delivery Employees</Text>
+            </View>
+            <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteDel')}
+            style={styles.TouchStyle}
+            >
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Remove Delivery</Text>
+        </TouchableOpacity>
+
    <Spacer/>
+
            <TouchableOpacity onPress={()=>props.navigation.navigate('WaitingDels')} 
         style={styles.TouchStyle}>
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Deliviries Waiting List</Text>
+   fontWeight:"bold"}} >Deliveries Waiting List</Text>
         </TouchableOpacity>
 
    
-        </TouchableOpacity>
-            <FlatList  data={delsCollection} 
+            <FlatList   style={{  marginVertical:-20,
+        marginStart:10,
+        padding:10,
+
+        top:-40}} data={delsCollection} 
                 renderItem={({item})=>{return <Text style={styles.textStyle}>{item.email+' '+item.Fname+' '+item.Lname}</Text>}}/>
                 
         </SafeAreaView>
@@ -65,19 +72,25 @@ const AdminDelsListScreen=(props)=>{
 const styles=StyleSheet.create({
     textStyle:{
         marginVertical:30,
-        fontSize:15
+        fontSize:20,
+        marginBottom:-20,
+        marginTop:50,
+        marginStart:10,
+        
     },
     TouchStyle:{
-        backgroundColor:'#6ba93a',
-         borderRadius:1500 ,
-          alignItems: 'center',
-        width:150,
-        marginTop:100,
-        marginRight:170,
-        paddingVertical:15,
+       backgroundColor:'#6ba93a',
+        borderRadius:150 ,
+        alignItems: 'center',
+        width:200,
+        marginRight:25,
+        marginEnd:20,
+        marginHorizontal:15,
+        margin:30,
+        paddingVertical:5,
         marginVertical:10,
-        alignSelf:'flex-end'
-        
+        alignSelf:'flex-end',
+        marginTop:20
     }
 });
 

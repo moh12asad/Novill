@@ -34,7 +34,9 @@ const UsersListScreen=(props)=>{
 
 
     return(
-        /*
+                  <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+
+        {/*
          <SafeAreaView forceInset={{top:'always'}}>
             <Text style={{fontSize: 48}}> Pharms List </Text>
             <Spacer/>
@@ -42,15 +44,23 @@ const UsersListScreen=(props)=>{
             <Spacer/>
             <Text>Here is</Text>
             <Spacer/>
-        </SafeAreaView>*/
+        </SafeAreaView>*/}
 
         <SafeAreaView>
-            <Text h3> Users</Text>
+            <Text style={{fontSize: 38,
+              fontWeight:'bold'
+              ,marginVertical:5,
+              left:70,
+            top:20}}> Users</Text>
             <Spacer/>
-            <FlatList data={usersCollection} 
+            <FlatList style={{ marginVertical:30,
+        marginBottom:-10,
+        marginTop:50,
+        marginStart:10,
+        top:-50}} data={usersCollection} 
                 renderItem={({item})=>{
                 return( 
-                        <Text>{item.email}</Text>
+                        <Text style={{fontSize:20}}>{item.email}</Text>
                     ); 
                 }}/>
             <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteUser')} 
@@ -59,8 +69,8 @@ const UsersListScreen=(props)=>{
          borderRadius:1500 ,
           alignItems: 'center',
         width:200,
-        marginTop:100,
-        marginRight:170,
+        marginTop:10,
+        marginRight:20,
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end'
@@ -70,7 +80,9 @@ const UsersListScreen=(props)=>{
    fontWeight:"bold"}} >Delete user</Text>
         </TouchableOpacity>
         </SafeAreaView>
+</ImageBackground>
         );
+
 }
 
 const styles=StyleSheet.create({});

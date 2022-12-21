@@ -66,7 +66,7 @@ const AdminScreen=({navigation})=>{
 
         <View>
         <Pressable  style={styles.button} title="Sign out" onPress={signout}>
-        <Text style={styles.text}>Sign out</Text> 
+        <Text style={styles.text}>Log out</Text> 
  </Pressable>
    </View>
 
@@ -88,9 +88,9 @@ const styles=StyleSheet.create({
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
-        width:'40%',
+        width:'30%',
         left:200,
-        marginTop:420,
+        marginTop:370,
         borderWidth:0
   },
   text: {
@@ -98,7 +98,7 @@ const styles=StyleSheet.create({
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: '#3a8b08',
+    color: '#000',
   },
 });
 

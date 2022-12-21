@@ -60,7 +60,7 @@ const AccountScreen=(props)=>{
 <View>
           
 <Pressable  style={styles.button} title="Sign out" onPress={signout}>
-        <Text style={styles.text}>Signout</Text> 
+        <Text style={styles.text}>Log out</Text> 
  </Pressable>
  </View>
         </SafeAreaView>
@@ -87,7 +87,7 @@ const styles=StyleSheet.create({
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: '#3a8b08',
+    color: '#000',
   },
 
 

@@ -56,10 +56,14 @@ const WaitingPharmsScreen=(props)=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Accept pharms</Text>
+   fontWeight:"bold"}} >Accept pharm</Text>
         </TouchableOpacity>
-            <FlatList data={wpharmsCollection} 
-                renderItem={({item})=>{return <Text style={{fontSize:15,marginVertical:30}}>{item.pname}</Text>}}/>
+            <FlatList  style={{  marginVertical:-20,
+        marginStart:10,
+        padding:10,
+
+        top:-50}} data={wpharmsCollection} 
+                renderItem={({item})=>{return <Text style={{fontSize:25,marginVertical:10}}>{item.pname}</Text>}}/>
         </SafeAreaView>
 
         

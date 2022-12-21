@@ -18,7 +18,7 @@ const PharmAccountScreen=(props)=>{
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:20,}}> Pharm Account Screen </Text>
+            top:20,}}> Pharm Account</Text>
            <TouchableOpacity    style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
@@ -62,13 +62,13 @@ const PharmAccountScreen=(props)=>{
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:10,
-        width:'40%',
+        width:'30%',
         left:200,
         marginTop:370,
         borderWidth:0
         
         }} title="Sign out" onPress={signout}>
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signout</Text> 
+        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Log out</Text> 
             </TouchableOpacity>
 
 

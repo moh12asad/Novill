@@ -54,7 +54,7 @@ const AdminDelsListScreen=(props)=>{
    
         </TouchableOpacity>
             <FlatList  data={delsCollection} 
-                renderItem={({item})=>{return <Text style={styles.textStyle}>{item.email+' '+item.Fname+' '+item.Lname}</Text>}}/>
+                renderItem={({item})=>{return <Text style={{fontSize:15,marginVertical:30}}>{item.email+' '+item.Fname+' '+item.Lname}</Text>}}/>
                 
         </SafeAreaView>
         </ImageBackground>
@@ -64,8 +64,7 @@ const AdminDelsListScreen=(props)=>{
 
 const styles=StyleSheet.create({
     textStyle:{
-        marginVertical:30,
-        fontSize:15
+
     },
     TouchStyle:{
         backgroundColor:'#6ba93a',

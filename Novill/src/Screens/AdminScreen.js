@@ -61,7 +61,7 @@ const AdminScreen=({navigation})=>{
         
     }} >
                 <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >All Deliviries </Text>
+   fontWeight:"bold"}} >Delivery Employees</Text>
         </TouchableOpacity>
 
         <View>

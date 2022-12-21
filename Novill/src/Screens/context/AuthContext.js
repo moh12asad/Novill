@@ -218,7 +218,7 @@ const acceptpharm=(dispatch)=>{
             console.log('after response');
             console.log(response.data.pharms1);
             console.log('Response! V');
-            navigate('WaitingPharms');
+            navigate('Admin');
         }catch(err){
             console.log(err);
     }

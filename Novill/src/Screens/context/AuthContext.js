@@ -228,6 +228,7 @@ const acceptdel=(dispatch)=>{
     return async ({email,location})=>{
         try{
             console.log('accept del in auth contex, del name is:',email,location);
+            console.log('Ok, ok okasasdasdasdasd');
             console.log(email,location);
             const response = await server.post('/AcceptDel',{email,location});
             console.log('after response');

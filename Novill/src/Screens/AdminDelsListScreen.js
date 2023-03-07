@@ -71,7 +71,7 @@ const AdminDelsListScreen=(props)=>{
 
 const styles=StyleSheet.create({
     textStyle:{
-        marginVertical:30,
+        marginVertical:15,
         fontSize:20,
         marginBottom:-20,
         marginTop:50,

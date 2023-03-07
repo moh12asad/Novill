@@ -60,7 +60,7 @@ const switchNavigator=createSwitchNavigator({
     PharmAccount:PharmAccountScreen,
     WaitingAdmin:WaitingForAdmin,
     AddProducts:AddProductsScreen,
-    AddProduct:AddProductScreen,
+    //AddProduct:AddProductScreen,
   }),
   AdminFlow: createStackNavigator({
     Admin: AdminScreen,

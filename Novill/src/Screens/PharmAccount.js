@@ -36,7 +36,7 @@ const PharmAccountScreen=(props)=>{
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Pharm store status</Text> 
     </TouchableOpacity>
-    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProduct')}   style={{
+    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProducts')}   style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
           alignItems: 'center',

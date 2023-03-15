@@ -5,10 +5,12 @@ import Spacer from './Components/Spacer';
 
 
 
+
 const HomeScreen=({navigation})=>{
     return(
-        
+      
     <View> 
+    
         <ImageBackground source={require("../Screens/images/a.jpg")} style={{ width:'100%', height:'100%' }} >
         <View style={{marginRight:50,marginVertical:75}}>
         </View>
@@ -75,10 +77,11 @@ const HomeScreen=({navigation})=>{
         </TouchableOpacity>
         </View>
         </ImageBackground>
+      
     </View>
+    
     );
 }
 
 const styles=StyleSheet.create({});
-
 export default HomeScreen;

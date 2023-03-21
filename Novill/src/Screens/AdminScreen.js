@@ -6,6 +6,8 @@ import Spacer from './Components/Spacer';
 import { BorderlessButton, TouchableOpacity } from 'react-native-gesture-handler';
 import { BackIcon } from 'react-native-vector-icons/Feather';
 import { StatusBar } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
  
 const AdminScreen=({navigation})=>{
     const {signout,getPharms} = useContext(AuthContext);
@@ -15,7 +17,7 @@ const AdminScreen=({navigation})=>{
            <View>
         <Pressable style={styles.button} title="Sign out" onPress={signout}>
         <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
-        <Text style={styles.text}>Log out</Text> 
+
  </Pressable>
    </View>
         <View style={{
@@ -29,7 +31,7 @@ const AdminScreen=({navigation})=>{
    
 </View>
         </View>
-        <View style={styles.NavContainer}>
+        {/*<View style={styles.NavContainer}>
         <View style={styles.NavBar}>
           <TouchableOpacity onPress={()=>navigation.navigate('UsersList')} 
         style={{
@@ -73,7 +75,22 @@ const AdminScreen=({navigation})=>{
           </Pressable>
 
         </View>
-      </View>
+      </View>*/}
+        <View style={styles.NavContainer}>
+        <View style={styles.NavBar}>
+       
+           <Pressable style={styles.IconBehave}>
+                <Icon name="truck" color={'black'} size={20} onPress={()=>navigation.navigate('AdminDelsList')}/> 
+          </Pressable>
+           <Pressable style={styles.IconBehave}>
+                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>navigation.navigate('AdminPharmList')} /> 
+          </Pressable>
+           <Pressable style={styles.IconBehave}>
+                 <Icon name="user" color={'black'} size={20}  onPress={()=>navigation.navigate('UsersList')}   /> 
+               
+
+          </Pressable>
+        </View></View>
         </ImageBackground>
 
     );
@@ -109,10 +126,10 @@ justifyContent:'center',
     height:40,
         
   },
-  NavContainer:{
+   NavContainer:{
     position:'absolute',
     alignItems:'center',
-    bottom:20,
+    
 
   },
   text: {
@@ -122,13 +139,17 @@ justifyContent:'center',
     letterSpacing: 0.25,
     color: '#000',
   },
-  NavBar:{
-    flexDirection:'row',
+    NavBar:{
+    flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
     width:'80%',
     justifyContent:'space-between',
-    borderRadius:40,
-    left:25,
+    borderRadius:30,
+    bottom:-600,
+    height:60,
+    right:40,
+    left:10,
+
     
   },
   IconBehave:{

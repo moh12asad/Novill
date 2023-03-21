@@ -19,6 +19,8 @@ const PharmAccountScreen=(props)=>{
               ,marginVertical:5,
               left:10,
             top:20,}}> Pharm Account</Text>
+
+
            <TouchableOpacity    style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,

@@ -1,19 +1,18 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/Screens/HomeScreen';
+import { createNativeStackNavigator } from 'react-navigation/native-stack';
+import HomeScreen from './Screens/HomeScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-function App() {
+const MyNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false, // set this to false to hide the header
+  headerShadowVisible: false,
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
-
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
-}
+};
 
-export default App;
+export default MyNavigator;

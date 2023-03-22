@@ -5,13 +5,15 @@ import {View,Button,StyleSheet,Text,FlatList,ImageBackground} from 'react-native
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import PharmListComp from './Components/PharmListComp';
 
 const PharmsListScreen=(pharms)=>{
     //const {signout,getPharms} = useContext(AuthContext);
+    const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [pharmsCollection,setPharmsCollection]=useState();
     //let pharmsCollection=[];
-    const myuserpharms=useContext(GlobalContex);
+    const myuserpharms=useContext(GlobalContex); 
     //let a=[];
     useEffect(() => {(async () => {
             try {
@@ -22,7 +24,6 @@ const PharmsListScreen=(pharms)=>{
                 setPharmsCollection(pharmsArray);
                 //pharmsCollection.set(pharmsArray);
                 //pharmsCollection=pharmsArray;
-                console.log('Pharm collection length is:',pharmsCollection.length)
                 //pharmsCollection=pharmsArray;
 
             } catch (err) {
@@ -35,34 +36,20 @@ const PharmsListScreen=(pharms)=>{
 
 
     return(
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+  <SafeAreaView style={{ height: '80%' }}>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Pharm stores</Text>
+    <Spacer />
+    <FlatList
+      data={pharmsCollection}
+      style={{ height: '100%' }}
+      renderItem={({ item }) => {
+        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>productlistforuser({item})}/>;
+      }}
+    />
+  </SafeAreaView>
+</ImageBackground>
 
-        {/*
-         <SafeAreaView forceInset={{top:'always'}}>
-            <Text style={{fontSize: 48}}> Pharms List </Text>
-            <Spacer/>
-            <Button title="Sign out" onPress={signout}/>
-            <Spacer/>
-            <Text>Here is</Text>
-            <Spacer/>
-        </SafeAreaView>*/}
-
-        <SafeAreaView>
-            <Text style={{fontSize: 40,
-              fontWeight:'bold'
-              ,marginVertical:5,
-              left:10,
-            top:5,
-            
-            
-            }}> Pharm stores</Text>
-         
-            <Spacer/>
-            <FlatList data={pharmsCollection} 
-                renderItem={({item})=>{return <Text style={styles.item}>{item.pname}</Text>}}/>
-               
-        </SafeAreaView>
-        </ImageBackground>
         );
 }
 

@@ -337,5 +337,26 @@ router.post('/Addproduct', async (req, res) => {
   }
 });
 
+router.get('/getProducts', async (req, res) => {
+  //console.log(req.query);
+  //const products=await Pharm.find({ pname: req.query.pname }).select('products');
+  console.log(req.query.item.products);
+  let prods1=[];
+  prods=req.query.item.products;
+  res.status(200).send({message:'pharm Products extracted  successfully',fpharm:req.query.item,prods:req.query.item.products});
+  //console.log(prods);
+  /*console.log(pharm);
+  let prods1=[];
+  products.forEach(product=>prods1.push(product));
+  console.log(prods1[0].products);
+  let prodArray=[];
+  prods1[0].products.forEach((prod) => {
+    prodArray.push(prod);
+});
+  console.log(prodArray);
+  res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});*/
+});
+
+
 
 module.exports = router;

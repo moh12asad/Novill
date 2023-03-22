@@ -311,10 +311,21 @@ const addproduct= (dispatch) =>{
         
     }
 }
+const productlistforuser=(dispatch)=>{
+    return async({item})=>{
+        console.log(item);
+        const response=await server.get('/getProducts',{
+        params: { item }}
+        );
+        //dispatch({type:'productslistforuser',payload:response.data});
+        console.log(response.data.rv);
+        //navigate('PharmsList');
+}}
+
 
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,},
     {token:null, errorMessage:''}
 );

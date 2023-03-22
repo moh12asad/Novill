@@ -1,6 +1,7 @@
+
+const ProductSchema = require('./Product');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
 const PharmSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -39,6 +40,9 @@ const PharmSchema = new mongoose.Schema({
   utype:{
     type:String,
     required:false
+  },
+  products:{
+    type:[ProductSchema]
   }
   
 });
@@ -82,4 +86,5 @@ PharmSchema.pre('save', function(next) {
   });
 
   mongoose.model('Pharm', PharmSchema);
+
   

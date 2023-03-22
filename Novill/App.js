@@ -31,8 +31,7 @@ import AdminPharmListScreen from './src/Screens/AdminPharmListScreen';
 import DeletePharmScreen from './src/Screens/DeletePharmScreen';
 import DeleteDelsScreen from './src/Screens/DeleteDelsScreen';
 import AdminDelsListScreen from './src/Screens/AdminDelsListScreen';
-
-
+import ProductsScreen from './src/Screens/ProductsScreen';
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
 import SigninAdminScreen from './src/Screens/SigninAdmin';
@@ -57,9 +56,10 @@ const switchNavigator=createSwitchNavigator({
     PharmsList:PharmsListScreen,
   }),
   PharmFlow:createStackNavigator({
-    PharmAccount:PharmAccountScreen,
     WaitingAdmin:WaitingForAdmin,
+    PharmAccount:PharmAccountScreen,
     AddProducts:AddProductsScreen,
+    Products:ProductsScreen,
     //AddProduct:AddProductScreen,
   }),
   AdminFlow: createStackNavigator({

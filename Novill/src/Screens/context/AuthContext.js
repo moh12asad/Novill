@@ -1,7 +1,7 @@
 import CreateDataContext from "./CreateDataContext";
 import server from "../api/Server";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {navigate} from '../navigationRef'
+import {navigate} from '../navigationRef';
 import React from "react";
 
 const authReducer=(state,action)=>{
@@ -12,6 +12,10 @@ const authReducer=(state,action)=>{
             return {errorMessage:'', token:action.payload};
         /*case 'signin':
             return {errorMessage:'', token:action.payload};*/
+        case 'signinPharm':
+            return {errorMessage:'', pharms1:action.payload};
+        case 'signupPharm':
+            return {errorMessage:'', pharms1:action.payload};
         case 'clearErrorMessage':
             return {...state, errorMessage:''};
         case 'passwordMatch':
@@ -113,8 +117,9 @@ const signinPharm=(dispatch)=>{
         try{
             const response = await server.post('/signinpharm',{email,password});
             console.log(response.data.pharms1);
+            dispatch({type:'signinPharm',payload:response.data.pharms1});
             if(response.data.pharms1.AdminAccept){
-                navigate('PharmAccount');
+                navigate('PharmAccount',{pharms1:response.data.pharms1});
             }
             else{
                 navigate('WaitingAdmin');
@@ -145,9 +150,10 @@ const signupPharm=(dispatch) =>{
             console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype);
             const response = await server.post('/signupPharm',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype});
             console.log('Response! V');
-            await AsyncStorage.setItem('token',response.data.token);
-            dispatch({type:'signupPharm',payload:response.data.token});
-            navigate('WaitingAdmin');
+            //await AsyncStorage.setItem('token',response.data.token);
+            //dispatch({type:'signupPharm',payload:response.data.pharms1});
+            console.log(response.data.pharms1);
+            navigate('WaitingAdmin',{pharms1:response.data.pharms1});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -282,8 +288,33 @@ const deletepharm=(dispatch)=>{
 }};
 
 
+
+
+const addproduct= (dispatch) =>{
+    return async ({prodname,salePrice,sale,price,amount,pname})=>{
+        try{
+            console.log(prodname,salePrice,sale,price,amount,pname);
+            const response = await server.post('/Addproduct',{prodname,salePrice,sale,price,amount,pname});
+            console.log('Response! V');
+            /*await AsyncStorage.setItem('token',response.data.token);
+            dispatch({type:'signup',payload:response.data.token});
+            navigate('Account');*/
+            navigate('AddProducts');
+            
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up'
+        });
+            //console.log(err.message);
+        }
+        
+    }
+}
+
+
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,},
     {token:null, errorMessage:''}
 );

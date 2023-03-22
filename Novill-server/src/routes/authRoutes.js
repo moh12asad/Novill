@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
 const Pharm = mongoose.model('Pharm');
 const Delivery=mongoose.model('Delivery');
+const Product=mongoose.model('Product')
 
 const router = express.Router();
 
@@ -41,7 +42,7 @@ router.post('/signupPharm', async (req, res) => {
     await pharm.save();
 
     const token = jwt.sign({ pharmId: pharm._id }, 'MY_SECRET_KEY');
-    res.send({ token });
+    res.status(200).send({message:'pharms extracted successfully',pharms1:pharm});
   } catch (err) {
     return res.status(422).send(err.message);
   }
@@ -149,10 +150,10 @@ router.post('/signinPharm', async (req, res) => {
   const pharm = await Pharm.findOne({email});
   if(pharm){
     try {
-      console.log("Fotet 3end al pharm");
+      //console.log("Fotet 3end al pharm");
       await pharm.comparePassword(password);
       const token = jwt.sign({ pharmId: pharm._id }, 'MY_SECRET_KEY');
-      console.log(pharm);
+      //console.log(pharm);
       res.status(200).send({message:'pharms extracted successfully',pharms1:pharm});
     } catch (err) {
       return res.status(422).send({ error: 'Invalid password or email' });
@@ -282,6 +283,24 @@ router.get('/getUsers', async (req, res) => {
 });
 
 
+router.get('/Products', async (req, res) => {
+  console.log(req.query);
+  const pharm = await Pharm.find({ pname: req.query.pname });//.select('products');
+  const products=await Pharm.find({ pname: req.query.pname }).select('products');
+  //console.log(prods);
+  console.log(pharm);
+  let prods1=[];
+  products.forEach(product=>prods1.push(product));
+  console.log(prods1[0].products);
+  let prodArray=[];
+  prods1[0].products.forEach((prod) => {
+    prodArray.push(prod);
+});
+  console.log(prodArray);
+  res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});
+});
+
+
 router.post('/DeleteUser',async(req,res)=>{
    await User.deleteOne({email:req.body.email});
    res.status(200).send({message:'User deleted successfully'});
@@ -295,6 +314,27 @@ router.post('/DeletePharm',async(req,res)=>{
 router.post('/DeleteDel',async(req,res)=>{
    await Delivery.deleteOne({email:req.body.email});
    res.status(200).send({message:'User deleted successfully'});
+});
+
+
+router.post('/Addproduct', async (req, res) => {
+  const { prodname,salePrice,sale,price,amount,pname } = req.body;
+  console.log(prodname,salePrice,sale,price,amount,pname);
+  try {
+    const prod = new Product({ prodname,salePrice,sale,price,amount });
+    console.log('Add product');
+    console.log(prod);
+    await prod.save();
+    const pharm = await Pharm.findOne({pname});
+    console.log(pharm.products);
+    pharm.products.push(prod);
+    await pharm.save();
+    //console.log(pharm.products);
+    console.log(pharm);
+
+  } catch (err) {
+    return res.status(422).send(err.message);
+  }
 });
 
 

@@ -2,12 +2,13 @@ import React from 'react';
 import {ImageBackground,View,Button,StyleSheet,Text} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Spacer from './Components/Spacer';
-
-
+import { StatusBar } from 'react-native';
+import useLayoutEffect from 'react';
 
 const HomeScreen=({navigation})=>{
+
     return(
-        
+      
     <View> 
         <ImageBackground source={require("../Screens/images/a.jpg")} style={{ width:'100%', height:'100%' }} >
         <View style={{marginRight:50,marginVertical:75}}>
@@ -75,10 +76,10 @@ const HomeScreen=({navigation})=>{
         </TouchableOpacity>
         </View>
         </ImageBackground>
+      
     </View>
+    
     );
-}
+};
 
-const styles=StyleSheet.create({});
-
-export default HomeScreen;
+export default HomeScreen ;

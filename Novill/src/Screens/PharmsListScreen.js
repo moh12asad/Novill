@@ -52,19 +52,37 @@ const PharmsListScreen=(pharms)=>{
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:20,
+            top:5,
             
             
             }}> Pharm stores</Text>
+         
             <Spacer/>
             <FlatList data={pharmsCollection} 
-                renderItem={({item})=>{return <Text style={{fontSize:25}}>{item.pname}</Text>}}/>
+                renderItem={({item})=>{return <Text style={styles.item}>{item.pname}</Text>}}/>
+               
         </SafeAreaView>
         </ImageBackground>
         );
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+
+
+    container: {
+  flex: 1,
+  backgroundColor: '#fff',
+  paddingTop: 10,
+  paddingHorizontal: 10,
+
+},
+item: {
+  marginTop: 20,
+  padding: 10,
+  backgroundColor: '#fff',
+  fontSize: 20,
+}
+});
 
 export default PharmsListScreen;
 

@@ -36,6 +36,7 @@ import ProductsScreen from './src/Screens/ProductsScreen';
 import { Provider as AuthProvider } from './src/Screens/context/AuthContext';
 import { setNavigator } from './src/Screens/navigationRef';
 import SigninAdminScreen from './src/Screens/SigninAdmin';
+import PharmStoreScreen from './src/Screens/PharmStoreScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -55,12 +56,14 @@ const switchNavigator=createSwitchNavigator({
   UserFlow: createStackNavigator({
     Account:AccountScreen,
     PharmsList:PharmsListScreen,
+    PharmStore:PharmStoreScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,
     PharmAccount:PharmAccountScreen,
     AddProducts:AddProductsScreen,
     Products:ProductsScreen,
+
     //AddProduct:AddProductScreen,
   }),
   AdminFlow: createStackNavigator({

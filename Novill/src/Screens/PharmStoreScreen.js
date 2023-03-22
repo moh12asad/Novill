@@ -7,24 +7,29 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 
-const PharmsListScreen=(props)=>{
+const PharmStoreScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
-    const [pharmsCollection,setPharmsCollection]=useState();
+    const [productsCollection,setproductsCollection]=useState();
+    const [Pharm,setPharm]=useState();
+    const pharm=props.navigation.state.params.pharm;
     //let pharmsCollection=[];
     const myuserpharms=useContext(GlobalContex); 
     //let a=[];
     useEffect(() => {(async () => {
             try {
-                const response = await Server.get('/getPharms') 
+                //const response = await Server.get('/getPharms') 
                 updateloaded(true);
-                const pharmsArray = response.data.pharms1;
+                //const pharmsArray = response.data.pharms1;
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
-                setPharmsCollection(pharmsArray);
+                setPharm(pharm);
+                setproductsCollection(pharm.products);
                 //pharmsCollection.set(pharmsArray);
                 //pharmsCollection=pharmsArray;
                 //pharmsCollection=pharmsArray;
+                console.log('PharmStore:');
+                console.log(pharm.pname)
 
             } catch (err) {
                 console.log('error in useEffect');
@@ -38,13 +43,14 @@ const PharmsListScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Pharm stores</Text>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{pharm.pname}</Text>
     <Spacer />
+    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>{pharm.location}</Text>
     <FlatList
-      data={pharmsCollection}
+      data={productsCollection}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}/>;
+        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('PharmStoreScreen button has pressed')}/>;
       }}
     />
   </SafeAreaView>
@@ -71,7 +77,7 @@ item: {
 }
 });
 
-export default PharmsListScreen;
+export default PharmStoreScreen;
 
 /*
               <FlatList  style={{ flex: 1, padding: 10 }} data={myuserpharms}

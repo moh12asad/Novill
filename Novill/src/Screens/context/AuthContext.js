@@ -318,7 +318,8 @@ const productlistforuser=(dispatch)=>{
         params: { item }}
         );
         //dispatch({type:'productslistforuser',payload:response.data});
-        console.log(response.data.rv);
+        console.log("HOOON");
+        console.log(response.data.fpharm);
         //navigate('PharmsList');
 }}
 

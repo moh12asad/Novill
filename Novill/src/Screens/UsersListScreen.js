@@ -1,12 +1,12 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList,ImageBackground,ScrollView} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,ImageBackground,ScrollView,Pressable} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const UsersListScreen=(props)=>{
     const [loaded,updateloaded] =useState(false)
@@ -34,7 +34,7 @@ const UsersListScreen=(props)=>{
 
 
     return(
-                  <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+                  <ImageBackground source={require("../Screens/images/img.jpg")} style={{ width:'100%', height:'100%' }} >
 
         {/*
          <SafeAreaView forceInset={{top:'always'}}>
@@ -47,45 +47,84 @@ const UsersListScreen=(props)=>{
         </SafeAreaView>*/}
 
         <SafeAreaView>
-            <Text style={{fontSize: 38,
+        
+            {/*<Text style={{fontSize: 38,
               fontWeight:'bold'
               ,marginVertical:5,
               left:70,
-            top:20}}> Users</Text>
+            top:20}}> Users</Text>*/}
             <Spacer/>
-            <FlatList style={{ marginVertical:30,
-        marginBottom:-10,
-        marginTop:50,
-        marginStart:10,
-        top:-50}} data={usersCollection} 
+            <Text style={{fontSize: 30,
+              fontWeight:'bold',
+              marginVertical:5,
+              top:-30
+         }}>Users</Text>
+            <FlatList style={styles.container} data={usersCollection} 
                 renderItem={({item})=>{
                 return( 
-                        <Text style={{fontSize:20}}>{item.email}</Text>
+                        <><View
+style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#607D8B",
+        }}
+      /><Text style={styles.name}>{item.Fname} {item.Lname}</Text><Text style={styles.email}>{item.email} </Text><View
+style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#607D8B",
+        }}
+      /></>
+                        
                     ); 
                 }}/>
-            <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteUser')} 
+                  <TouchableOpacity onPress={()=>props.navigation.navigate('DeleteUser')} 
         style={{
         backgroundColor:'#6ba93a',
          borderRadius:1500 ,
           alignItems: 'center',
-        width:200,
-        marginTop:10,
+        width:50,
+        marginTop:15,
         marginRight:20,
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end'
+
         
     }} >
-                <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Delete user</Text>
+    
+                 <Icon name="eraser" color={'black'} size={20} />
+ 
         </TouchableOpacity>
+      
         </SafeAreaView>
 </ImageBackground>
         );
 
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+ container: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+ 
+      width: '100%',
+      height: '75%',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+ 
+    marginTop:-10
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  email: {
+    fontSize: 18,
+    color: '#666',
+  },
+});
 
 export default UsersListScreen;
 

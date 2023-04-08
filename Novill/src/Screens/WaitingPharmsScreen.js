@@ -30,7 +30,7 @@ const WaitingPharmsScreen=(props)=>{
 
 
     return(
-<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+<ImageBackground source={require("../Screens/images/img.jpg")} style={{ width:'100%', height:'100%' }} >
 
 
         <SafeAreaView>
@@ -38,11 +38,21 @@ const WaitingPharmsScreen=(props)=>{
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:20,
+            top:10,
             
             
-            }}> Pharm stores</Text>
-                    <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptPharms')} 
+            }}> Pharms</Text>
+               
+            <FlatList  style={styles.container} data={wpharmsCollection} 
+                renderItem={({item})=>{return <><Text style={styles.name}>{item.pname}  </Text><Text style={styles.email}>{item.location}</Text><View
+style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#607D8B",
+        }}
+      /></>}}/>
+
+           <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptPharms')} 
         style={{
         backgroundColor:'#6ba93a',
          borderRadius:1500 ,
@@ -58,12 +68,6 @@ const WaitingPharmsScreen=(props)=>{
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Accept pharm</Text>
         </TouchableOpacity>
-            <FlatList  style={{  marginVertical:-20,
-        marginStart:10,
-        padding:10,
-
-        top:-50}} data={wpharmsCollection} 
-                renderItem={({item})=>{return <Text style={{fontSize:25,marginVertical:10}}>{item.pname}</Text>}}/>
         </SafeAreaView>
 
         
@@ -71,7 +75,35 @@ const WaitingPharmsScreen=(props)=>{
         );
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+
+     container: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+ 
+      width: '100%',
+      height: '70%',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+ 
+    marginTop:20
+  },
+    item: {
+  marginTop: 20,
+  padding:5,
+  backgroundColor: '#fff',
+  fontSize:25,
+},
+ name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  email: {
+    fontSize: 18,
+    color: '#666',
+  },
+});
 
 export default WaitingPharmsScreen;
 

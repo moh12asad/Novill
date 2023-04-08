@@ -6,11 +6,12 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import PharmListComp from './Components/PharmListComp';
 
 const AdminPharmListScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
-    const [pharmsCollection,setPharmsCollection]=useState();
+    const [pharmsCollection,setPharmsCollection,productlistforuser]=useState(AuthContext);
     const myuserpharms=useContext(GlobalContex);
     useEffect(() => {(async () => {
         try {
@@ -35,7 +36,7 @@ const AdminPharmListScreen=(props)=>{
     },[loaded] )
 
     return(
-    <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+    <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width:'100%', height:'100%' }} >
     
         <SafeAreaView>
             <View >
@@ -43,52 +44,60 @@ const AdminPharmListScreen=(props)=>{
               fontWeight:'bold',
               marginVertical:5,
               left:50,
-            top:10,
+            top:-10,
             marginTop:27,
             marginBottom:10 
             }}> Pharm stores</Text>
             </View>
-            <TouchableOpacity style={{ backgroundColor:'#6ba93a',
+            <View>
+                        <FlatList
+      data={pharmsCollection}
+     style={styles.container}
+      renderItem={({ item }) => {
+        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>productlistforuser({item})}/>;
+      }}
+    /> 
+            </View>
+            <View>
+            <TouchableOpacity style={{backgroundColor:'#6ba93a',
         borderRadius:150 ,
         alignItems: 'center',
-        width:200,
-        marginRight:25,
-        marginEnd:10,
-        marginHorizontal:15,
-        margin:25,
+        width:180,
+              left:200,
+        top:20,
+        marginHorizontal:20,
         paddingVertical:5,
-        marginVertical:10,
-        marginTop:100,
-        alignSelf:'flex-end',}} onPress={()=>props.navigation.navigate('DeletePharm')} 
+        marginVertical:8,
+         alignSelf: 'stretch',
+       
+  
+        }} onPress={()=>props.navigation.navigate('DeletePharm')} 
          >
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Remove Pharm</Text>
    
         </TouchableOpacity>
+</View>
 
+
+<View>
         <TouchableOpacity style={{ backgroundColor:'#6ba93a',
         borderRadius:150 ,
         alignItems: 'center',
-        width:200,
-        marginRight:25,
-        marginEnd:10,
-        marginHorizontal:15,
-        margin:20,
+        width:180,
+        top:-20,
+        left:-20,
+        marginHorizontal:20,
         paddingVertical:5,
-        marginVertical:10,
-        marginTop:100,
-        alignSelf:'flex-end',}} onPress={()=>props.navigation.navigate('WaitingPharms')} 
+        marginVertical:8,
+
+      }} onPress={()=>props.navigation.navigate('WaitingPharms')} 
        >
                 <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Waiting Pharms</Text>
    
         </TouchableOpacity>
-            <FlatList style={{  marginVertical:30,
-        fontSize:20,
-        marginStart:0,
-        top:-250}}  data={pharmsCollection} 
-                renderItem={({item})=>{return <Text style={styles.textStyle}>{item.pname}</Text>}}/>
-                
+   </View>
         </SafeAreaView>
         </ImageBackground>
         );
@@ -96,40 +105,24 @@ const AdminPharmListScreen=(props)=>{
 }
 
 const styles=StyleSheet.create({
-    textStyle:{
-       marginVertical:30,
-        fontSize:20,
-        marginBottom:-50,
-        marginTop:50,
-        marginStart:10,
-        top:-100
-    },
-    TouchStyle:{
-        backgroundColor:'#6ba93a',
-        borderRadius:150 ,
-        alignItems: 'center',
-        width:200,
-        marginRight:25,
-        marginEnd:10,
-        marginHorizontal:15,
-        margin:25,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        marginTop:120
-    },
-    TouchStyle2:{
-        backgroundColor:'#6ba93a',
-        borderRadius:1500 ,
-         alignItems: 'center',
-       width:150,
-       marginTop:50,
-       marginRight:200,
-       paddingVertical:15,
-       marginVertical:10,
-       alignSelf:'flex-end'
-
-    }
+  
+  container: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+ 
+      width: '100%',
+      height: '75%',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+ 
+    marginTop:-15
+  },
+    item: {
+  marginTop: 20,
+  padding:5,
+  backgroundColor: '#fff',
+  fontSize: 10,
+}
 });
 
 export default AdminPharmListScreen;

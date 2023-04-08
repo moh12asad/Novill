@@ -71,6 +71,7 @@ const ProductsScreen=(props)=>{
                         <Text style={{fontSize:20}}>{item.prodname}</Text>
                     ); 
                 }}/>
+                
             
         </SafeAreaView>
 </ImageBackground>

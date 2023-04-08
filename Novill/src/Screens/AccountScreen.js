@@ -94,6 +94,7 @@ const AccountScreen=(props)=>{
                
 
           </Pressable>
+         
         </View></View>
         </ImageBackground>
         );
@@ -114,7 +115,7 @@ justifyContent:'center',
         alignItems: 'center',
         paddingVertical:10,
         marginVertical:20,
-        width:'30%',
+        width:'40%',
         left:290,
         borderWidth:0,
   },
@@ -144,7 +145,7 @@ justifyContent:'center',
   NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'90%',
+    width:'95%',
     justifyContent:'space-between',
     borderRadius:30,
     bottom:-600,

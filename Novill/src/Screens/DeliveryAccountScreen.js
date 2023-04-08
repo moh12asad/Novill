@@ -1,7 +1,7 @@
 import React,{useContext} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,ImageBackground,TouchableOpacity} from 'react-native';
+import {View,Button,StyleSheet,Text,ImageBackground,TouchableOpacity,Pressable,Image} from 'react-native';
 import Spacer from './Components/Spacer';
 import HomeScreen from './HomeScreen';
 
@@ -10,8 +10,13 @@ const DeliveryAccountScreen=(props)=>{
     const {signout} = useContext(AuthContext);
 
     return(
-                    <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+                    <ImageBackground source={require("../Screens/images/imageback.jpg")} style={{ width:'100%', height:'100%' }}>        
+      <View>
+    <Pressable style={styles.button} title="Sign out" onPress={signout}>
+        <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
 
+ </Pressable>
+        </View>
          <SafeAreaView forceInset={{top:'always'}}>
             <Spacer/>
              <Text style={{fontSize: 35,
@@ -38,22 +43,7 @@ const DeliveryAccountScreen=(props)=>{
     </TouchableOpacity>
            
             <Spacer/>
-   <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
-        padding:30,
-        marginTop:20,
-        borderRadius:110,
-        alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:10,
-        width:'30%',
-        left:200,
-        marginTop:420,
-        borderWidth:0
-        
-        }} title="Sign out" onPress={signout}>
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Log out</Text> 
-            </TouchableOpacity>
-
+ 
 
              <Spacer/>
         </SafeAreaView>
@@ -61,6 +51,24 @@ const DeliveryAccountScreen=(props)=>{
         );
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+
+  button: {
+        padding:10,
+        marginTop:10,
+        borderRadius:110,
+        alignItems: 'center',
+        paddingVertical:10,
+        marginVertical:20,
+        width:'30%',
+        left:290,
+        borderWidth:0,
+  },
+  Images:{
+    width:30,
+    height:30,
+        
+  },
+});
 
 export default DeliveryAccountScreen;

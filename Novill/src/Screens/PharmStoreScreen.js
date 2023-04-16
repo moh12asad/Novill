@@ -50,7 +50,7 @@ const PharmStoreScreen=(props)=>{
       data={productsCollection}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('PharmStoreScreen button has pressed')}/>;
+        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product ',item.prodname,'button has pressed')}/>;
       }}
     />
   </SafeAreaView>

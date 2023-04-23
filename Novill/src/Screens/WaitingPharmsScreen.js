@@ -30,7 +30,7 @@ const WaitingPharmsScreen=(props)=>{
 
 
     return(
-<ImageBackground source={require("../Screens/images/img.jpg")} style={{ width:'100%', height:'100%' }} >
+<ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width:'100%', height:'100%' }} >
 
 
         <SafeAreaView>

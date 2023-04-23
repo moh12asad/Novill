@@ -10,6 +10,8 @@ import { StatusBar } from 'react-native';
 
 const AccountScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
+    const user=props.navigation.state.params.user;
+    console.log("Account screen, passed user is: ",user);
     return(
           <ImageBackground source={require("../Screens/images/imageback.jpg")} style={{ width:'100%', height:'100%' }} >
           <View>
@@ -87,7 +89,7 @@ const AccountScreen=(props)=>{
                 <Icon name="plus" color={'black'} size={20} /> 
           </Pressable>
            <Pressable style={styles.IconBehave}>
-                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={getPharms}/> 
+                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>props.navigation.navigate('PharmsList',{user:user})}/> 
           </Pressable>
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20} /> 

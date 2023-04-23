@@ -1,7 +1,7 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList,ImageBackground} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
@@ -12,10 +12,14 @@ const PharmsListScreen=(props)=>{
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [pharmsCollection,setPharmsCollection]=useState();
+    //const u=props.navigation.state.params.user;
     //let pharmsCollection=[];
+    const user=props.navigation.state.params.user;
+    console.log('The looged in user and passed to pharmslistscreen is:',user);
+    let cart=[];
     const myuserpharms=useContext(GlobalContex); 
     //let a=[];
-    useEffect(() => {(async () => {
+    /*useEffect(() => {(async () => {
             try {
                 const response = await Server.get('/getPharms') 
                 updateloaded(true);
@@ -32,7 +36,28 @@ const PharmsListScreen=(props)=>{
             }
     
         })()
-    },[loaded] )
+    },[loaded] )*/
+
+    const [isLoading, setIsLoading] = useState(true);
+    
+useEffect(() => {
+  (async () => {
+    try {
+      const response = await Server.get('/getPharms');
+      const pharmsArray = response.data.pharms1;
+      setPharmsCollection(pharmsArray);
+      setIsLoading(false); // set isLoading to false when data is loaded
+    } catch (err) {
+      console.log('error in useEffect');
+      console.log(err);
+      setIsLoading(false); // set isLoading to false when error occurs
+    }
+  })();
+}, []);
+
+if (isLoading) {
+  // return loading screen here
+}
 
 
     return(
@@ -44,10 +69,15 @@ const PharmsListScreen=(props)=>{
       data={pharmsCollection}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}/>;
+        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;
       }}
     />
   </SafeAreaView>
+  <View style={styles.cartContainer}>
+        <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
+          <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
+        </TouchableOpacity>
+      </View>
 </ImageBackground>
 
         );
@@ -68,7 +98,17 @@ item: {
   padding: 10,
   backgroundColor: '#fff',
   fontSize: 20,
-}
+},
+cartContainer: {
+  position: 'absolute',
+  bottom: 20,
+  right: 20,
+},
+cartImage: {
+  width: 50,
+  height: 50,
+  borderRadius: 25,
+},
 });
 
 export default PharmsListScreen;

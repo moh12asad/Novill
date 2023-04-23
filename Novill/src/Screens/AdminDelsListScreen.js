@@ -28,7 +28,7 @@ const AdminDelsListScreen=(props)=>{
     },[loaded] )
 
     return(
-    <ImageBackground source={require("../Screens/images/img.jpg")} style={{ width:'100%', height:'100%' }} >
+    <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width:'100%', height:'100%' }} >
     
         <SafeAreaView>
            <View style={{marginVertical:5,

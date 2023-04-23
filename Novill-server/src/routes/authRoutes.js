@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
 const Pharm = mongoose.model('Pharm');
 const Delivery=mongoose.model('Delivery');
-const Product=mongoose.model('Product')
-
+const Product=mongoose.model('Product');
+const Cart=mongoose.model('Cart');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
@@ -104,8 +104,9 @@ router.post('/signin', async (req, res) => {
   if(user){
     try {
       await user.comparePassword(password);
-      const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
-      res.send({token});
+      //const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
+      //res.send({token});
+      res.status(200).send({message:'User Logged in successfully',user:user});
     } catch (err) {
       return res.status(422).send({ error: 'Invalid password or email' });
     }
@@ -287,7 +288,6 @@ router.get('/Products', async (req, res) => {
   console.log(req.query);
   const pharm = await Pharm.find({ pname: req.query.pname });//.select('products');
   const products=await Pharm.find({ pname: req.query.pname }).select('products');
-  //console.log(prods);
   console.log(pharm);
   let prods1=[];
   products.forEach(product=>prods1.push(product));
@@ -299,6 +299,22 @@ router.get('/Products', async (req, res) => {
   console.log(prodArray);
   res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});
 });
+router.get('/ProductDetailsForUser', async (req, res) => {
+  console.log(req.query);
+  const pharm = await Pharm.find({ pname: req.query.pname });
+  const products=await Pharm.find({ pname: req.query.pname }).select('products');
+  console.log(pharm);
+  let prods1=[];
+  products.forEach(product=>prods1.push(product));
+  console.log(prods1[0].products);
+  let prodArray=[];
+  prods1[0].products.forEach((prod) => {
+    prodArray.push(prod);
+});
+  console.log(prodArray);
+  res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});
+});
+
 
 
 router.post('/DeleteUser',async(req,res)=>{
@@ -355,6 +371,40 @@ router.get('/getProducts', async (req, res) => {
 });
   console.log(prodArray);
   res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});*/
+});
+router.post('/CreateCart',async(req,res)=>{
+  console.log('The passed user to authroutes/CreateCart is: ',req.body.user);
+  const user=req.body.user;
+  let cart1= await Cart.findOne({user:user});
+  let cart;
+  if(!cart1)
+  {
+    let cart2 = new Cart({user});
+    await cart2.save();
+    cart=cart2;
+    res.status(200).send({message:'Cart created successfully',cart:cart});
+  }
+  else{
+    cart=cart1;  
+    res.status(200).send({message:'Cart created successfully',cart:cart});
+}
+  
+
+  /*else{
+    res.status(200).send({message:'Found Cart in the db',cart:cart});
+  }*/
+});
+router.post('/AddToCart',async(req,res)=>{
+  console.log('The passed params to authroutes/AddToCart is: ',req.body.prod,req.body.cart,req.body.pharm);
+  const prod = req.body.prod;
+  const cart = req.body.cart;
+  const pharm = req.body.pharm;
+  const cartToUpdate= await Cart.findOne({_id:cart._id});
+  await cartToUpdate.products.push(prod);
+  cartToUpdate.pharm=pharm;
+  cartToUpdate.save();
+  res.status(200).send({message:'Added the product to the cart successfully',cart:cartToUpdate});
+
 });
 
 

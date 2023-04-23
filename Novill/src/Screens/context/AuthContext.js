@@ -76,9 +76,10 @@ const signin=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signin',{email,password});
-            await AsyncStorage.setItem('token',response.data.token);
-            dispatch({type:'signin',payload:response.data.token});
-            navigate('Account');
+            //await AsyncStorage.setItem('token',response.data.token);
+            //dispatch({type:'signin',payload:response.data.token});
+            console.log(response.data.user);
+            navigate('Account',{user:response.data.user});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -322,11 +323,18 @@ const productlistforuser=(dispatch)=>{
         console.log(response.data.fpharm);
         //navigate('PharmsList');
 }}
+const AddToCart=(dispatch)=>{
+
+    return async({cart,prod,pharm})=>{
+        console.log('In AddToCart function in Authcontext the passed cart and prod is:',cart,prod,pharm);
+        const response = await server.post('/AddToCart',{cart,prod,pharm});
+    }
+}
 
 
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,},
     {token:null, errorMessage:''}
 );

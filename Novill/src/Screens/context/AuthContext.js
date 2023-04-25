@@ -33,20 +33,6 @@ const authReducer=(state,action)=>{
     };
 };
 
-
-
-/*const tryLocalSignin=dispatch=>async()=>{
-    const token = await AsyncStorage.getItem('token');
-    if (token){
-        dispatch({type:'signin', payload:token});
-        navigate('Account');
-    }
-    else{
-        navigate('Home');
-    }
-
-}*/
-
 const clearErrorMessage=dispatch=>()=>{
     dispatch({type: 'clear_error_message'});
 
@@ -71,6 +57,9 @@ const signup= (dispatch) =>{
         
     }
 }
+
+
+
 const signin=(dispatch)=>{
     return async ({email,password})=>{
         console.log(email,password);
@@ -330,11 +319,47 @@ const AddToCart=(dispatch)=>{
         const response = await server.post('/AddToCart',{cart,prod,pharm});
     }
 }
+const setAddress= (dispatch) =>{
+    return async ({city,street,building,floor,apartnum,phone,cart})=>{
+        try{
+            console.log(city,street,building,floor,apartnum,phone,cart);
+            const response = await server.post('/SetAddress',{city,street,building,floor,apartnum,phone,cart});
+            console.log('Response! V');
+            console.log('-------------Authcontex-------------\n',response.data.address,response.data.cart,'\n---------------------------------------\n');
+            navigate('PayMethod',{address:response.data.address,cart:response.data.cart});
+
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up'
+        });
+            //console.log(err.message);
+        }
+        
+    }
+}
+const order= (dispatch) =>{
+    return async ({cart,address,order,totalAmount,totalPrice})=>{
+        try{
+            console.log(cart,address,order,totalAmount,totalPrice);
+            const response = await server.post('/CreateOrderCash',{cart,address,order,totalAmount,totalPrice});
+            const user=cart.user
+            navigate('Account',{user});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up'
+        });
+            //console.log(err.message);
+        }
+        
+    }
+}
 
 
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order},
     {token:null, errorMessage:''}
 );

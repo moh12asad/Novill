@@ -6,6 +6,8 @@ const Pharm = mongoose.model('Pharm');
 const Delivery=mongoose.model('Delivery');
 const Product=mongoose.model('Product');
 const Cart=mongoose.model('Cart');
+const Address=mongoose.model('Address');
+const Order=mongoose.model('Order');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
@@ -395,15 +397,61 @@ router.post('/CreateCart',async(req,res)=>{
   }*/
 });
 router.post('/AddToCart',async(req,res)=>{
-  console.log('The passed params to authroutes/AddToCart is: ',req.body.prod,req.body.cart,req.body.pharm);
+  /*
+  //console.log('The passed params to authroutes/AddToCart is: ',req.body.prod,req.body.cart,req.body.pharm);
   const prod = req.body.prod;
   const cart = req.body.cart;
   const pharm = req.body.pharm;
+  //console.log(pharm);
+  console.log('-----------in AddToCart function the cart that passed is:-----------\n',cart,'\n----------------------');
   const cartToUpdate= await Cart.findOne({_id:cart._id});
   await cartToUpdate.products.push(prod);
-  cartToUpdate.pharm=pharm;
-  cartToUpdate.save();
-  res.status(200).send({message:'Added the product to the cart successfully',cart:cartToUpdate});
+  //cartToUpdate.pharm=pharm;
+  await cartToUpdate.updateOne({pharm:pharm});
+  await cartToUpdate.save();
+  res.status(200).send({message:'Added the product to the cart successfully',cart:cartToUpdate});*/
+    const prod = req.body.prod;
+    const cart = req.body.cart;
+    const pharm = req.body.pharm;
+  
+    await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
+  
+    const updatedCart = await Cart.findOne({_id: cart._id});
+  
+    res.status(200).send({message:'Added the product to the cart successfully',cart: updatedCart});
+});
+router.post('/SetAddress',async(req,res)=>{
+  const {city,street,building,floor,apartnum,phone,cart} = req.body;
+  console.log(city,street,building,floor,apartnum,phone,cart.user);
+  const user=cart.user;
+  let address = new Address({user,city,street,building,floor,apartnum,phone});
+  await address.save();
+  res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:cart});
+
+});
+
+router.post('/CreateOrderCash',async(req,res)=>{
+  const {cart,address,totalAmount,totalPrice} = req.body;
+  const user = cart.user;
+  const products = cart.products;
+  const pharm = cart.Pharm;
+  const payMethod='cash';
+  const prise=totalPrice;
+  const amount=totalAmount;
+  const status='sent';
+  console.log('---------------CreateOrder------------');
+  console.log(cart,address,totalAmount,totalPrice);
+  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status});
+  order.save();
+  await Cart.deleteOne({ _id: cart._id });
+  res.status(200).send({message:'The order created successfully'});
+
+  //const {city,street,building,floor,apartnum,phone,cart} = req.body;
+  //console.log(city,street,building,floor,apartnum,phone,cart.user);
+  //const user=cart.user;
+  //let address = new Address({user,city,street,building,floor,apartnum,phone});
+  //await address.save();
+  //res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:cart});
 
 });
 

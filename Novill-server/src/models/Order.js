@@ -2,8 +2,9 @@
 const ProductSchema = require('./Product');
 const UserSchema=require('./User')
 const PharmSchema=require('./Pharm')
+const AddressSchema=require('./Address')
 const mongoose = require('mongoose');
-const CartSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema({
     user:{
         type:UserSchema,
         //unique: true,
@@ -11,14 +12,26 @@ const CartSchema = new mongoose.Schema({
   products:{
     type:[ProductSchema]
   },
-  Pharm:{
+  pharm:{
     type:PharmSchema
   },
-  Pname:{
+  payMethod:{
+    type:String,
+  },
+  address:{
+    type:AddressSchema,
+  },
+  prise:{
+    type:Number,
+  },
+  amount:{
+    type:Number,
+  },
+  status:{
     type:String,
   }
-  
+
 });
-  mongoose.model('Cart', CartSchema);
+  mongoose.model('Order', OrderSchema);
 
   

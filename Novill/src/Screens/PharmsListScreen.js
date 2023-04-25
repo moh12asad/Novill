@@ -12,37 +12,23 @@ const PharmsListScreen=(props)=>{
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
     const [pharmsCollection,setPharmsCollection]=useState();
+    const [cart,setCart]=useState();
+
     //const u=props.navigation.state.params.user;
     //let pharmsCollection=[];
     const user=props.navigation.state.params.user;
     console.log('The looged in user and passed to pharmslistscreen is:',user);
-    let cart=[];
     const myuserpharms=useContext(GlobalContex); 
-    //let a=[];
-    /*useEffect(() => {(async () => {
-            try {
-                const response = await Server.get('/getPharms') 
-                updateloaded(true);
-                const pharmsArray = response.data.pharms1;
-                //console.log("ASDGHGSDF--------------------:",pharmsArray);
-                setPharmsCollection(pharmsArray);
-                //pharmsCollection.set(pharmsArray);
-                //pharmsCollection=pharmsArray;
-                //pharmsCollection=pharmsArray;
-
-            } catch (err) {
-                console.log('error in useEffect');
-                console.log(err)
-            }
-    
-        })()
-    },[loaded] )*/
-
     const [isLoading, setIsLoading] = useState(true);
     
 useEffect(() => {
   (async () => {
     try {
+      /*const response1 = await Server.post('/CreateCart',{
+        user
+      });
+      const cart=response1.data.cart;
+      setCart(cart);*/
       const response = await Server.get('/getPharms');
       const pharmsArray = response.data.pharms1;
       setPharmsCollection(pharmsArray);

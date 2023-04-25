@@ -38,6 +38,10 @@ import { setNavigator } from './src/Screens/navigationRef';
 import SigninAdminScreen from './src/Screens/SigninAdmin';
 import PharmStoreScreen from './src/Screens/PharmStoreScreen';
 import ProductScreen from './src/Screens/ProductScreen';
+import CartScreen from './src/Screens/CartScreen';
+import DestScreen from './src/Screens/DestScreen';
+import PayMethodScreen from './src/Screens/PayMethod';
+import PayCashScreen from './src/Screens/PayCashScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -59,6 +63,10 @@ const switchNavigator=createSwitchNavigator({
     PharmsList:PharmsListScreen,
     PharmStore:PharmStoreScreen,
     Product:ProductScreen,
+    Cart:CartScreen,
+    Dest:DestScreen,
+    PayMethod:PayMethodScreen,
+    PayCash:PayCashScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,

@@ -17,7 +17,8 @@ const PharmStoreScreen=(props)=>{
     const user = props.navigation.state.params.user;
     //let pharmsCollection=[];
     const myuserpharms=useContext(GlobalContex); 
-    const[cart,SetCart]=useState();
+    //const[cart,SetCart]=useState();
+    let cart;
     useEffect(() => {(async () => {
             try {
                 //const response = await Server.get('/getPharms') 
@@ -26,15 +27,15 @@ const PharmStoreScreen=(props)=>{
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
                 setPharm(pharm);
                 setproductsCollection(pharm.products);
-                //pharmsCollection.set(pharmsArray);
-                //pharmsCollection=pharmsArray;
-                //pharmsCollection=pharmsArray;
                 const response = await Server.post('/CreateCart',{
                   user
                 });
                 console.log(response.data.cart);
-                SetCart(response.data.cart);
-                console.log('PharmStore:');
+                //cart= response.data.cart;
+                //SetCart(response.data.cart);
+                cart = response.data.cart;
+                console.log('The Cart in pharm store screen is:-----\n',cart,'------\n');
+                //console.log('PharmStore:');
                 console.log(pharm.pname)
 
             } catch (err) {
@@ -61,7 +62,7 @@ const PharmStoreScreen=(props)=>{
     />
   </SafeAreaView>
   <View style={styles.cartContainer}>
-        <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
         </TouchableOpacity>
       </View>

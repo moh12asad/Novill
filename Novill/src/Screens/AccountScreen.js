@@ -24,52 +24,6 @@ const AccountScreen=(props)=>{
     
        
          <SafeAreaView forceInset={{top:'always'}}>
-
-       {/*  <Text style={{fontSize: 40,
-              fontWeight:'bold'
-              ,marginVertical:5,
-              left:10,
-            top:10,
-            }}> My Account</Text>
-           
-            <View>
-                       <Pressable    style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:170,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
-
-    }} title="Pharms" onPress={getPharms}>
-     <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Pharms</Text> 
-    </Pressable>
-                     <Pressable    style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:170,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
-
-    }} title="Pharms">
-     <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >My Profile</Text> 
-    </Pressable>
-</View>
-*/}
-
         </SafeAreaView>
     
         </View>
@@ -83,7 +37,7 @@ const AccountScreen=(props)=>{
            
           <Pressable style={styles.IconBehave}>
 
-                <Icon name="shopping-cart" color={'black'} size={20} /> 
+                <Icon name="shopping-cart" color={'black'} size={20} onPress={()=>console.log('Pressed')} /> 
           </Pressable>
           <Pressable style={styles.IconBehave}>
                 <Icon name="plus" color={'black'} size={20} /> 

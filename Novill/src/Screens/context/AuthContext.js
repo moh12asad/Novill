@@ -135,10 +135,10 @@ const signout=dispatch=>async ()=>{
 
 
 const signupPharm=(dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc})=>{
         try{
-            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype);
-            const response = await server.post('/signupPharm',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype});
+            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc);
+            const response = await server.post('/signupPharm',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc});
             console.log('Response! V');
             //await AsyncStorage.setItem('token',response.data.token);
             //dispatch({type:'signupPharm',payload:response.data.pharms1});

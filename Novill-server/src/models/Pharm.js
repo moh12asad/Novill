@@ -43,6 +43,9 @@ const PharmSchema = new mongoose.Schema({
   },
   products:{
     type:[ProductSchema]
+  },
+  desc:{
+    type:String,
   }
   
 });

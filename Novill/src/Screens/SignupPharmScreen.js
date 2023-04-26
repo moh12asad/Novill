@@ -14,6 +14,7 @@ const SignupPharmScreen=({navigation})=>{
     const [Confirmpassword,setConfirmpassword] = useState('');
     const [location,setlocation] = useState('');
     const [pname,setpname] = useState('');
+    const [desc,setDesc] = useState('');
     const AdminAccept=false;
     const utype="pharm";
 
@@ -189,6 +190,25 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
+                        <TextInput
+            placeholder="Description"
+            value={desc}
+            onChangeText={setDesc}
+            autoCapitalize="none"
+            autoCorrect={false}
+                 style={{ 
+      
+                   borderRadius:120,
+                 paddingHorizontal:70, width:'70%',
+                backgroundColor:'rgb(220,220,220)',
+                marginBottom:5,
+                marginTop:10,
+                left:50
+             
+                    
+          
+            }}
+            />
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <TouchableOpacity
@@ -203,7 +223,7 @@ const SignupPharmScreen=({navigation})=>{
                 width:'50%',
                 left:85
             }}
-             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})}>
+             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc})}>
              
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>

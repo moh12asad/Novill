@@ -30,15 +30,15 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signupPharm', async (req, res) => {
-  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc } = req.body;
-  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc);
+  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc } = req.body;
+  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc);
   try {
     if(Confirmpassword!=password)
     {
       throw('Passwords does not match');
     }
     console.log(AdminAccept);
-    const pharm = new Pharm({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc });
+    const pharm = new Pharm({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc });
     console.log('SignUpPharm');
     console.log(pharm);
     await pharm.save();

@@ -48,11 +48,17 @@ const PharmStoreScreen=(props)=>{
 
 
     return(
-<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{pharm.pname}</Text>
     <Spacer />
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>{pharm.location}</Text>
+    <View style={{backgroundColor:'#F5FFF6',marginBottom:10,top:-10}}>
+    <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
+    <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}> Phone: {pharm.phone}</Text>
+
+    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>location: {pharm.location}</Text>
+  </View>
+  <Text style={{fontSize:25,left:90}}>Store's Products</Text>
     <FlatList
       data={productsCollection}
       style={{ height: '100%' }}

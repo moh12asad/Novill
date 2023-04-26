@@ -15,6 +15,7 @@ const SignupPharmScreen=({navigation})=>{
     const [location,setlocation] = useState('');
     const [pname,setpname] = useState('');
     const [desc,setDesc] = useState('');
+    const [phone,setPhone] = useState('');
     const AdminAccept=false;
     const utype="pharm";
 
@@ -151,6 +152,23 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
+             <TextInput
+                placeholder='Phone number' 
+                value={phone}
+                onChangeText={setPhone}
+                autoCorrect={false}
+                      style={{ 
+      
+                     borderRadius:120,
+    paddingHorizontal:70, width:'70%',
+    backgroundColor:'rgb(220,220,220)',
+     marginBottom:5,
+     marginTop:10,
+     left:50
+             
+          
+            }}
+            />
             
             <TextInput
             secureTextEntry={true}
@@ -223,7 +241,7 @@ const SignupPharmScreen=({navigation})=>{
                 width:'50%',
                 left:85
             }}
-             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc})}>
+             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc})}>
              
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>

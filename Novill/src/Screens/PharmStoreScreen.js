@@ -54,7 +54,6 @@ const PharmStoreScreen=(props)=>{
     <Spacer />
     <View style={{backgroundColor:'#F5FFF6',marginBottom:10,top:-10}}>
     <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
-    <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}> Phone: {pharm.phone}</Text>
 
     <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>location: {pharm.location}</Text>
   </View>

@@ -37,9 +37,7 @@ const PharmSchema = new mongoose.Schema({
     unique: true,
     required:true
   },
-  phone:{
-    type:String,
-  },
+ 
   utype:{
     type:String,
     required:false

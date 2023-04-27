@@ -341,8 +341,8 @@ const setAddress= (dispatch) =>{
 const order= (dispatch) =>{
     return async ({cart,address,order,totalAmount,totalPrice})=>{
         try{
-            console.log(cart,address,order,totalAmount,totalPrice);
-            const response = await server.post('/CreateOrderCash',{cart,address,order,totalAmount,totalPrice});
+            console.log(cart,address,totalAmount,totalPrice);
+            const response = await server.post('/CreateOrderCash',{cart,address,totalAmount,totalPrice});
             const user=cart.user
             navigate('Account',{user});
         }catch(err){
@@ -355,11 +355,31 @@ const order= (dispatch) =>{
         
     }
 }
+const getordersforpharm=(dispatch)=>{
+    return async ({pharm})=>{
+        console.log('AuthContex',pharm);
+        try{
+            const response = await server.get('/GetOrdersForPharm',{
+                params: { pharm }}
+                );
+            console.log(response.data.orders);
+            navigate('OrdersList',{orders:response.data.orders});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+    }
+}
 
-
+const orderprocess=(dispatch)=>{
+    console.log('AuthContext orderprocess');
+}
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm},
     {token:null, errorMessage:''}
 );

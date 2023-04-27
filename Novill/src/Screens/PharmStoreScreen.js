@@ -50,21 +50,25 @@ const PharmStoreScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{pharm.pname}</Text>
+    <Text style={{color:'#629631', fontSize: 40, fontWeight: 'bold', marginVertical: 5, top: 5,backgroundColor:'#D2F1C8' }}>{pharm.pname}</Text>
     <Spacer />
-    <View style={{backgroundColor:'#F5FFF6',marginBottom:10,top:-10}}>
+    <View style={{backgroundColor:'#Ffff',marginBottom:10,top:-10}}>
     <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
+    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>Pharm Phone:</Text>
 
-    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>location: {pharm.location}</Text>
+    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>Pharm location: {pharm.location}</Text>
   </View>
-  <Text style={{fontSize:25,left:90}}>Store's Products</Text>
+  <Text style={{fontSize:25,justifyContent:'center'}}>Store's Products</Text>
+  <View style={styles.view}>
     <FlatList
       data={productsCollection}
-      style={{ height: '100%' }}
+      style={{ height: '50%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})}/>;
+        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
+                
+
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
-    />
+    /></View>
   </SafeAreaView>
   <View style={styles.cartContainer}>
         <TouchableOpacity onPress={() => props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})}>
@@ -87,10 +91,19 @@ const styles=StyleSheet.create({
 
 },
 item: {
-  marginTop: 20,
+  marginTop: 10,
   padding: 10,
   backgroundColor: '#fff',
-  fontSize: 20,
+  fontSize: 25,
+
+
+},
+view:{
+
+  width:'100%',
+  height:'100%',
+  borderRadius:100,
+  backgroundColor:'#fff'
 },
 cartContainer: {
   position: 'absolute',

@@ -46,7 +46,7 @@ const PayCashScreen=(props)=>{
       <Text>Total products order: {totalAmount}</Text>
       <Text>The total prise is: {totalPrice}</Text>
       </View>
-    <GreenButton title="Order Now" onPress={()=>order({cart,address,order,totalAmount,totalPrice})}></GreenButton>
+    <GreenButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice})}></GreenButton>
   </SafeAreaView>
 </ImageBackground>
 

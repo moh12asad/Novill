@@ -44,15 +44,7 @@ const ProductsScreen=(props)=>{
     return(
                   <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
 
-        {/*
-         <SafeAreaView forceInset={{top:'always'}}>
-            <Text style={{fontSize: 48}}> Pharms List </Text>
-            <Spacer/>
-            <Button title="Sign out" onPress={signout}/>
-            <Spacer/>
-            <Text>Here is</Text>
-            <Spacer/>
-        </SafeAreaView>*/}
+        
 
         <SafeAreaView>
             <Text style={{fontSize: 38,

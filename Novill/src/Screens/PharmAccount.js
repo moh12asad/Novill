@@ -5,8 +5,10 @@ import {View,Button,StyleSheet,Text,ImageBackground,TouchableOpacity,Image,Press
 import Spacer from './Components/Spacer';
 import HomeScreen from './HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Server from './api/Server';
 
 const PharmAccountScreen=(props)=>{
+  const {getordersforpharm}=useContext(AuthContext);
   console.log(props.navigation.state.params.pharms1);
   const pharm = props.navigation.state.params.pharms1;
   const {signout} = useContext(AuthContext);
@@ -27,7 +29,7 @@ const PharmAccountScreen=(props)=>{
               left:10,
             top:-50,}}> Pharm store: {pharm.pname}</Text>
       
-    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProducts',pharm)}   style={{
+    <TouchableOpacity onPress={()=>getordersforpharm('AddProducts',pharm)}   style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
           alignItems: 'center',
@@ -43,6 +45,23 @@ const PharmAccountScreen=(props)=>{
     }} title ="Pharm store status">
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Add product</Text> 
+    </TouchableOpacity>
+    <TouchableOpacity onPress={()=>getordersforpharm({pharm})}   style={{
+         backgroundColor:'#6ba93a',
+         borderRadius:25 ,
+          alignItems: 'center',
+        width:180,
+        marginRight:40,
+        paddingVertical:5,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        right:150,
+        marginTop:15,
+        top:40
+
+    }} title ="Pharm store status">
+ <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Orders</Text> 
     </TouchableOpacity>
 
   

@@ -42,6 +42,8 @@ import CartScreen from './src/Screens/CartScreen';
 import DestScreen from './src/Screens/DestScreen';
 import PayMethodScreen from './src/Screens/PayMethod';
 import PayCashScreen from './src/Screens/PayCashScreen';
+import OrdersListScreen from './src/Screens/OrdersListScreen';
+import ViewOrderScreen from './src/Screens/ViewOrderScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -73,6 +75,8 @@ const switchNavigator=createSwitchNavigator({
     PharmAccount:PharmAccountScreen,
     AddProducts:AddProductsScreen,
     Products:ProductsScreen,
+    OrdersList:OrdersListScreen,
+    ViewOrder:ViewOrderScreen,
 
     //AddProduct:AddProductScreen,
   }),

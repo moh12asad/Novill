@@ -47,13 +47,14 @@ if (isLoading) {
 
 
     return(
-<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Pharm stores</Text>
     <Spacer />
     <FlatList
       data={pharmsCollection}
-      style={{ height: '100%' }}
+      numColumns={2}
+  
       renderItem={({ item }) => {
         return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;
       }}

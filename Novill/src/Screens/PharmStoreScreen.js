@@ -1,12 +1,14 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image, TextInput} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
 const PharmStoreScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
@@ -50,21 +52,60 @@ const PharmStoreScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{color:'#629631', fontSize: 40, fontWeight: 'bold', marginVertical: 5, top: 5,backgroundColor:'#D2F1C8' }}>{pharm.pname}</Text>
+    <Text style={{color:'#629631', fontSize: 45, fontWeight: 'bold', marginVertical: 5, top: 5 ,textAlign: "center"}}>{pharm.pname}</Text>
     <Spacer />
-    <View style={{backgroundColor:'#Ffff',marginBottom:10,top:-10}}>
+    <View style={{backgroundColor:'#E8FBE7',marginBottom:10,top:-10}}>
     <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
-    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>Pharm Phone:</Text>
-
-    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>Pharm location: {pharm.location}</Text>
+    <View style={{ flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,}}>
+    <Entypo name="phone" size={24} color="black" />
+    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}></Text>
+    </View>
+    <View style={{ flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,}}>
+    <Entypo name="location-pin" size={24} color="black" />
+    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>{pharm.location}</Text>
   </View>
-  <Text style={{fontSize:25,justifyContent:'center'}}>Store's Products</Text>
+  </View>
+  <View style={{ flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,}}>
+                     <Icon name="search" style={{fontSize:20,color:'#000',opacity:0.8,marginRight: 10,
+}} /> 
+      <TextInput placeholder='Search...'
+        
+        style={{flex: 1,
+    marginLeft: 10,}}
+      />
+  </View>
+
+      <Text style={{ paddingTop:20,
+      paddingHorizontal:20,
+      fontSize:18,
+      fontWeight:'700',
+      color:'#000' }}>Products</Text>
+
   <View style={styles.view}>
     <FlatList
       data={productsCollection}
-      style={{ height: '50%' }}
+      numColumns={2}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
+        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
                 
 
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}

@@ -19,7 +19,7 @@ const DestScreen=(props)=>{
 
 
     return( 
-            <ImageBackground source={require("../Screens/images/photo.jpg")} style={{ width:'100%', height:'100%' }} >
+            <ImageBackground source={require("../Screens/images/back.jpg")} style={{ width:'100%', height:'100%' }} >
 
     <>
         <View style={styles.container}>
@@ -31,13 +31,14 @@ const DestScreen=(props)=>{
             <Spacer/>
             <Spacer/>
             <Spacer/>
-      <Text style={{color:'#86c260' ,
-             fontSize: 40,
+    
+              <Text style={{color:'#111' ,
+             fontSize: 20,
               fontWeight:'bold'
               ,marginVertical:15,
               left:20,
-            top:20
-              }}>Address</Text>
+            top:50
+              }}>Please write your address</Text>
             <Spacer/>
             <TextInput
                 placeholder='City' 

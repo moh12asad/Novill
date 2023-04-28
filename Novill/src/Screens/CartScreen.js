@@ -27,23 +27,27 @@ const CartScreen=(props)=>{
     //console.log(props.navigation.state.params.cart);
     return(
       
-<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/back1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{user.Lname}</Text>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{user.Lname} {user.Fname}</Text>
     <Spacer />
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>{user.Fname}</Text>
+   
     <FlatList
       data={productsToOrder}
-      style={{ height: '100%' }}
+      numColumns={2}
+      style={{ top:25}}
+      
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <PharmListComp name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
-    <View>
-      <Text>Total products order: {totalAmount}</Text>
-      <Text>The total is: {totalPrice}</Text>
+    <View style={{ top:30 }}>
+      <Text style={styles.titleout}>Total products order: {totalAmount}</Text>
+      <Text style={styles.titleout}>The total is: {totalPrice}</Text>
       </View>
+      <View style={{ top:90 }}>
     <GreenButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></GreenButton>
+  </View>
   </SafeAreaView>
 </ImageBackground>
 
@@ -60,9 +64,16 @@ const styles=StyleSheet.create({
   paddingHorizontal: 10,
 
 },
+titleout:{
+fontSize:20,
+color:"#474747",
+marginLeft:20,
+top:40
+
+},
 item: {
   marginTop: 20,
-  padding: 10,
+  padding: 20,
   backgroundColor: '#fff',
   fontSize: 20,
 },

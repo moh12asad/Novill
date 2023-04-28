@@ -72,7 +72,7 @@ justifyContent:'center',
         paddingVertical:10,
         marginVertical:20,
         width:'40%',
-        left:300,
+        left:290,
         borderWidth:0,
   },
   Images:{

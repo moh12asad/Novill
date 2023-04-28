@@ -7,7 +7,7 @@ import GreenButton from './Components/GreenButton';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
-
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const ProductScreen=(props)=>{
   const {AddToCart} = useContext(AuthContext);
@@ -18,13 +18,18 @@ const ProductScreen=(props)=>{
     console.log(pharm);
     console.log(prod);
     return(
-      <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+    <View style={styles.container}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Choosen product</Text>
     <Spacer />
-    <Text style={{ fontWeight: 'bold' }}>Product Name: {prod.prodname}</Text>
-        <Text>Price: {prod.price}</Text>
-        <Text>Amount: {prod.amount}</Text>
+    <View>
+    <Text>image for the mid</Text>
+<Image source={require("./images//DRUGS02.jpg")} style={styles.img}></Image>
+ <Text style={styles.title}>{prod.prodname}</Text>
+<Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
+        <Text style={styles.subtitle}>Amount: {prod.amount}</Text>
+    </View>
+   
+        
         <Spacer/>
         <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm})}></GreenButton>
   </SafeAreaView>
@@ -33,7 +38,7 @@ const ProductScreen=(props)=>{
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
         </TouchableOpacity>
       </View>
-</ImageBackground>
+      </View>
   );
 }
 
@@ -43,8 +48,30 @@ const styles=StyleSheet.create({
   container: {
 flex: 1,
 backgroundColor: '#fff',
-paddingTop: 10,
-paddingHorizontal: 10,
+justifyContent:'center',
+alignItems:'center',
+marginTop:-50
+},
+title:{
+fontSize:32,
+marginTop:60,
+marginLeft:45,
+fontWeight:'bold',
+marginHorizontal:10
+},
+subtitle:{
+fontSize:20,
+color:"#474747",
+marginLeft:45
+
+
+},
+img:{
+alignSelf:"center",
+borderTopRightRadius:80,
+borderBottomLeftRadius:80,
+height:350,
+width:350,
 
 },
 item: {
@@ -55,7 +82,7 @@ fontSize: 20,
 },
 cartContainer: {
   position: 'absolute',
-  bottom: 20,
+  bottom: 60,
   right: 20,
 },
 cartImage: {
@@ -63,6 +90,14 @@ cartImage: {
   height: 50,
   borderRadius: 25,
 },
+Button:{
+        padding:50,
+        marginTop:30,
+        borderRadius:100 ,
+          alignItems: 'center',
+        paddingVertical:10,
+        marginVertical:5
+}
 });
 
 export default ProductScreen;

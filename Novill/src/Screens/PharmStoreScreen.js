@@ -52,9 +52,16 @@ const PharmStoreScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{color:'#629631', fontSize: 45, fontWeight: 'bold', marginVertical: 5, top: 5 ,textAlign: "center"}}>{pharm.pname}</Text>
+  <View  style={{backgroundColor:'#ccdf93',height:210,width:410,
+                  
+                     borderBottomRightRadius:150,
+                 
+                     
+                    
+                     }}>
+    <Text style={{color:'#000', fontSize: 45, fontWeight: 'bold', marginVertical: 5, top: 5 ,textAlign: "center"}}>{pharm.pname}</Text>
     <Spacer />
-    <View style={{backgroundColor:'#E8FBE7',marginBottom:10,top:-10}}>
+    <View style={{marginBottom:10,top:-10}}>
     <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
     <View style={{ flexDirection: 'row',
     alignItems: 'center',
@@ -64,19 +71,27 @@ const PharmStoreScreen=(props)=>{
     paddingVertical: 5,
     paddingHorizontal: 10,}}>
     <Entypo name="phone" size={24} color="black" />
-    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}></Text>
+    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10}}>{pharm.phone}</Text>
     </View>
+  
     <View style={{ flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
     marginHorizontal: 10,
     marginVertical: 5,
     paddingVertical: 5,
-    paddingHorizontal: 10,}}>
+    paddingHorizontal: 10,
+    top:-15}}>
     <Entypo name="location-pin" size={24} color="black" />
-    <Text style={{ fontSize: 15, marginVertical: 5, left: 10, top: 5 }}>{pharm.location}</Text>
+    <Text style={{ fontSize: 15,  left: 10}}>{pharm.location}</Text>
   </View>
   </View>
+    </View>
+     <Text style={{ paddingTop:10,
+      paddingHorizontal:20,
+      fontSize:18,
+      fontWeight:'700',
+      color:'#000' }}>Products</Text>
   <View style={{ flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -85,20 +100,19 @@ const PharmStoreScreen=(props)=>{
     marginVertical: 5,
     paddingVertical: 5,
     paddingHorizontal: 10,}}>
-                     <Icon name="search" style={{fontSize:20,color:'#000',opacity:0.8,marginRight: 10,
+    <Icon name="search" style={{fontSize:20,color:'#000',opacity:0.8,marginRight: 10,
 }} /> 
       <TextInput placeholder='Search...'
         
-        style={{flex: 1,
-    marginLeft: 10,}}
+        style={{fontSize: 18,
+    fontWeight: 'bold',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowRadius: 2,}}
       />
   </View>
 
-      <Text style={{ paddingTop:20,
-      paddingHorizontal:20,
-      fontSize:18,
-      fontWeight:'700',
-      color:'#000' }}>Products</Text>
+     
 
   <View style={styles.view}>
     <FlatList

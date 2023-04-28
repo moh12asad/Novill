@@ -4,7 +4,6 @@ import {Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
-import DocumentPicker from 'react-native-document-picker';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 const SignupPharmScreen=({navigation})=>{
     const {state,signupPharm,clearErrorMessage}=useContext(AuthContext);
@@ -230,25 +229,8 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
-            <TextInput
-    placeholder="File"
-    value={file}
-    onChangeText={setFile}
-    multiline={true}
-    numberOfLines={4}
-    autoCapitalize="none"
-    autoCorrect={false}
-    style={{ 
-        borderRadius:120,
-        paddingHorizontal:70, 
-        width:'70%',
-        backgroundColor:'rgb(220,220,220)',
-        marginBottom:5,
-        marginTop:10,
-        left:50          
-    }}
-/>
-<Button title="Pick a file" onPress={pickDocument} />
+          
+
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <TouchableOpacity
@@ -286,6 +268,7 @@ const SignupPharmScreen=({navigation})=>{
 
     );
 };
+/*
 async function pickDocument() {
     try {
       const result = await DocumentPicker.pick({
@@ -305,7 +288,7 @@ async function pickDocument() {
         // Error handling
       }
     }
-  }
+  }*/
 SignupPharmScreen.navigationOptions = () => {
     return {
       headerShown: false,

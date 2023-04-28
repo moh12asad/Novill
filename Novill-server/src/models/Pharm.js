@@ -37,6 +37,9 @@ const PharmSchema = new mongoose.Schema({
     unique: true,
     required:true
   },
+  phone:{
+    type:String,
+  },
  
   utype:{
     type:String,
@@ -47,6 +50,10 @@ const PharmSchema = new mongoose.Schema({
   },
   desc:{
     type:String,
+  },
+  uploadedFile: {
+    type: String, // or any other type that is suitable for your use case
+    required: false // change to true if the file upload is required during registration
   }
   
 });

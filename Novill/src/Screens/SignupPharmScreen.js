@@ -4,6 +4,7 @@ import {Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
+import DocumentPicker from 'react-native-document-picker';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 const SignupPharmScreen=({navigation})=>{
     const {state,signupPharm,clearErrorMessage}=useContext(AuthContext);
@@ -14,7 +15,9 @@ const SignupPharmScreen=({navigation})=>{
     const [Confirmpassword,setConfirmpassword] = useState('');
     const [location,setlocation] = useState('');
     const [pname,setpname] = useState('');
+    const [phone,setPhone] = useState('');
     const [desc,setDesc] = useState('');
+    const {file,setFile}=useState('');
     const AdminAccept=false;
     const utype="pharm";
 
@@ -151,6 +154,23 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
+                        <TextInput
+                placeholder='Phone' 
+                value={phone}
+                onChangeText={setPhone}
+                autoCorrect={false}
+                      style={{ 
+      
+                     borderRadius:120,
+    paddingHorizontal:70, width:'70%',
+    backgroundColor:'rgb(220,220,220)',
+     marginBottom:5,
+     marginTop:10,
+     left:50
+             
+          
+            }}
+            />
              
             
             <TextInput
@@ -210,6 +230,25 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
+            <TextInput
+    placeholder="File"
+    value={file}
+    onChangeText={setFile}
+    multiline={true}
+    numberOfLines={4}
+    autoCapitalize="none"
+    autoCorrect={false}
+    style={{ 
+        borderRadius:120,
+        paddingHorizontal:70, 
+        width:'70%',
+        backgroundColor:'rgb(220,220,220)',
+        marginBottom:5,
+        marginTop:10,
+        left:50          
+    }}
+/>
+<Button title="Pick a file" onPress={pickDocument} />
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <TouchableOpacity
@@ -224,7 +263,7 @@ const SignupPharmScreen=({navigation})=>{
                 width:'50%',
                 left:85
             }}
-             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,desc})}>
+             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc})}>
              
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>
@@ -247,6 +286,26 @@ const SignupPharmScreen=({navigation})=>{
 
     );
 };
+async function pickDocument() {
+    try {
+      const result = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      console.log(
+        result.uri,
+        result.type, // mime type
+        result.name,
+        result.size
+      );
+      // You can now upload the selected file
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker
+      } else {
+        // Error handling
+      }
+    }
+  }
 SignupPharmScreen.navigationOptions = () => {
     return {
       headerShown: false,

@@ -29,7 +29,7 @@ const PharmAccountScreen=(props)=>{
               left:10,
             top:-50,}}> Pharm store: {pharm.pname}</Text>
       
-    <TouchableOpacity onPress={()=>getordersforpharm('AddProducts',pharm)}   style={{
+    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProducts',pharm)}   style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,
           alignItems: 'center',
@@ -46,6 +46,7 @@ const PharmAccountScreen=(props)=>{
  <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Add product</Text> 
     </TouchableOpacity>
+    <Spacer></Spacer>
     <TouchableOpacity onPress={()=>getordersforpharm({pharm})}   style={{
          backgroundColor:'#6ba93a',
          borderRadius:25 ,

@@ -18,12 +18,13 @@ const OrdersListScreen=(props)=>{
     console.log('Orders is:',orders);
     const [loaded,updateloaded] =useState(false)
     return(
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+        <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
           <SafeAreaView style={{ height: '80%' }}>
             <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Waiting Orders</Text>
             <Spacer />
             <FlatList
               data={orders}
+              numColumns={2}
               style={{ height: '100%' }}
               renderItem={({ item }) => {
                 return <OrderListComp style={styles.item} name={item.status} location={item.address.city} onPress={()=>props.navigation.navigate('ViewOrder',{order:item,pharm:pharm})}/>;

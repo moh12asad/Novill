@@ -6,6 +6,7 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import PharmListComp from './Components/PharmListComp';
 
 
 const ProductsScreen=(props)=>{
@@ -14,7 +15,8 @@ const ProductsScreen=(props)=>{
     const [loaded,updateloaded] =useState(false)
     const [productsCollection,setproductsCollection]=useState();
     const [pharm,setPharm]=useState();
-
+    const pharm1=props.navigation.state.params.pharm;
+    const user = props.navigation.state.params.user;
     useEffect(() => {(async () => {
             try {
                 const response = await Server.get('/Products', {
@@ -42,7 +44,7 @@ const ProductsScreen=(props)=>{
 
 
     return(
-                  <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+                  <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
 
         
 
@@ -50,19 +52,20 @@ const ProductsScreen=(props)=>{
             <Text style={{fontSize: 38,
               fontWeight:'bold'
               ,marginVertical:5,
-              left:70,
             top:20}}> Products</Text>
             <Spacer/>
             <FlatList style={{ marginVertical:30,
         marginBottom:-10,
         marginTop:50,
         marginStart:10,
-        top:-50}} data={productsCollection} 
-                renderItem={({item})=>{
-                return( 
-                        <Text style={{fontSize:20}}>{item.prodname}</Text>
-                    ); 
-                }}/>
+        top:-50}} 
+                      data={productsCollection}
+                    numColumns={2} 
+                 renderItem={({ item }) => {
+        return <PharmListComp name={item.prodname} location={item.price+"$"} />;
+                
+
+      }}/>
                 
             
         </SafeAreaView>

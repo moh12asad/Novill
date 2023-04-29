@@ -11,11 +11,13 @@ const BlueButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    alignItems: 'center',
+    backgroundColor:'#629630',
+        padding:50,
+        borderRadius:100 ,
+          alignItems: 'center',
+        paddingVertical:10,
+        marginVertical:5,
+        top:1
   },
   text: {
     color: 'white',

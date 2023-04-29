@@ -6,6 +6,8 @@ import Spacer from './Components/Spacer';
 import HomeScreen from './HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Server from './api/Server';
+import { FontAwesome } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
 
 const PharmAccountScreen=(props)=>{
   const {getordersforpharm}=useContext(AuthContext);
@@ -23,49 +25,20 @@ const PharmAccountScreen=(props)=>{
     
          <SafeAreaView forceInset={{top:'always'}}>
             <Spacer/>
-             <Text style={{fontSize: 38,
+           <Text style={{fontSize: 25,
+              marginVertical:5,
+              left:10,
+              top:-30
+          }}>Welcome to your pharmacy,</Text>
+             <Text style={{fontSize: 25,
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:-50,}}> Pharm store: {pharm.pname}</Text>
-      
-    <TouchableOpacity onPress={()=>props.navigation.navigate('AddProducts',pharm)}   style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:180,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
+              top:-30
+          }}>{pharm.pname}</Text>
 
-    }} title ="Pharm store status">
- <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Add product</Text> 
-    </TouchableOpacity>
-    <Spacer></Spacer>
-    <TouchableOpacity onPress={()=>getordersforpharm({pharm})}   style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:180,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
 
-    }} title ="Pharm store status">
- <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Orders</Text> 
-    </TouchableOpacity>
 
-  
            
             <Spacer/>
        <Spacer/>
@@ -74,16 +47,22 @@ const PharmAccountScreen=(props)=>{
         <View style={styles.NavBar}>
        
            <Pressable style={styles.IconBehave}>
-                <Icon name="shopping-cart" color={'black'} size={20} onPress={()=>navigation.navigate('AdminDelsList')}/> 
+                  <Octicons name="list-ordered" size={24} color="black" onPress={()=>getordersforpharm({pharm})}/>
           </Pressable>
            <Pressable style={styles.IconBehave}>
-                <Icon name="product-hunt" color={'black'} size={22}  title="Pharms" onPress={()=>props.navigation.navigate('Products',pharm)}   /> 
+                <FontAwesome name="product-hunt" size={20} color="black" title="Pharms" onPress={()=>props.navigation.navigate('Products',pharm)}  />
+          </Pressable>
+          <Pressable style={styles.IconBehave}>
+                 <Icon name="plus" color={'black'} size={20}   onPress={()=>props.navigation.navigate('AddProducts',pharm)}/> 
+               
+
           </Pressable>
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20}   /> 
                
 
           </Pressable>
+          
         </View></View>
 
 
@@ -138,13 +117,13 @@ justifyContent:'center',
     NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'80%',
+    width:'90%',
     justifyContent:'space-between',
     borderRadius:30,
     bottom:-600,
     height:60,
     right:40,
-    left:10,
+    left:5,
 
     
   },

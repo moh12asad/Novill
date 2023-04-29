@@ -18,18 +18,19 @@ const AddProductsScreen=({navigation})=>{
     const [salePrice,setSalePrice]=useState();
     
     return( 
-        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
 
 <>
     <View style={styles.container}>
         <NavigationEvents onWillFocus={clearErrorMessage}/>
-  <Text style={{color:'#86c260' ,
-         fontSize: 40,
-          fontWeight:'bold'
-          ,marginVertical:15,
-          left:20,
-        top:20
-          }}>Add</Text>
+  <Text style={{color: "gray",
+            fontSize: 19,
+            fontWeight:"bold",
+            marginVertical:20,
+            paddingVertical:10,
+            left:10,
+            top:25
+          }}>Add a new Product</Text>
         <Spacer/>
         <TextInput
             placeholder='Product name' 

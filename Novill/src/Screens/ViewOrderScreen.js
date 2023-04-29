@@ -19,21 +19,23 @@ const ViewOrderScreen=(props)=>{
     console.log('The order has been viewed by the pharm ',order);
     console.log('the pharm is',pharm);
     return(
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+        <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{order.user.Fname} {order.user.Lname}</Text>
     <Spacer />
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>{order.amount}</Text>
     <FlatList
       data={orderdproducts}
+      numColumns={2}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
         return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View>
-  <Text>Address {order.address.city} {order.address.street}, {order.address.building}</Text>
-  <Text>The total is: {order.prise}</Text>
+        <Text style={styles.text}>products: {order.amount}</Text>
+
+  <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
+  <Text style={styles.text}>The total is: {order.prise}</Text>
   {order.status === 'pending' ? (
     <GreenButton title="Start" onPress={() => console.log('Order has been clicked to view')} />
   ) : (
@@ -71,6 +73,11 @@ cartImage: {
   height: 50,
   borderRadius: 25,
 },
+text:{
+ fontSize:20,
+color:"#474747",
+marginLeft:45
+}
 });
 
 export default ViewOrderScreen;

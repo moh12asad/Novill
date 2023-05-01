@@ -48,9 +48,9 @@ marginTop:-50
 },
 title:{
 fontSize:32,
-marginTop:60,
+marginTop:-10,
 marginLeft:45,
-fontWeight:'bold',
+fontsize:20,
 marginHorizontal:10
 },
 subtitle:{
@@ -64,8 +64,8 @@ img:{
 alignSelf:"center",
 borderTopRightRadius:80,
 borderBottomLeftRadius:80,
-height:350,
-width:350,
+height:300,
+width:300,
 
 },
 item: {

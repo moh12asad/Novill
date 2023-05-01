@@ -336,10 +336,10 @@ router.post('/DeleteDel',async(req,res)=>{
 
 
 router.post('/Addproduct', async (req, res) => {
-  const { prodname,salePrice,sale,price,amount,pname } = req.body;
+  const { prodname,salePrice,sale,price,amount,pname,status } = req.body;
   console.log(prodname,salePrice,sale,price,amount,pname);
   try {
-    const prod = new Product({ prodname,salePrice,sale,price,amount });
+    const prod = new Product({ prodname,salePrice,sale,price,amount,pname,status });
     console.log('Add product');
     console.log(prod);
     await prod.save();
@@ -347,8 +347,8 @@ router.post('/Addproduct', async (req, res) => {
     console.log(pharm.products);
     pharm.products.push(prod);
     await pharm.save();
-    //console.log(pharm.products);
     console.log(pharm);
+    res.status(200).send({message:'pharms extracted successfully',pharms1:pharm});
 
   } catch (err) {
     return res.status(422).send(err.message);
@@ -426,7 +426,7 @@ router.post('/CreateOrderCash',async(req,res)=>{
   const prise=totalPrice;
   const amount=totalAmount;
   const pname=pharm.pname;
-  const status='pending';
+  const status='New';
   console.log('---------------CreateOrder------------');
   console.log(cart,address,totalAmount,totalPrice);
   const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname});
@@ -442,6 +442,27 @@ router.get('/GetOrdersForPharm', async (req, res) => {
   const orders = await Order.find({pname:name});
   console.log(orders);
   res.status(200).send({message:'The order created successfully',orders:orders});
+});
+router.get('/ChangeStatus', async (req, res) => {
+  const {order,newStatus}=req.query;
+  const id =order._id;
+  console.log(order);
+  await Order.updateOne({_id:id},{status:newStatus});
+  const o = await Order.findOne({_id:id});
+  console.log(o);
+  res.status(200).send({message:'The order is in Processing',order:o});
+});
+router.post('/ProductInOrder', async (req, res) => {
+  const {item,order}=req.body;
+  console.log(item,order);
+  const id =order._id;
+  console.log(order.pharm);
+  //await Order.updateOne({_id:id},{status:newStatus});
+  //const o = await Order.findOne({_id:id});
+  //console.log(o);
+  const o = await Order.findOne({_id:id});
+
+  //res.status(200).send({message:'The order is in Processing',order:o});
 });
 
 

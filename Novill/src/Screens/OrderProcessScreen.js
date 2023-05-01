@@ -10,15 +10,18 @@ import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
 import RedButton from './Components/RedButton';
 import BlueButton from './Components/BlueButton';
-const ViewOrderScreen=(props)=>{
+const OrderProcessScreen=(props)=>{
     let newStatus;
-    const{changestatus}=useContext(AuthContext);
+    const{productinorder}=useContext(AuthContext);
     const order = props.navigation.state.params.order;
+    let Amount=0;
+    let Price =0;
+    //console.log(order);
     let orderdproducts = order.products;
     console.log('The products is:',orderdproducts)
-    const pharm=props.navigation.state.params.pharm;
-    console.log('The order has been viewed by the pharm ',order);
-    console.log('the pharm is',pharm);
+    //const pharm=props.navigation.state.params.pharm;
+    console.log('OrderProcessScreen ',order);
+    //console.log('the pharm is',pharm);
     return(
         <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
@@ -29,20 +32,15 @@ const ViewOrderScreen=(props)=>{
       numColumns={2}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>productinorder({item,order})}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
           <View>
-        <Text style={styles.text}>products: {order.amount}</Text>
+        <Text style={styles.text}>products: {Amount}</Text>
         <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
-        <Text style={styles.text}>The total is: {order.prise}</Text>
-        {order.status === 'New' ? (
-          <GreenButton title="Start" onPress={() => {newStatus='Processing'; changestatus({order,newStatus})}} />
-        ) : order.status === 'Ready' ? (
+        <Text style={styles.text}>The total is: {Price}</Text>
           <BlueButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
-        ) : (
-          <RedButton title="Rejected" onPress={() => console.log('Rejected')} />
-        )}
+          <RedButton title="Reject" onPress={() => console.log('Rejected')} />
       </View>
   </SafeAreaView>
 </ImageBackground>
@@ -79,7 +77,39 @@ text:{
  fontSize:20,
 color:"#474747",
 marginLeft:45
-}
+},
+item: {
+    flex: 1,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    overflow: 'hidden',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  button: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+    marginRight: 10,
+  },
+  selectedButton: {
+    backgroundColor: 'green',
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  // your other styles here...
 });
 
-export default ViewOrderScreen;
+export default OrderProcessScreen;

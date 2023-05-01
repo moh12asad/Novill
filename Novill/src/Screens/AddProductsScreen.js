@@ -9,6 +9,7 @@ import { NavigationEvents } from 'react-navigation';
 const AddProductsScreen=({navigation})=>{
     const {state,addproduct,clearErrorMessage}=useContext(AuthContext);
     console.log(navigation.state.params);
+    let status='';
     const pname = navigation.state.params.pname;
     console.log(pname);
     const [prodname,setprodname] = useState('');    
@@ -119,7 +120,7 @@ backgroundColor:'rgb(220,220,220)',
 
 
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,salePrice,sale,price,amount,pname})}
+        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,salePrice,sale,price,amount,pname,status})}
         style={{
     backgroundColor:'#629630',
     padding:50,

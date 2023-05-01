@@ -62,7 +62,7 @@ const ProductsScreen=(props)=>{
                       data={productsCollection}
                     numColumns={2} 
                  renderItem={({ item }) => {
-        return <PharmListComp name={item.prodname} location={item.price+"$"} />;
+        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm})}/>;
                 
 
       }}/>

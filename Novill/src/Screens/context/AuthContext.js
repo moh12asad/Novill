@@ -281,15 +281,12 @@ const deletepharm=(dispatch)=>{
 
 
 const addproduct= (dispatch) =>{
-    return async ({prodname,salePrice,sale,price,amount,pname})=>{
+    return async ({prodname,salePrice,sale,price,amount,pname,status})=>{
         try{
             console.log(prodname,salePrice,sale,price,amount,pname);
-            const response = await server.post('/Addproduct',{prodname,salePrice,sale,price,amount,pname});
+            const response = await server.post('/Addproduct',{prodname,salePrice,sale,price,amount,pname,status});
             console.log('Response! V');
-            /*await AsyncStorage.setItem('token',response.data.token);
-            dispatch({type:'signup',payload:response.data.token});
-            navigate('Account');*/
-            navigate('AddProducts');
+            navigate('PharmAccount',{pharms1:response.data.pharms1});
             
         }catch(err){
             console.log(err);
@@ -373,13 +370,47 @@ const getordersforpharm=(dispatch)=>{
         }
     }
 }
+/***********Hereereeeeee*********** */
+const changestatus=(dispatch)=>{
+    return async({order,newStatus})=>{
+        console.log(order,newStatus);
+        try{
+            const response = await server.get('/ChangeStatus',{
+                params: { order,newStatus }}
+                );
+            console.log('Response.data.order is:',response.data.order);
+            //order = response.data.order;
+            navigate('OrderProcess',{order:response.data.order});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+    }
+}
 
-const orderprocess=(dispatch)=>{
-    console.log('AuthContext orderprocess');
+const productinorder=(dispatch)=>{
+    return async({item,order})=>{
+        console.log(item,order);
+        try{
+            const response = await server.post('/ProductInOrder',{item,order});
+            console.log('Response.data.order is:',response.data.order,response.data.item);
+            //order = response.data.order;
+            navigate('OrderProcess',{order:response.data.order});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+    }
 }
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

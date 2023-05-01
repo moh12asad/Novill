@@ -13,6 +13,7 @@ const PharmAccountScreen=(props)=>{
   const {getordersforpharm}=useContext(AuthContext);
   console.log(props.navigation.state.params.pharms1);
   const pharm = props.navigation.state.params.pharms1;
+  console.log('Inm pharm account screen the pharm is:',pharm);
   const {signout} = useContext(AuthContext);
     return(
                     <ImageBackground source={require("../Screens/images/imageback.jpg")} style={{ width:'100%', height:'100%' }}>        

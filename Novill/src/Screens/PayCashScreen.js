@@ -28,13 +28,13 @@ const PayCashScreen=(props)=>{
     //console.log(props.navigation.state.params.cart);
     return(
       
-<ImageBackground source={require("../Screens/images/im.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for:{user.Lname}</Text>
     <Spacer />
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>Pharm name:{pharm.pname},{pharm.location} </Text>
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}>address:{address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
-    <Text style={{ fontSize: 25, marginVertical: 5, left: 10, top: 5 }}> Order:</Text>
+    <Text style={styles.subtitle}>Pharm name:{pharm.pname},{pharm.location} </Text>
+    <Text style={styles.subtitle}>address:{address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
+    <Text style={styles.subtitle}> Order:</Text>
     <FlatList
       data={productsToOrder}
       style={{ height: '100%' }}
@@ -43,8 +43,8 @@ const PayCashScreen=(props)=>{
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View>
-      <Text>Total products order: {totalAmount}</Text>
-      <Text>The total prise is: {totalPrice}</Text>
+      <Text style={styles.subtitle}>Total products order: {totalAmount}</Text>
+      <Text style={styles.subtitle}>The total prise is: {totalPrice}</Text>
       </View>
     <GreenButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice})}></GreenButton>
   </SafeAreaView>
@@ -62,6 +62,11 @@ const styles=StyleSheet.create({
   paddingTop: 10,
   paddingHorizontal: 10,
 
+},
+subtitle:{
+fontSize:20,
+color:"#474747",
+marginLeft:45
 },
 item: {
   marginTop: 20,

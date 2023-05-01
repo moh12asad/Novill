@@ -10,10 +10,13 @@ const HomeScreen=({navigation})=>{
     return(
       
     <View> 
-        <ImageBackground source={require("../Screens/images/a.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images//background.jpg")} style={{ width:'100%', height:'100%' }} >
         <View style={{marginRight:50,marginVertical:75}}>
         </View>
-        <View>
+        <View style={{
+        alignItems:'center',
+        marginTop:70,
+        left:10}}>
         <TouchableOpacity onPress={()=>navigation.navigate('User')} 
         style={{
         backgroundColor:'#6ba93a',

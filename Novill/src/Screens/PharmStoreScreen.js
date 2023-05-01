@@ -138,13 +138,6 @@ const PharmStoreScreen=(props)=>{
 const styles=StyleSheet.create({
 
 
-    container: {
-  flex: 1,
-  backgroundColor: '#fff',
-  paddingTop: 10,
-  paddingHorizontal: 10,
-
-},
 item: {
   marginTop: 10,
   padding: 10,
@@ -170,6 +163,35 @@ cartImage: {
   height: 50,
   borderRadius: 25,
 },
+ container: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginBottom: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 5,
+      height: 2,
+  
+
+    },  
+    width: 170,
+      height: 160,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    flex:1,
+    justifyContent:'space-around',
+     marginHorizontal:10
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  location: {
+    fontSize: 18,
+    color: '#666',
+  },
 });
 
 export default PharmStoreScreen;

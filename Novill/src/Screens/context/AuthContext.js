@@ -219,6 +219,22 @@ const acceptpharm=(dispatch)=>{
             console.log(err);
     }
 }};
+const editpharm=(dispatch)=>{
+    return async ({email,Fname,Lname,location,pname,phone,desc,pharm})=>{
+        try{
+            console.log('Authcontext, editpharm function:',{email,Fname,Lname,location,pname,phone,desc,pharm});            
+            /*console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);*/
+            const response = await server.post('/EditPharm',{email,Fname,Lname,location,pname,phone,desc,pharm});
+            console.log('after response');
+            console.log(response.data.pharms1);
+            navigate('PharmAccount',{pharms1:response.data.pharms1});
+            /*console.log('Response! V');
+            navigate('Admin');
+    */}catch(err){
+            console.log(err);
+    }
+}};
 
 const acceptdel=(dispatch)=>{
     return async ({email,location})=>{
@@ -411,6 +427,6 @@ const productinorder=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,editpharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

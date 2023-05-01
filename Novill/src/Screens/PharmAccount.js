@@ -59,7 +59,7 @@ const PharmAccountScreen=(props)=>{
 
           </Pressable>
            <Pressable style={styles.IconBehave}>
-                 <Icon name="user" color={'black'} size={20}   /> 
+                 <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditPharm',pharm)}  /> 
                
 
           </Pressable>

@@ -46,6 +46,7 @@ import OrdersListScreen from './src/Screens/OrdersListScreen';
 import ViewOrderScreen from './src/Screens/ViewOrderScreen';
 import OrderProcessScreen from './src/Screens/OrderProcessScreen';
 import PharmProductScreen from './src/Screens/PharmProductScreen';
+import EditPharmScreen from './src/Screens/EditPharmScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -77,6 +78,7 @@ const switchNavigator=createSwitchNavigator({
     PharmAccount:PharmAccountScreen,
     AddProducts:AddProductsScreen,
     Products:ProductsScreen,
+    EditPharm:EditPharmScreen,
     OrdersList:OrdersListScreen,
     ViewOrder:ViewOrderScreen,
     OrderProcess:OrderProcessScreen,

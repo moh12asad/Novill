@@ -285,6 +285,31 @@ router.get('/getUsers', async (req, res) => {
   res.status(200).send({message:'Users extracted successfully',users1:usersArray});
 });
 
+router.post('/EditPharm', async (req, res) => {
+  const  {email,Fname,Lname,location,pname,phone,desc,pharm} = req.body;
+  console.log(email,Fname,Lname,location,pname,phone,desc,pharm);
+  let id=pharm._id;
+
+  await Pharm.updateOne({_id:id},{email:email,Fname:Fname,Lname:Lname,location:location,pname:pname,phone:phone,desc:desc});
+  const p = await Pharm.findOne({_id:id});
+  console.log(p);
+  res.status(200).send({message:'pharm updated successfully',pharms1:p});
+  //await p.save();
+  //console.log(p);
+
+  /*if(pharm && pharm.AdminAccept==false){
+    try {
+      console.log(pharm);
+      await Pharm.updateOne({pname:pharm.pname},{AdminAccept:true});
+      console.log(pharm);
+      res.status(200).send({message:'pharm updated successfully',pharms1:pharm});
+    } catch (err) {
+      return res.status(422).send({ error: 'Invalid Pharm name' });
+    }
+  }
+  if(!pharm)
+  return res.status(422).send({ error: 'Invalid Pharm name' });*/
+});
 
 router.get('/Products', async (req, res) => {
   console.log(req.query);

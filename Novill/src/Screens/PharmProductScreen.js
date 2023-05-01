@@ -12,7 +12,6 @@ import PharmListComp from './Components/PharmListComp';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const PharmProductScreen=(props)=>{
-  const {AddToCart} = useContext(AuthContext);
     const pharm=props.navigation.state.params.pharm1;
     const prod=props.navigation.state.params.item;
     console.log(pharm);
@@ -21,15 +20,17 @@ const PharmProductScreen=(props)=>{
     <View style={styles.container}>
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
+    <View>
     <Text>image for the product</Text>
 <Image source={require("./images//DRUGS02.jpg")} style={styles.img}></Image>
  <Text style={styles.title}>{prod.prodname}</Text>
  <Text style={styles.title}>{prod.price}</Text>
  <Text style={styles.title}>{prod.amount}</Text>
+ <GreenButton title="Edit" onPress={()=>console.log('Pressed')}></GreenButton>
+  <BlueButton title="Update quantity" onPress={()=>console.log('Pressed')}></BlueButton>
+  <RedButton title="Delete" onPress={()=>console.log('Pressed')}></RedButton>
+    </View>
         <Spacer/>
-        <GreenButton title="Edit" onPress={()=>console.log('Pressed')}></GreenButton>
-        <BlueButton title="Update quantity" onPress={()=>console.log('Pressed')}></BlueButton>
-        <RedButton title="Delete" onPress={()=>console.log('Pressed')}></RedButton>
   </SafeAreaView>
       </View>
   );

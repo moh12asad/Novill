@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Server from './api/Server';
 import { FontAwesome } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const PharmAccountScreen=(props)=>{
   const {getordersforpharm}=useContext(AuthContext);
@@ -38,17 +39,7 @@ const PharmAccountScreen=(props)=>{
               top:-30
           }}>{pharm.pname}</Text>
           <Spacer/>
-             <TouchableOpacity style={{
-        backgroundColor:'#629630',
-        padding:50,
-        marginTop:30,
-        borderRadius:100 ,
-          alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:5
-    }} title="Sign In" onPress={()=>props.navigation.navigate('ReportPharm',{pharm})} >
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Report</Text>
-     </TouchableOpacity>
+        
 
 
 
@@ -58,7 +49,8 @@ const PharmAccountScreen=(props)=>{
         </SafeAreaView>
   <View style={styles.NavContainer}>
         <View style={styles.NavBar}>
-       
+              <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportPharm',{pharm})} />
+
            <Pressable style={styles.IconBehave}>
                   <Octicons name="list-ordered" size={24} color="black" onPress={()=>getordersforpharm({pharm})}/>
           </Pressable>
@@ -130,7 +122,7 @@ justifyContent:'center',
     NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'90%',
+    width:'95%',
     justifyContent:'space-between',
     borderRadius:30,
     bottom:-600,
@@ -141,7 +133,7 @@ justifyContent:'center',
     
   },
   IconBehave:{
-    padding:20,
+    padding:19,
  
   }
 });

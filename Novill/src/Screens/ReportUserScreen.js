@@ -31,7 +31,7 @@ const ReportUserScreen=(props)=>{
 
                     
         <Text style={{ 
-            color:'#629630' ,
+            color:'#000' ,
              fontSize: 40,
               fontWeight:'bold'
               ,marginVertical:5,

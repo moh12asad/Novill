@@ -53,15 +53,15 @@ router.post('/signupPharm', async (req, res) => {
 
 
 router.post('/signupDelivery', async (req, res) => {
-  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype } = req.body;
-  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype);
+  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone } = req.body;
+  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone);
   try {
     if(Confirmpassword!=password)
     {
       throw('Passwords does not match');
     }
     console.log(AdminAccept);
-    const del = new Delivery({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype });
+    const del = new Delivery({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone });
     console.log('SignUpPharm');
     console.log(del);
     await del.save();
@@ -82,7 +82,7 @@ router.post('/signinDelivery', async (req, res) => {
       await del.comparePassword(password);
       const token = jwt.sign({ delId: del._id }, 'MY_SECRET_KEY');
       console.log(del);
-      res.status(200).send({message:'pharms extracted successfully',del1:del});
+      res.status(200).send({message:'pharms extracted successfully',del:del});
     } catch (err) {
       return res.status(422).send({ error: 'Invalid password or email' });
     }
@@ -318,7 +318,18 @@ router.post('/EditUser', async (req, res) => {
   await User.updateOne({_id:id},{email:email,Fname:Fname,Lname:Lname,phone:phone});
   const u = await User.findOne({_id:id});
   console.log(u);
-  res.status(200).send({message:'pharm updated successfully',user:u});
+  res.status(200).send({message:'User updated successfully',user:u});
+});
+
+router.post('/EditDel', async (req, res) => {
+  const  {email,Fname,Lname,phone,del} = req.body;
+  console.log(email,Fname,Lname,phone,del);
+  let id=del._id;
+
+  await Delivery.updateOne({_id:id},{email:email,Fname:Fname,Lname:Lname,phone:phone});
+  const d = await Delivery.findOne({_id:id});
+  console.log(d);
+  res.status(200).send({message:'Delivery updated successfully',del:d});
 });
 
 router.get('/Products', async (req, res) => {

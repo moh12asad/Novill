@@ -10,6 +10,7 @@ const SignupDeliveryScreen=({navigation})=>{
     const [email,setEmail]=useState('');
     const [Fname,setFname]=useState('');
     const [Lname,setLname]=useState('');
+    const [phone,setPhone]=useState('');
     const [password,setPassword] = useState('');
     const [Confirmpassword,setConfirmpassword] = useState('');
     const [location,setlocation] = useState('');
@@ -84,6 +85,23 @@ const SignupDeliveryScreen=({navigation})=>{
                 placeholder='Last Name' 
                 value={Lname}
                 onChangeText={setLname}
+                autoCorrect={false}
+                       style={{ 
+                 borderRadius:120,
+                paddingHorizontal:70, width:'70%',
+                backgroundColor:'rgb(220,220,220)',
+                marginBottom:5,
+                marginTop:10,
+                left:50
+             
+
+          
+            }}
+            />
+                        <TextInput
+                placeholder='Phone No.' 
+                value={phone}
+                onChangeText={setPhone}
                 autoCorrect={false}
                        style={{ 
                  borderRadius:120,
@@ -203,7 +221,7 @@ const SignupDeliveryScreen=({navigation})=>{
                 width:'50%',
                 left:85
             }}
-             title="Signup" onPress={()=>signupDelivery({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})}>
+             title="Signup" onPress={()=>signupDelivery({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone})}>
              
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>

@@ -48,6 +48,7 @@ import OrderProcessScreen from './src/Screens/OrderProcessScreen';
 import PharmProductScreen from './src/Screens/PharmProductScreen';
 import EditPharmScreen from './src/Screens/EditPharmScreen';
 import EditUserScreen from './src/Screens/EditUserScreen';
+import EditDeliveryScreen from './src/Screens/EditDeliveryScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -106,6 +107,7 @@ const switchNavigator=createSwitchNavigator({
     //DeliveryAccount:DeliveryAccountScreen,
     DeliveryAccount:DeliveryAccountScreen,
     WaitingAdminD:WaitingAdminDScreen,
+    EditDelivery:EditDeliveryScreen,
   }),
   
   mainFlow: createStackNavigator({

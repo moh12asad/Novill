@@ -6,7 +6,8 @@ import Spacer from './Components/Spacer';
 import HomeScreen from './HomeScreen';
 
 const DeliveryAccountScreen=(props)=>{
-    console.log(props);
+    console.log(props.navigation.state.params.del);
+    const del = props.navigation.state.params.del;
     const {signout} = useContext(AuthContext);
 
     return(
@@ -43,7 +44,41 @@ const DeliveryAccountScreen=(props)=>{
     </TouchableOpacity>
            
             <Spacer/>
- 
+            <TouchableOpacity    style={{
+         backgroundColor:'#6ba93a',
+         borderRadius:25 ,
+          alignItems: 'center',
+        width:180,
+        marginRight:40,
+        paddingVertical:5,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        right:150,
+        marginTop:15,
+        top:40
+
+    }} title ="Pharm store status">
+ <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Request</Text> 
+    </TouchableOpacity>
+    <Spacer/>
+    <TouchableOpacity    style={{
+         backgroundColor:'#6ba93a',
+         borderRadius:25 ,
+          alignItems: 'center',
+        width:180,
+        marginRight:40,
+        paddingVertical:5,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        right:150,
+        marginTop:15,
+        top:40
+
+    }} title ="EditDeliveryDetails" on onPress={()=>props.navigation.navigate('EditDelivery',{del:del})}>
+ <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Edit</Text> 
+    </TouchableOpacity>
 
              <Spacer/>
         </SafeAreaView>

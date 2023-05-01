@@ -21,7 +21,6 @@ const PharmProductScreen=(props)=>{
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
     <View>
-    <Text>image for the product</Text>
 <Image source={require("./images//DRUGS02.jpg")} style={styles.img}></Image>
  <Text style={styles.title}>{prod.prodname}</Text>
  <Text style={styles.title}>{prod.price}</Text>
@@ -47,11 +46,10 @@ alignItems:'center',
 marginTop:-50
 },
 title:{
-fontSize:32,
-marginTop:-10,
-marginLeft:45,
-fontsize:20,
-marginHorizontal:10
+fontSize:20,
+color:"#474747",
+marginLeft:45
+
 },
 subtitle:{
 fontSize:20,

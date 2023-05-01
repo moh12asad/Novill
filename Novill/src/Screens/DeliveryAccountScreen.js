@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-navigation';
 import {View,Button,StyleSheet,Text,ImageBackground,TouchableOpacity,Pressable,Image} from 'react-native';
 import Spacer from './Components/Spacer';
 import HomeScreen from './HomeScreen';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { MaterialIcons } from '@expo/vector-icons';
 const DeliveryAccountScreen=(props)=>{
     console.log(props.navigation.state.params.del);
     const del = props.navigation.state.params.del;
@@ -24,64 +25,30 @@ const DeliveryAccountScreen=(props)=>{
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:20,}}> Delivery Account </Text>
-           <TouchableOpacity    style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:180,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
-
-    }} title ="Pharm store status">
- <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Delivery status</Text> 
-    </TouchableOpacity>
+            top:20,}}> Welcome back {del.Fname} </Text>
+        
            
             <Spacer/>
-            <TouchableOpacity    style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:180,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
-
-    }} title ="Pharm store status">
- <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Request</Text> 
-    </TouchableOpacity>
+        
     <Spacer/>
-    <TouchableOpacity    style={{
-         backgroundColor:'#6ba93a',
-         borderRadius:25 ,
-          alignItems: 'center',
-        width:180,
-        marginRight:40,
-        paddingVertical:5,
-        marginVertical:10,
-        alignSelf:'flex-end',
-        right:150,
-        marginTop:15,
-        top:40
-
-    }} title ="EditDeliveryDetails" on onPress={()=>props.navigation.navigate('EditDelivery',{del:del})}>
- <Text style={{ color:'#000',fontSize:18,
-   fontWeight:"bold"}} >Edit</Text> 
-    </TouchableOpacity>
+ 
 
              <Spacer/>
         </SafeAreaView>
+          <View style={styles.NavContainer}>
+        <View style={styles.NavBar}>
+       
+          {/*Delivery status*/}
+          <MaterialIcons style={styles.IconBehave} name="delivery-dining" size={24} color="black" />
+        {/*reports , request*/}
+          <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" />
+        {/*edit profile*/}
+           <Pressable style={styles.IconBehave}>
+                 <Icon name="user" color={'black'} size={20}  on onPress={()=>props.navigation.navigate('EditDelivery',{del:del})}  /> 
+               
+
+          </Pressable>
+        </View></View>
         </ImageBackground>
         );
 }
@@ -104,6 +71,36 @@ const styles=StyleSheet.create({
     height:30,
         
   },
+  NavContainer:{
+    position:'absolute',
+    alignItems:'center',
+    
+
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#000',
+  },
+    NavBar:{
+    flexDirection:'row-reverse',
+    backgroundColor:'#6ba93a',
+    width:'75%',
+    justifyContent:'space-between',
+    borderRadius:30,
+    bottom:-600,
+    height:60,
+    right:40,
+    left:10,
+
+    
+  },
+  IconBehave:{
+    padding:15,
+ 
+  }
 });
 
 export default DeliveryAccountScreen;

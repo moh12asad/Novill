@@ -18,7 +18,7 @@ const EditDeliveryScreen=(props)=>{
 
     return(  
         <>
-        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+        <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width:'100%', height:'100%' }}>        
             <View style={styles.container}>
                 <NavigationEvents onWillFocus={clearErrorMessage}/>
                 <Spacer/>
@@ -35,6 +35,13 @@ const EditDeliveryScreen=(props)=>{
                   left:20,
                 top:20
                   }}>Edit</Text>
+                  <Text style={{color:'#000' ,
+                 fontSize: 20,
+                  fontWeight:'bold'
+                  ,marginVertical:15,
+                  left:20,
+                
+                  }}>You can update your details</Text>
                 <Spacer/>
                 <TextInput
                     placeholder={del.Fname}

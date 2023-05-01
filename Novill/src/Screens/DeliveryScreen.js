@@ -7,8 +7,8 @@ import Spacer from './Components/Spacer';
 
 const DeliveryScreen=({navigation})=>{
     return(
-    <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
-        <View> 
+    <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
+        <View style={{alignItems:'center',marginTop:300}}> 
             <TouchableOpacity onPress={()=>navigation.navigate('SigninDelivery')}
               style={{
         backgroundColor:'#86c260',
@@ -18,8 +18,7 @@ const DeliveryScreen=({navigation})=>{
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end',
-        marginRight:75,
-        marginTop:200
+   
     }}
             >
                     <Text style={{ color:'#000',fontSize:12,
@@ -35,9 +34,7 @@ const DeliveryScreen=({navigation})=>{
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end',
-        marginRight:75,
-        marginTop:50,
-        
+      
     }}
             
             

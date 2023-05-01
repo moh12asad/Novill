@@ -9,8 +9,8 @@ const PayMethodScreen=(props)=>{
     const cart= props.navigation.state.params.cart;
     const address= props.navigation.state.params.address;
     return(
-        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }} >
-        <View> 
+        <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
+        <View style={{alignItems:"center",marginTop:250}}> 
             <TouchableOpacity
              style={{
         backgroundColor:'#86c260',
@@ -20,9 +20,7 @@ const PayMethodScreen=(props)=>{
         paddingVertical:15,
     
         alignSelf:'flex-end',
-        marginRight:75,
-        
-        marginTop:200
+       
     }}
             
              onPress={()=>props.navigation.navigate('PayCash',{cart:cart,address:address})}>
@@ -39,8 +37,7 @@ const PayMethodScreen=(props)=>{
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end',
-        marginRight:75,
-        marginTop:50
+       
     }}
       
              onPress={()=>props.navigation.navigate('PayWithCredit',{cart:cart,address:address})}>

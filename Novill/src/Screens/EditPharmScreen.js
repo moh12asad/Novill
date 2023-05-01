@@ -23,7 +23,7 @@ const EditPharmScreen=(props)=>{
       
    
         <>
-        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+        <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width:'100%', height:'100%' }}>        
             <View style={styles.container}>
                 <NavigationEvents onWillFocus={clearErrorMessage}/>
                 <Spacer/>
@@ -40,7 +40,15 @@ const EditPharmScreen=(props)=>{
                   left:20,
                 top:20
                   }}>Edit</Text>
+                    <Text style={{color:'#000' ,
+                 fontSize: 20,
+                  fontWeight:'bold'
+                  ,marginVertical:15,
+                  left:20,
+                
+                  }}>You can update your details</Text>
                 <Spacer/>
+                <View style={{marginLeft:50}}>
                 <TextInput
                     placeholder={pharm.Fname} 
                     value={Fname}
@@ -178,7 +186,7 @@ const EditPharmScreen=(props)=>{
                 }}
                 />
               
-    
+    </View>
     
                 {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
                 <TouchableOpacity
@@ -191,7 +199,7 @@ const EditPharmScreen=(props)=>{
                     paddingVertical:10,
                     marginVertical:20,
                     width:'50%',
-                    left:85
+                    marginLeft:120
                 }}
                  title="Save changes" onPress={()=>editpharm({email,Fname,Lname,location,pname,phone,desc,pharm})}>
                  

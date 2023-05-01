@@ -39,14 +39,15 @@ const clearErrorMessage=dispatch=>()=>{
 }
 
 const signup= (dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,utype})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,utype,phone})=>{
         try{
             //console.log(email,password,Confirmpassword,Fname,Lname,utype);
-            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype});
+            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype,phone});
             console.log('Response! V');
             await AsyncStorage.setItem('token',response.data.token);
+            console.log(response.data.user);
             dispatch({type:'signup',payload:response.data.token});
-            navigate('Account');
+            navigate('Account',{user:response.data.user});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -229,6 +230,23 @@ const editpharm=(dispatch)=>{
             console.log('after response');
             console.log(response.data.pharms1);
             navigate('PharmAccount',{pharms1:response.data.pharms1});
+            /*console.log('Response! V');
+            navigate('Admin');
+    */}catch(err){
+            console.log(err);
+    }
+}};
+
+const edituser=(dispatch)=>{
+    return async ({email,Fname,Lname,phone,user})=>{
+        try{
+            console.log('Authcontext, edituser function:',{email,Fname,Lname,phone,user});            
+            /*console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);*/
+            const response = await server.post('/EditUser',{email,Fname,Lname,phone,user});
+            console.log('after response');
+            console.log(response.data.user);
+            navigate('Account',{user:response.data.user});
             /*console.log('Response! V');
             navigate('Admin');
     */}catch(err){
@@ -427,6 +445,6 @@ const productinorder=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,editpharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
+    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

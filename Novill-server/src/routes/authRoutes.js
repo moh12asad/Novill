@@ -11,19 +11,19 @@ const Order=mongoose.model('Order');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { email, password,Confirmpassword,Fname,Lname,utype } = req.body;
-  console.log(email, password,Confirmpassword,Fname,Lname,utype);
+  const { email, password,Confirmpassword,Fname,Lname,utype,phone } = req.body;
+  console.log(email, password,Confirmpassword,Fname,Lname,utype,phone);
   try {
     if(Confirmpassword!=password)
     {
       throw('Passwords does not match');
     }
-    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype });
+    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype,phone });
     console.log(user);
     await user.save();
 
     const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
-    res.send({ token });
+    res.send({ token:token,user:user });
   } catch (err) {
     return res.status(422).send(err.message);
   }
@@ -309,6 +309,16 @@ router.post('/EditPharm', async (req, res) => {
   }
   if(!pharm)
   return res.status(422).send({ error: 'Invalid Pharm name' });*/
+});
+router.post('/EditUser', async (req, res) => {
+  const  {email,Fname,Lname,phone,user} = req.body;
+  console.log(email,Fname,Lname,phone,user);
+  let id=user._id;
+
+  await User.updateOne({_id:id},{email:email,Fname:Fname,Lname:Lname,phone:phone});
+  const u = await User.findOne({_id:id});
+  console.log(u);
+  res.status(200).send({message:'pharm updated successfully',user:u});
 });
 
 router.get('/Products', async (req, res) => {

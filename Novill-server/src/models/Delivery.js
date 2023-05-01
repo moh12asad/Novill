@@ -38,6 +38,9 @@ const DeliverySchema = new mongoose.Schema({
   utype:{
     type:String,
     required:false
+  },
+  phone:{
+    type:String,
   }
   
 });

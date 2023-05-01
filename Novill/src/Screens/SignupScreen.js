@@ -9,6 +9,7 @@ const SignupScreen=({navigation})=>{
     const [email,setEmail]=useState('');
     const [Fname,setFname]=useState('');
     const [Lname,setLname]=useState('');
+    const [phone,setPhone]=useState('');
     const [password,setPassword] = useState('');
     const [Confirmpassword,setConfirmpassword] = useState('');
     const utype="user";
@@ -77,6 +78,22 @@ const SignupScreen=({navigation})=>{
                
             }}
             />
+                        <TextInput
+                placeholder='Phone No.' 
+                label="Phone No."
+                value={phone}
+                onChangeText={setPhone}
+                autoCorrect={false}
+                 style={{ 
+                 borderRadius:120,
+    paddingHorizontal:70, width:'70%',
+    backgroundColor:'rgb(220,220,220)',
+     marginBottom:5,
+     marginTop:30,
+     left:50
+               
+            }}
+            />
             <TextInput
                 placeholder='example@email.com' 
                 label="Email"
@@ -132,7 +149,7 @@ const SignupScreen=({navigation})=>{
             />
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-            <TouchableOpacity title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype})}
+            <TouchableOpacity title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype,phone})}
             style={{
         backgroundColor:'#629630',
         padding:50,

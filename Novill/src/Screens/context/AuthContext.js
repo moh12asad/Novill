@@ -39,14 +39,15 @@ const clearErrorMessage=dispatch=>()=>{
 }
 
 const signup= (dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,utype})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,utype,phone})=>{
         try{
             //console.log(email,password,Confirmpassword,Fname,Lname,utype);
-            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype});
+            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype,phone});
             console.log('Response! V');
             await AsyncStorage.setItem('token',response.data.token);
+            console.log(response.data.user);
             dispatch({type:'signup',payload:response.data.token});
-            navigate('Account');
+            navigate('Account',{user:response.data.user});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -155,10 +156,10 @@ const signupPharm=(dispatch) =>{
 }
 
 const signupDelivery=(dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone})=>{
         try{
-            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype);
-            const response = await server.post('/signupDelivery',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype});
+            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone);
+            const response = await server.post('/signupDelivery',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,utype,phone});
             console.log('Response! V');
             await AsyncStorage.setItem('token',response.data.token);
             dispatch({type:'signupDelivery',payload:response.data.token});
@@ -178,8 +179,8 @@ const signinDelivery=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signinDelivery',{email,password});
-            if(response.data.del1.AdminAccept){
-            navigate('DeliveryAccount');
+            if(response.data.del.AdminAccept){
+            navigate('DeliveryAccount',{del:response.data.del});
             }
             else{
                 navigate('WaitingAdminD');
@@ -219,6 +220,56 @@ const acceptpharm=(dispatch)=>{
             console.log(err);
     }
 }};
+const editpharm=(dispatch)=>{
+    return async ({email,Fname,Lname,location,pname,phone,desc,pharm})=>{
+        try{
+            console.log('Authcontext, editpharm function:',{email,Fname,Lname,location,pname,phone,desc,pharm});            
+            /*console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);*/
+            const response = await server.post('/EditPharm',{email,Fname,Lname,location,pname,phone,desc,pharm});
+            console.log('after response');
+            console.log(response.data.pharms1);
+            navigate('PharmAccount',{pharms1:response.data.pharms1});
+            /*console.log('Response! V');
+            navigate('Admin');
+    */}catch(err){
+            console.log(err);
+    }
+}};
+
+const edituser=(dispatch)=>{
+    return async ({email,Fname,Lname,phone,user})=>{
+        try{
+            console.log('Authcontext, edituser function:',{email,Fname,Lname,phone,user});            
+            /*console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);*/
+            const response = await server.post('/EditUser',{email,Fname,Lname,phone,user});
+            console.log('after response');
+            console.log(response.data.user);
+            navigate('Account',{user:response.data.user});
+            /*console.log('Response! V');
+            navigate('Admin');
+    */}catch(err){
+            console.log(err);
+    }
+}};
+const editdel=(dispatch)=>{
+    return async ({email,Fname,Lname,phone,del})=>{
+        try{
+            console.log('Authcontext, editdel function:',{email,Fname,Lname,phone,del});            
+            /*console.log('accept pharm in auth contex, pname is:',pname);
+            console.log(pname);*/
+            const response = await server.post('/EditDel',{email,Fname,Lname,phone,del});
+            console.log('after response');
+            console.log(response.data.del);
+            navigate('DeliveryAccount',{del:response.data.del});
+            /*console.log('Response! V');
+            navigate('Admin');
+    */}catch(err){
+            console.log(err);
+    }
+}};
+
 
 const acceptdel=(dispatch)=>{
     return async ({email,location})=>{
@@ -411,6 +462,6 @@ const productinorder=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,signupPharm,signinPharm,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
+    {signin,signup,signout,clearErrorMessage,editdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

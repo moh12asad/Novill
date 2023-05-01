@@ -32,6 +32,9 @@ const OrderSchema = new mongoose.Schema({
   },
   pname:{
     type:String,
+  },
+  comment:{
+    type:String,
   }
 
 });

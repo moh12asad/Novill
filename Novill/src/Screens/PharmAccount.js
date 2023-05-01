@@ -37,6 +37,18 @@ const PharmAccountScreen=(props)=>{
               left:10,
               top:-30
           }}>{pharm.pname}</Text>
+          <Spacer/>
+             <TouchableOpacity style={{
+        backgroundColor:'#629630',
+        padding:50,
+        marginTop:30,
+        borderRadius:100 ,
+          alignItems: 'center',
+        paddingVertical:10,
+        marginVertical:5
+    }} title="Sign In" onPress={()=>props.navigation.navigate('ReportPharm',{pharm})} >
+        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Report</Text>
+     </TouchableOpacity>
 
 
 

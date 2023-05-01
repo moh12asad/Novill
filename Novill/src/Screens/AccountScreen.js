@@ -20,9 +20,19 @@ const AccountScreen=(props)=>{
              <View>
         <Pressable style={styles.button} title="Sign out" onPress={signout}>
         <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
-
  </Pressable>
    </View>
+   <TouchableOpacity style={{
+        backgroundColor:'#629630',
+        padding:50,
+        marginTop:30,
+        borderRadius:100 ,
+          alignItems: 'center',
+        paddingVertical:10,
+        marginVertical:5
+    }} title="Sign In" onPress={()=>props.navigation.navigate('ReportUser',{user})} >
+        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Report</Text>
+     </TouchableOpacity>
     
        
          <SafeAreaView forceInset={{top:'always'}}>

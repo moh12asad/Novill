@@ -195,6 +195,39 @@ const signinDelivery=(dispatch)=>{
     }
 }
 
+const reportuser=(dispatch)=>{
+    return async ({title,text,user})=>{
+        console.log(title,text,user);
+        try{
+            const response = await server.post('/ReportUser',{title,text,user});
+            console.log(response.data.user);
+            navigate('ReportSummary',{user:response.data.user,r:response.data.r});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+        }
+
+    }
+}
+const reportpharm=(dispatch)=>{
+    return async ({title,text,user,pharm})=>{
+        console.log(title,text,user,pharm);
+        try{
+            const response = await server.post('/ReportPharm',{title,text,user,pharm});
+            console.log(response.data.pharm);
+            navigate('ReportSummary',{pharm:response.data.pharm,r:response.data.r});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+        }
+
+    }
+}
+
 
 const getPharms = dispatch=>{
     return async()=>{
@@ -462,6 +495,6 @@ const productinorder=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,editdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
+    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

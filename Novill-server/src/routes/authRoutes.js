@@ -8,6 +8,7 @@ const Product=mongoose.model('Product');
 const Cart=mongoose.model('Cart');
 const Address=mongoose.model('Address');
 const Order=mongoose.model('Order');
+const Reports=mongoose.model('Reports');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
@@ -368,6 +369,27 @@ router.get('/ProductDetailsForUser', async (req, res) => {
 router.post('/DeleteUser',async(req,res)=>{
    await User.deleteOne({email:req.body.email});
    res.status(200).send({message:'User deleted successfully'});
+});
+
+router.post('/ReportUser',async(req,res)=>{
+  const {title,text,user} = req.body;
+  console.log(title,text,user);
+  const r = new Reports({title,text,user});
+  r.save();
+  console.log(r);
+  res.status(200).send({message:'Report has been saved successfully',user:user,r:r});
+  //await User.deleteOne({email:req.body.email});
+  //res.status(200).send({message:'User deleted successfully'});
+});
+router.post('/ReportPharm',async(req,res)=>{
+  const {title,text,user,pharm} = req.body;
+  console.log(title,text,user,pharm);
+  const r = new Reports({title,text,user,pharm});
+  r.save();
+  console.log(r);
+  res.status(200).send({message:'Report has been saved successfully',pharm:pharm,r:r});
+  //await User.deleteOne({email:req.body.email});
+  //res.status(200).send({message:'User deleted successfully'});
 });
 
 router.post('/DeletePharm',async(req,res)=>{

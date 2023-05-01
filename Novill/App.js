@@ -49,6 +49,10 @@ import PharmProductScreen from './src/Screens/PharmProductScreen';
 import EditPharmScreen from './src/Screens/EditPharmScreen';
 import EditUserScreen from './src/Screens/EditUserScreen';
 import EditDeliveryScreen from './src/Screens/EditDeliveryScreen';
+import ReportUserScreen from './src/Screens/ReportUserScreen';
+import ReportSummaryScreen from './src/Screens/ReportSummaryScreen';
+import ReportPharmScreen from './src/Screens/ReportPharmScreen';
+
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -75,6 +79,8 @@ const switchNavigator=createSwitchNavigator({
     PayMethod:PayMethodScreen,
     PayCash:PayCashScreen,
     EditUser:EditUserScreen,
+    ReportUser:ReportUserScreen,
+    ReportSummary:ReportSummaryScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,
@@ -86,6 +92,9 @@ const switchNavigator=createSwitchNavigator({
     ViewOrder:ViewOrderScreen,
     OrderProcess:OrderProcessScreen,
     PharmProduct:PharmProductScreen,
+    ReportPharm:ReportPharmScreen,
+    ReportSummary:ReportSummaryScreen,
+ 
 
     //AddProduct:AddProductScreen,
   }),

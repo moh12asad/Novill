@@ -18,7 +18,7 @@ const ReportsSchema = new mongoose.Schema({
   text:{
     type:String,
   },
-  Title:{
+  title:{
     type:String,
   }
   

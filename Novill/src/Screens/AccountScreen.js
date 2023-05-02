@@ -12,6 +12,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 const AccountScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
     const user=props.navigation.state.params.user;
+        const pharm=props.navigation.state.params.pharm1;
+
     //const u=props.navigation.navigate.params;
     //console.log('the u is:',u);
     console.log("Account screen, passed user is: ",user);
@@ -45,7 +47,7 @@ const AccountScreen=(props)=>{
            
           <Pressable style={styles.IconBehave}>
 
-                <Icon name="shopping-cart" color={'black'} size={20} onPress={()=>console.log('Pressed')} /> 
+                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => props.navigation.navigate({user:user,pharm:pharm})} /> 
           </Pressable>
          {/* <Pressable style={styles.IconBehave}>
                 <Icon name="plus" color={'black'} size={20} /> 
@@ -55,8 +57,7 @@ const AccountScreen=(props)=>{
           </Pressable>
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditUser',{user:user})} /> 
-               
-
+              
           </Pressable>
 
         </View></View>

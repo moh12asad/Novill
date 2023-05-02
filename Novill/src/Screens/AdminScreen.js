@@ -8,6 +8,7 @@ import { BackIcon } from 'react-native-vector-icons/Feather';
 import { StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { MaterialIcons } from '@expo/vector-icons';
 
  
 const AdminScreen=({navigation})=>{
@@ -86,15 +87,14 @@ const AdminScreen=({navigation})=>{
            <Pressable style={styles.IconBehave}>
                 <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>navigation.navigate('AdminPharmList')} /> 
           </Pressable>
-          <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>navigation.navigate('ViewReports')} />
-          <Pressable style={styles.IconBehave}>
-                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>navigation.navigate('AdminPharmList')} /> 
-          </Pressable>
+          <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" />
+
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20}  onPress={()=>navigation.navigate('UsersList')}   /> 
                
 
           </Pressable>
+
         </View></View>
         </ImageBackground>
 

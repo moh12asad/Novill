@@ -18,7 +18,7 @@ const EditUserScreen=(props)=>{
 
     return(  
         <>
-        <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+        <ImageBackground source={require("../Screens/images/back.jpg")} style={{ width:'100%', height:'100%' }}>        
             <View style={styles.container}>
                 <NavigationEvents onWillFocus={clearErrorMessage}/>
                 <Spacer/>

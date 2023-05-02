@@ -8,7 +8,6 @@ import { BackIcon } from 'react-native-vector-icons/Feather';
 import { StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { MaterialIcons } from '@expo/vector-icons';
 
  
 const AdminScreen=({navigation})=>{

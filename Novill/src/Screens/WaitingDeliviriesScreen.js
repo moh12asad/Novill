@@ -35,7 +35,7 @@ const WaitingDeliviriesScreen=(props)=>{
 
 
     return(
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
 
         {/*
          <SafeAreaView forceInset={{top:'always'}}>
@@ -57,7 +57,7 @@ const WaitingDeliviriesScreen=(props)=>{
             
             }}> Delivery Employees</Text>
             <Spacer/>
-            <FlatList data={delsCollection} 
+            <FlatList data={delsCollection} style={styles.container}
                 renderItem={({item})=>{return <Text style={{fontSize:33,alignItems:'center'}}>{item.email}</Text>}}/>
                         <TouchableOpacity onPress={()=>props.navigation.navigate('AcceptDels')} 
         style={{
@@ -65,8 +65,8 @@ const WaitingDeliviriesScreen=(props)=>{
          borderRadius:1500 ,
           alignItems: 'center',
         width:200,
-        marginTop:100,
-        marginRight:170,
+        marginTop:50,
+        marginRight:20,
         paddingVertical:15,
         marginVertical:10,
         alignSelf:'flex-end'
@@ -80,7 +80,20 @@ const WaitingDeliviriesScreen=(props)=>{
         );
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+
+
+        container: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+ 
+      width: '100%',
+      height: '60%',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+ 
+  },
+});
 
 export default WaitingDeliviriesScreen;
 

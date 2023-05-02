@@ -41,7 +41,7 @@ const DeliveryAccountScreen=(props)=>{
           {/*Delivery status*/}
           <MaterialIcons style={styles.IconBehave} name="delivery-dining" size={24} color="black" />
         {/*reports , request*/}
-          <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" />
+          <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportDelivery',{del})} />
         {/*edit profile*/}
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20}  on onPress={()=>props.navigation.navigate('EditDelivery',{del:del})}  /> 

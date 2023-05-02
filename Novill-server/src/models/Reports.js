@@ -9,10 +9,10 @@ const ReportsSchema = new mongoose.Schema({
         type:UserSchema,
         //unique: true,
     },
-  Pharm:{
+  pharm:{
     type:PharmSchema
   },
-  Delivery:{
+  del:{
     type:DeliverySchema
   },
   text:{

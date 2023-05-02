@@ -382,12 +382,23 @@ router.post('/ReportUser',async(req,res)=>{
   //res.status(200).send({message:'User deleted successfully'});
 });
 router.post('/ReportPharm',async(req,res)=>{
-  const {title,text,user,pharm} = req.body;
-  console.log(title,text,user,pharm);
-  const r = new Reports({title,text,user,pharm});
+  const {title,text,pharm} = req.body;
+  console.log(title,text,pharm);
+  const r = new Reports({title,text,pharm});
   r.save();
   console.log(r);
   res.status(200).send({message:'Report has been saved successfully',pharm:pharm,r:r});
+  //await User.deleteOne({email:req.body.email});
+  //res.status(200).send({message:'User deleted successfully'});
+});
+
+router.post('/ReportDelivery',async(req,res)=>{
+  const {title,text,del} = req.body;
+  console.log(title,text,del);
+  const r = new Reports({title,text,del});
+  r.save();
+  console.log(r);
+  res.status(200).send({message:'Report has been saved successfully',del:del,r:r});
   //await User.deleteOne({email:req.body.email});
   //res.status(200).send({message:'User deleted successfully'});
 });

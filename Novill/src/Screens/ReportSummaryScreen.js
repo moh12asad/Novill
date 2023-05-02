@@ -7,7 +7,7 @@ import Spacer from './Components/Spacer';
 
 const ReportSummaryScreen=(props)=>{
     const r = props.navigation.state.params.r;
-    //console.log('Pharm in report summary is:',r.pharm);
+    console.log('del in report summary is:',r.del);
     let utype;
     const user=r.user;
     const pharm=r.pharm;

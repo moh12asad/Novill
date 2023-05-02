@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { BackIcon } from 'react-native-vector-icons/Feather';
 import { StatusBar } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const AccountScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
@@ -22,18 +23,12 @@ const AccountScreen=(props)=>{
         <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
  </Pressable>
    </View>
-   <TouchableOpacity style={{
-        backgroundColor:'#629630',
-        padding:50,
-        marginTop:30,
-        borderRadius:100 ,
-          alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:5
-    }} title="Sign In" onPress={()=>props.navigation.navigate('ReportUser',{user})} >
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Report</Text>
-     </TouchableOpacity>
-    
+  
+    <Text style={{fontSize: 35,
+              fontWeight:'bold'
+              ,marginVertical:5,
+              left:10,
+            top:20,}}> Welcome back {user.Fname} </Text>
        
          <SafeAreaView forceInset={{top:'always'}}>
         </SafeAreaView>
@@ -42,7 +37,8 @@ const AccountScreen=(props)=>{
       
        <View style={styles.NavContainer}>
         <View style={styles.NavBar}>
-       
+       <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportUser',{user})} />
+
            <Pressable style={styles.IconBehave}>
                 <Icon name="truck" color={'black'} size={20} /> 
           </Pressable>
@@ -62,7 +58,7 @@ const AccountScreen=(props)=>{
                
 
           </Pressable>
-         
+
         </View></View>
         </ImageBackground>
         );

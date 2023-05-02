@@ -181,6 +181,16 @@ router.get('/getPharms', async (req, res) => {
   res.status(200).send({message:'pharms extracted successfully',pharms1:pharmsArray});
 });
 
+router.get('/getReports', async (req, res) => {
+  const reports = await Reports.find();
+  const reportsArray=[];
+  reports.forEach(report=>{
+      reportsArray.push(report);
+});
+  //console.log(pharms);
+  res.status(200).send({message:'pharms extracted successfully',reports:reportsArray});
+});
+
 router.get('/getWaitingPharms', async (req, res) => {
   const pharms = await Pharm.find();
   const pharmsArray=[];
@@ -441,17 +451,6 @@ router.get('/getProducts', async (req, res) => {
   let prods1=[];
   prods=req.query.item.products;
   res.status(200).send({message:'pharm Products extracted  successfully',fpharm:req.query.item,prods:req.query.item.products});
-  //console.log(prods);
-  /*console.log(pharm);
-  let prods1=[];
-  products.forEach(product=>prods1.push(product));
-  console.log(prods1[0].products);
-  let prodArray=[];
-  prods1[0].products.forEach((prod) => {
-    prodArray.push(prod);
-});
-  console.log(prodArray);
-  res.status(200).send({message:'pharm updated successfully',fpharm:pharm,prods:prodArray});*/
 });
 router.post('/CreateCart',async(req,res)=>{
   console.log('The passed user to authroutes/CreateCart is: ',req.body.user);
@@ -469,11 +468,7 @@ router.post('/CreateCart',async(req,res)=>{
     cart=cart1;  
     res.status(200).send({message:'Cart created successfully',cart:cart});
 }
-  
 
-  /*else{
-    res.status(200).send({message:'Found Cart in the db',cart:cart});
-  }*/
 });
 router.post('/AddToCart',async(req,res)=>{
     const prod = req.body.prod;

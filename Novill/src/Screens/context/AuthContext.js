@@ -212,12 +212,28 @@ const reportuser=(dispatch)=>{
     }
 }
 const reportpharm=(dispatch)=>{
-    return async ({title,text,user,pharm})=>{
-        console.log(title,text,user,pharm);
+    return async ({title,text,pharm})=>{
+        console.log(title,text,pharm);
         try{
-            const response = await server.post('/ReportPharm',{title,text,user,pharm});
+            const response = await server.post('/ReportPharm',{title,text,pharm});
             console.log(response.data.pharm);
             navigate('ReportSummary',{pharm:response.data.pharm,r:response.data.r});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+        }
+
+    }
+}
+const reportdel=(dispatch)=>{
+    return async ({title,text,del})=>{
+        console.log(title,text,del);
+        try{
+            const response = await server.post('/ReportDelivery',{title,text,del});
+            console.log('reportDel authcontex:',response.data.del);
+            navigate('ReportSummary',{del:response.data.del,r:response.data.r});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',
@@ -495,6 +511,6 @@ const productinorder=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
+    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder},
     {token:null, errorMessage:''}
 );

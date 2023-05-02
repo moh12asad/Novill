@@ -6,11 +6,10 @@ import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 
 
-const ReportPharmScreen=(props)=>{
-    const pharm=props.navigation.state.params.pharm;
-    const user=null;
-    console.log(pharm);
-    const {state,reportpharm,clearErrorMessage}=useContext(AuthContext);
+const ReportDeliveryScreen=(props)=>{
+    const del=props.navigation.state.params.del;
+    console.log(del);
+    const {state,reportdel,clearErrorMessage}=useContext(AuthContext);
     const [title,setTitle]=useState('');
     const [text,setText] = useState('');
     return (            
@@ -32,7 +31,7 @@ const ReportPharmScreen=(props)=>{
 
                     
         <Text style={{ 
-            color:'#000' ,
+            color:'#629630' ,
              fontSize: 40,
               fontWeight:'bold'
               ,marginVertical:5,
@@ -82,7 +81,7 @@ const ReportPharmScreen=(props)=>{
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:5
-    }} title="Report" onPress={()=>reportpharm({title,text,pharm})} >
+    }} title="Report" onPress={()=>reportdel({title,text,del})} >
         <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Send</Text>
      </TouchableOpacity>
         <Spacer/>
@@ -93,7 +92,7 @@ const ReportPharmScreen=(props)=>{
     )
 };
 
-ReportPharmScreen.navigationOptions = () => {
+ReportDeliveryScreen.navigationOptions = () => {
     return {
       headerShown: false,
     };
@@ -124,4 +123,4 @@ const styles=StyleSheet.create({
     }
 });
 
-export default ReportPharmScreen;
+export default ReportDeliveryScreen;

@@ -381,11 +381,13 @@ const deletepharm=(dispatch)=>{
 
 
 const addproduct= (dispatch) =>{
-    return async ({prodname,desc,salePrice,sale,price,amount,pname,status})=>{
+    return async ({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri})=>{
         try{
-            console.log(prodname,desc,salePrice,sale,price,amount,pname);
-            const response = await server.post('/Addproduct',{prodname,desc,salePrice,sale,price,amount,pname,status});
+            console.log(prodname,desc,salePrice,sale,price,amount,pname,imageUri);
+            const image=imageUri;
+            const response = await server.post('/Addproduct',{prodname,desc,salePrice,sale,price,amount,pname,status,image});
             console.log('Response! V');
+            console.log('**********ADD PRODUCT******\n',response.data);
             navigate('PharmAccount',{pharms1:response.data.pharms1});
             
         }catch(err){

@@ -29,7 +29,12 @@ const ProductSchema = new mongoose.Schema({
   },
   desc:{
     type:String,
+  },
+  image: {
+    type: String, // Assuming you want to store the image URL as a string
+    //required: true // You can modify this validation as per your requirements
   }
+
 });
  mongoose.model('Product',ProductSchema);
    /*const mongoose = require('mongoose');

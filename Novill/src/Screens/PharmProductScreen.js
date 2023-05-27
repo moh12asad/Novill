@@ -21,7 +21,7 @@ const PharmProductScreen=(props)=>{
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
     <View>
-<Image source={require("./images/imagemid.jpg")} style={styles.img}></Image>
+    <Image source={{ uri: prod.image }} style={styles.img} />
  <Text style={styles.title}>Name: {prod.prodname}</Text>
  <Text style={styles.title}>price: {prod.price}</Text>
  <Text style={styles.title}>quantity: {prod.amount}</Text>

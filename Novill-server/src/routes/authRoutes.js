@@ -426,10 +426,10 @@ router.post('/DeleteDel',async(req,res)=>{
 
 
 router.post('/Addproduct', async (req, res) => {
-  const { prodname,desc,salePrice,sale,price,amount,pname,status } = req.body;
-  console.log(prodname,desc,salePrice,sale,price,amount,pname);
+  const { prodname,desc,salePrice,sale,price,amount,pname,status,image } = req.body;
+  console.log(prodname,desc,salePrice,sale,price,amount,pname,image);
   try {
-    const prod = new Product({ prodname,desc,salePrice,sale,price,amount,pname,status });
+    const prod = new Product({ prodname,desc,salePrice,sale,price,amount,pname,status,image });
     console.log('Add product');
     console.log(prod);
     await prod.save();

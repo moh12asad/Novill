@@ -144,7 +144,7 @@ const TestScreen = () => {
         paddingVertical:10,
         marginVertical:5
     }} title="send" onPress={()=>TestingImage({imageUri})} >
-        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Login</Text>
+        <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Send</Text>
      </TouchableOpacity>
     </View>
   );

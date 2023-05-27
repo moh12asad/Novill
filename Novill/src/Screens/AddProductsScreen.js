@@ -1,13 +1,15 @@
 import React, { useState,useContext } from 'react';
-import {View,StyleSheet,TouchableOpacity,ImageBackground,TextInput} from 'react-native';
+import {View,StyleSheet,TouchableOpacity,ImageBackground,TextInput, Image} from 'react-native';
 import {Text,Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
+import * as ImagePicker from 'expo-image-picker';
 import { NavigationEvents } from 'react-navigation';
 
 
 const AddProductsScreen=({navigation})=>{
     const {state,addproduct,clearErrorMessage}=useContext(AuthContext);
+    const [imageUri, setImageUri] = useState(null);
     console.log(navigation.state.params);
     let status='';
     const pname = navigation.state.params.pname;
@@ -18,6 +20,25 @@ const AddProductsScreen=({navigation})=>{
     const [amount,setAmount]=useState();
     const [sale,setSale]=useState();
     const [salePrice,setSalePrice]=useState();
+    const handleImageUpload = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          console.log('Permission not granted!');
+          return;
+        }
+    
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 1,
+        });
+    
+        if (!result.canceled) {
+          setImageUri(result.assets[0].uri);
+          // Here, you can send the image file to the server or perform any other operations
+        }
+      };
     
     return( 
         <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
@@ -134,10 +155,12 @@ backgroundColor:'rgb(220,220,220)',
            
         }}
         />
+              <Button title="Upload Image" onPress={handleImageUpload} />
+      {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
 
 
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status})}
+        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri})}
         style={{
     backgroundColor:'#629630',
     padding:50,

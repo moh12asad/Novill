@@ -516,7 +516,7 @@ const TestingImage=(dispatch)=>{
             const response = await server.post('/TestingImage',{imageUri});
             console.log('Response.data.image is:',response.data.image);
             //order = response.data.order;
-            //navigate('OrderProcess',{order:response.data.order});
+            navigate('ShowTest',{image:response.data.image});
         }catch(err){
             console.log(err);
             dispatch({type:'add_error',

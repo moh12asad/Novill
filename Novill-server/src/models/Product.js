@@ -30,7 +30,6 @@ const ProductSchema = new mongoose.Schema({
   desc:{
     type:String,
   }
-
 });
  mongoose.model('Product',ProductSchema);
    /*const mongoose = require('mongoose');

@@ -77,6 +77,20 @@ const HomeScreen=({navigation})=>{
         <Text style={{ color:'#000',fontSize:18,
    fontWeight:"bold"}} >Admin</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate('Test')}
+        style={{
+        backgroundColor:'#86c260',
+        borderRadius:100 ,
+        alignItems: 'center',
+        width:250,
+        paddingVertical:10,
+        marginVertical:10,
+        alignSelf:'flex-end',
+        marginRight:25,
+    }}>
+        <Text style={{ color:'#000',fontSize:18,
+   fontWeight:"bold"}} >Test</Text>
+        </TouchableOpacity>
         </View>
         </ImageBackground>
       

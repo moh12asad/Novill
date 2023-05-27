@@ -22,9 +22,10 @@ const PharmProductScreen=(props)=>{
     <Spacer />
     <View>
 <Image source={require("./images/imagemid.jpg")} style={styles.img}></Image>
- <Text style={styles.title}>{prod.prodname}</Text>
- <Text style={styles.title}>{prod.price}</Text>
- <Text style={styles.title}>{prod.amount}</Text>
+ <Text style={styles.title}>Name: {prod.prodname}</Text>
+ <Text style={styles.title}>price: {prod.price}</Text>
+ <Text style={styles.title}>quantity: {prod.amount}</Text>
+ <Text style={styles.title}>desc: {prod.desc}</Text>
  <GreenButton title="Edit" onPress={()=>console.log('Pressed')}></GreenButton>
   <BlueButton title="Update quantity" onPress={()=>console.log('Pressed')}></BlueButton>
   <RedButton title="Delete" onPress={()=>console.log('Pressed')}></RedButton>

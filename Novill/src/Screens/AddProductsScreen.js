@@ -13,6 +13,7 @@ const AddProductsScreen=({navigation})=>{
     const pname = navigation.state.params.pname;
     console.log(pname);
     const [prodname,setprodname] = useState('');    
+    const [desc,setdesc] = useState('');
     const [price,setPrice]=useState();
     const [amount,setAmount]=useState();
     const [sale,setSale]=useState();
@@ -38,6 +39,22 @@ const AddProductsScreen=({navigation})=>{
             label="Product name"
             value={prodname}
             onChangeText={setprodname}
+            autoCapitalize="none"
+            autoCorrect={false}
+             style={{ 
+            borderRadius:120,
+paddingHorizontal:70, width:'70%',
+backgroundColor:'rgb(220,220,220)',
+ marginBottom:5,
+ marginTop:30,
+ left:50   
+        }}
+        />
+                <TextInput
+            placeholder='Description' 
+            label="Description"
+            value={desc}
+            onChangeText={setdesc}
             autoCapitalize="none"
             autoCorrect={false}
              style={{ 
@@ -120,7 +137,7 @@ backgroundColor:'rgb(220,220,220)',
 
 
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,salePrice,sale,price,amount,pname,status})}
+        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status})}
         style={{
     backgroundColor:'#629630',
     padding:50,

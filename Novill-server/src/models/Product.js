@@ -27,6 +27,9 @@ const ProductSchema = new mongoose.Schema({
   status:{
     type:String,
   },
+  desc:{
+    type:String,
+  }
 
 });
  mongoose.model('Product',ProductSchema);

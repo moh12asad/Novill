@@ -55,11 +55,13 @@ import ReportPharmScreen from './src/Screens/ReportPharmScreen';
 import ReportDeliveryScreen from './src/Screens/ReportDeliveryScreen';
 import ViewReportsScreen from './src/Screens/ViewReportsScreen';
 import ViewReportScreen from './src/Screens/ViewReportScreen';
+import TestScreen from './src/Screens/TestScreen';
 
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
     Home:HomeScreen,
+    Test:TestScreen,
     Pharm:PharmScreen,
     Delivery:DeliveryScreen,
     User:UserScreen,

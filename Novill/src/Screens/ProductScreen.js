@@ -22,10 +22,10 @@ const ProductScreen=(props)=>{
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
     <View>
-<Image source={require("./images/imagemid.jpg")} style={styles.img}></Image>
+<Image source={require("./images/meformin-modified-release-tablets-661655727294.jpg")} style={styles.img}></Image>
  <Text style={styles.title}>{prod.prodname}</Text>
 <Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
-        <Text style={styles.subtitle}>Amount: {prod.amount}</Text>
+        <Text style={styles.subtitle}>Description: {prod.desc}</Text>
     </View>
    
         

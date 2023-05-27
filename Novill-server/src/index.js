@@ -6,6 +6,7 @@ require("./models/Cart");
 require("./models/Address");
 require("./models/Order");
 require("./models/Reports");
+require("./models/Testing");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");

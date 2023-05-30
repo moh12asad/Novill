@@ -14,7 +14,7 @@ const PharmAccountScreen=(props)=>{
   const {getordersforpharm}=useContext(AuthContext);
   console.log(props.navigation.state.params.pharms1);
   const pharm = props.navigation.state.params.pharms1;
-  console.log('Inm pharm account screen the pharm is:',pharm);
+  console.log('In pharm account screen the pharm is:',pharm);
   const {signout} = useContext(AuthContext);
     return(
                     <ImageBackground source={require("../Screens/images/imageback.jpg")} style={{ width:'100%', height:'100%' }}>        
@@ -39,7 +39,7 @@ const PharmAccountScreen=(props)=>{
               top:-30
           }}>{pharm.pname}</Text>
           <Spacer/>
-        
+                  
 
 
 
@@ -135,7 +135,12 @@ justifyContent:'center',
   IconBehave:{
     padding:19,
  
-  }
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginTop: 20,
+  },
 });
 
 export default PharmAccountScreen;

@@ -15,7 +15,9 @@ const ProductsScreen=(props)=>{
     const [loaded,updateloaded] =useState(false)
     const [productsCollection,setproductsCollection]=useState();
     const [pharm,setPharm]=useState();
-    const pharm1=props.navigation.state.params.pharm;
+    const pharm1=props.navigation.state.params;
+    //console.log("The pharm 1 is:",pharm1);
+    console.log('Look here!!::: ',pharm1)
     const user = props.navigation.state.params.user;
     useEffect(() => {(async () => {
             try {
@@ -25,15 +27,8 @@ const ProductsScreen=(props)=>{
                 updateloaded(false);
                 console.log(response.data.fpharm);
                 console.log(response.data.prods);
-                //productsCollection=response.data.prods;
                 setproductsCollection(response.data.prods);
-                //pharm=response.data.fpharm;
                 setPharm(response.data.fpharm);
-                /*response.data.prods.forEach(product => {
-                    console.log(product);
-                });*/
-                //const productsArray = response.data.fpharm;
-                //setproductsCollection(productsArray);
             } catch (err) {
                 console.log('error in useEffect');
                 console.log(err)
@@ -62,7 +57,7 @@ const ProductsScreen=(props)=>{
                       data={productsCollection}
                     numColumns={2} 
                  renderItem={({ item }) => {
-        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm})}/>;
+        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm1})}/>;
                 
 
       }}/>

@@ -1,10 +1,11 @@
 import React, { useState,useContext,  } from 'react';
-import {Text,View,StyleSheet,TouchableOpacity,ImageBackground,TextInput} from 'react-native';
+import {Text,View,StyleSheet,TouchableOpacity,ImageBackground,TextInput,Image} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 import { BackgroundImage } from 'react-native-elements/dist/config';
+import * as ImagePicker from 'expo-image-picker';
 const SignupPharmScreen=({navigation})=>{
     const {state,signupPharm,clearErrorMessage}=useContext(AuthContext);
     const [email,setEmail]=useState('');
@@ -16,9 +17,29 @@ const SignupPharmScreen=({navigation})=>{
     const [pname,setpname] = useState('');
     const [phone,setPhone] = useState('');
     const [desc,setDesc] = useState('');
-    const {file,setFile}=useState('');
+    const [imageUri, setImageUri] = useState(null);
     const AdminAccept=false;
     const utype="pharm";
+    const handleImageUpload = async () => {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        console.log('Permission not granted!');
+        return;
+      }
+  
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+  
+      if (!result.canceled) {
+        setImageUri(result.assets[0].uri);
+        // Here, you can send the image file to the server or perform any other operations
+      }
+    };
+  
 
     return( 
       
@@ -229,6 +250,8 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
+      <Button title="Upload Image" onPress={handleImageUpload} />
+      {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
           
 
 
@@ -245,7 +268,7 @@ const SignupPharmScreen=({navigation})=>{
                 width:'50%',
                 left:85
             }}
-             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc})}>
+             title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,imageUri})}>
              
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
              </TouchableOpacity>

@@ -14,6 +14,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 const PharmProductScreen=(props)=>{
     const pharm=props.navigation.state.params.pharm1;
     const prod=props.navigation.state.params.item;
+    const {deleteproduct} = useContext(AuthContext);
     console.log(pharm);
     console.log(prod);
     return(
@@ -26,9 +27,9 @@ const PharmProductScreen=(props)=>{
  <Text style={styles.title}>price: {prod.price}</Text>
  <Text style={styles.title}>quantity: {prod.amount}</Text>
  <Text style={styles.title}>desc: {prod.desc}</Text>
- <GreenButton title="Edit" onPress={()=>console.log('Pressed')}></GreenButton>
+ <GreenButton title="Edit" onPress={()=>console.log('HRllooo')}></GreenButton>
   <BlueButton title="Update quantity" onPress={()=>console.log('Pressed')}></BlueButton>
-  <RedButton title="Delete" onPress={()=>console.log('Pressed')}></RedButton>
+  <RedButton title="Delete" onPress={()=>deleteproduct({prod,pharm})}></RedButton>
     </View>
         <Spacer/>
   </SafeAreaView>

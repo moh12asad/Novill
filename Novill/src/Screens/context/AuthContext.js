@@ -136,10 +136,11 @@ const signout=dispatch=>async ()=>{
 
 
 const signupPharm=(dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,imageUri})=>{
         try{
-            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc);
-            const response = await server.post('/signupPharm',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc});
+            console.log(email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,imageUri);
+            const image=imageUri;
+            const response = await server.post('/signupPharm',{email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,image});
             console.log('Response! V');
             //await AsyncStorage.setItem('token',response.data.token);
             //dispatch({type:'signupPharm',payload:response.data.pharms1});
@@ -528,9 +529,29 @@ const TestingImage=(dispatch)=>{
         }
     }
 }
+const deleteproduct=(dispatch)=>{
+    return async({prod,pharm})=>{
+        console.log({prod,pharm});
+        try{
+            //console.log(email,password,Confirmpassword,Fname,Lname,utype);
+            const response = await server.post('/DeleteProd',{prod,pharm});
+            console.log('Response! V');
+            //await AsyncStorage.setItem('token',response.data.token);
+            console.log(response.data.pharm);
+            //dispatch({type:'signup',payload:response.data.token});
+            navigate('PharmAccount',{pharm:response.data.pharm});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up'
+        });
+            //console.log(err.message);
+        }
+    }
+}
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage},
+    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage,deleteproduct},
     {token:null, errorMessage:''}
 );

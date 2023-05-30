@@ -12,7 +12,7 @@ const Reports=mongoose.model('Reports');
 const Testing=mongoose.model('Testing');
 const router = express.Router();
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', async (req, res) => {1
   const { email, password,Confirmpassword,Fname,Lname,utype,phone } = req.body;
   console.log(email, password,Confirmpassword,Fname,Lname,utype,phone);
   try {
@@ -32,15 +32,15 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signupPharm', async (req, res) => {
-  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc } = req.body;
-  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc);
+  const { email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,image } = req.body;
+  console.log(email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,image);
   try {
     if(Confirmpassword!=password)
     {
       throw('Passwords does not match');
     }
     console.log(AdminAccept);
-    const pharm = new Pharm({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc });
+    const pharm = new Pharm({ email, password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,image });
     console.log('SignUpPharm');
     console.log(pharm);
     await pharm.save();
@@ -554,5 +554,51 @@ router.post('/TestingImage', async (req, res) => {
   //const o = await Order.findOne({_id:id});
   //res.status(200).send({message:'The order is in Processing',order:o});
 });
+/*
+router.post('/DeleteProd', async (req, res) => {
+  const {prod,pharm}=req.body;
+  console.log(prod,pharm);
+  console.log(pharm.pname);
+  const pid=pharm._id;
+  const prodid = prod._id;
+const pharm1 = await Pharm.findOne({_id:pid});
+  try {
+    console.log("Products is:\n",pharm.products)
+
+    // Delete product from products schema
+    await Product.deleteOne({ _id: prodid });
+
+    res.status(200).send({message:'The order created successfully',pharm:pharm1});
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while deleting the product' });
+  }
+});*/
+router.post('/DeleteProd', async (req, res) => {
+  const { prod, pharm } = req.body;
+  console.log(prod, pharm);
+  console.log(pharm.pname);
+  const pid = pharm._id;
+  const prodid = prod._id;
+
+  const pharm1 = await Pharm.findOne({ _id: pid });
+
+  try {
+    console.log("Products is:\n", pharm.products);
+
+    // Delete product from products schema
+    await Product.deleteOne({ _id: prodid });
+
+    // Remove the deleted product from the pharm.products array
+    pharm1.products = pharm1.products.filter((product) => product._id.toString() !== prodid);
+    //setPharm({ ...pharm, products: pharm1.products });
+    // Save the updated pharm1 document
+    await pharm1.save();
+
+    res.status(200).send({ message: 'The order created successfully', pharm: pharm1 });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while deleting the product' });
+  }
+});
+
 
 module.exports = router;

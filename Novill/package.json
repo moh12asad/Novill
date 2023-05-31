@@ -16,6 +16,7 @@
     "expo": "~47.0.6",
     "expo-document-picker": "~11.0.1",
     "expo-image-picker": "^14.1.1",
+    "expo-intent-launcher": "^10.5.2",
     "expo-status-bar": "~1.4.2",
     "ngrok": "^4.3.3",
     "react": "18.1.0",

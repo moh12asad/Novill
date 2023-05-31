@@ -10,6 +10,7 @@ const Address=mongoose.model('Address');
 const Order=mongoose.model('Order');
 const Reports=mongoose.model('Reports');
 const Testing=mongoose.model('Testing');
+const Testing1=mongoose.model('Testing1');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {1
@@ -426,10 +427,10 @@ router.post('/DeleteDel',async(req,res)=>{
 
 
 router.post('/Addproduct', async (req, res) => {
-  const { prodname,desc,salePrice,sale,price,amount,pname,status,image } = req.body;
-  console.log(prodname,desc,salePrice,sale,price,amount,pname,image);
+  const { prodname,desc,salePrice,sale,price,amount,pname,status,image,prescription } = req.body;
+  console.log(prodname,desc,salePrice,sale,price,amount,pname,image,prescription);
   try {
-    const prod = new Product({ prodname,desc,salePrice,sale,price,amount,pname,status,image });
+    const prod = new Product({ prodname,desc,salePrice,sale,price,amount,pname,status,image,prescription });
     console.log('Add product');
     console.log(prod);
     await prod.save();
@@ -547,6 +548,21 @@ router.post('/TestingImage', async (req, res) => {
   console.log(test);
   await test.save();
   res.status(200).send({message:'The order is in Processing',image:test});
+  //console.log(order.pharm);
+  //await Order.updateOne({_id:id},{status:newStatus});
+  //const o = await Order.findOne({_id:id});
+  //console.log(o);
+  //const o = await Order.findOne({_id:id});
+  //res.status(200).send({message:'The order is in Processing',order:o});
+});
+
+router.post('/TestingDoc', async (req, res) => {
+  const {documentUri}=req.body;
+  console.log(documentUri);
+  const test = new Testing1({doc:documentUri});
+  console.log(test);
+  await test.save();
+  res.status(200).send({message:'The order is in Processing',doc:test});
   //console.log(order.pharm);
   //await Order.updateOne({_id:id},{status:newStatus});
   //const o = await Order.findOne({_id:id});

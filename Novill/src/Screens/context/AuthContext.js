@@ -382,11 +382,11 @@ const deletepharm=(dispatch)=>{
 
 
 const addproduct= (dispatch) =>{
-    return async ({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri})=>{
+    return async ({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri,prescription})=>{
         try{
-            console.log(prodname,desc,salePrice,sale,price,amount,pname,imageUri);
+            console.log(prodname,desc,salePrice,sale,price,amount,pname,imageUri,prescription);
             const image=imageUri;
-            const response = await server.post('/Addproduct',{prodname,desc,salePrice,sale,price,amount,pname,status,image});
+            const response = await server.post('/Addproduct',{prodname,desc,salePrice,sale,price,amount,pname,status,image,prescription});
             console.log('Response! V');
             console.log('**********ADD PRODUCT******\n',response.data);
             navigate('PharmAccount',{pharms1:response.data.pharms1});
@@ -529,6 +529,25 @@ const TestingImage=(dispatch)=>{
         }
     }
 }
+
+const TestingDocument=(dispatch)=>{
+    return async({documentUri})=>{
+        console.log(documentUri);
+        //console.log(item,order);
+        try{
+            const response = await server.post('/TestingDoc',{documentUri});
+            console.log('Response.data.image is:',response.data.doc);
+            //order = response.data.order;
+            navigate('ShowTest',{doc:response.data.doc});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign in'
+        });
+            //console.log(err.message);
+        }
+    }
+}
 const deleteproduct=(dispatch)=>{
     return async({prod,pharm})=>{
         console.log({prod,pharm});
@@ -552,6 +571,6 @@ const deleteproduct=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage,deleteproduct},
+    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage,TestingDocument,deleteproduct},
     {token:null, errorMessage:''}
 );

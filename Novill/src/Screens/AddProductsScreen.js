@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react';
 import {View,StyleSheet,TouchableOpacity,ImageBackground,TextInput, Image} from 'react-native';
-import {Text,Input, Button} from 'react-native-elements';
+import {Text,Input, Button,CheckBox} from 'react-native-elements';
 import Spacer from './Components/Spacer'
 import { Context as AuthContext} from './context/AuthContext';
 import * as ImagePicker from 'expo-image-picker';
@@ -18,8 +18,9 @@ const AddProductsScreen=({navigation})=>{
     const [desc,setdesc] = useState('');
     const [price,setPrice]=useState();
     const [amount,setAmount]=useState();
-    const [sale,setSale]=useState();
+    const [sale,setSale]=useState(false);
     const [salePrice,setSalePrice]=useState();
+    const [prescription,setPrescription]=useState(false);
     const handleImageUpload = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
@@ -120,47 +121,38 @@ backgroundColor:'rgb(220,220,220)',
            
         }}
         />
-                <TextInput
-        label="On Sale"
-        value={sale}
-        onChangeText={setSale}
-        autoCapitalize="none"
-        placeholder='On Sale'
-        autoCorrect={false}
-         style={{ 
-             borderRadius:120,
-paddingHorizontal:70, width:'70%',
-backgroundColor:'rgb(220,220,220)',
- marginBottom:5,
- marginTop:30,
- left:50
-           
-        }}
+                <CheckBox
+          title='Sale'
+          checked={sale}
+          onPress={() => setSale(!sale)}
+          containerStyle={styles.checkboxContainer}
+          textStyle={styles.checkboxText}
         />
 
-        <TextInput
-        label=""
-        value={salePrice}
-        onChangeText={setSalePrice}
-        placeholder='Sale price'
-        autoCapitalize="none"
-        autoCorrect={false}
-         style={{ 
-           borderRadius:120,
-paddingHorizontal:70, width:'70%',
-backgroundColor:'rgb(220,220,220)',
- marginBottom:5,
- marginTop:30,
- left:50
-           
-        }}
+{sale && (
+          <TextInput
+            label=""
+            value={salePrice}
+            onChangeText={setSalePrice}
+            placeholder='Sale price'
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.input}
+          />
+        )}
+                <CheckBox
+          title='prescription'
+          checked={prescription}
+          onPress={() => setPrescription(!prescription)}
+          containerStyle={styles.checkboxContainer}
+          textStyle={styles.checkboxText}
         />
               <Button title="Upload Image" onPress={handleImageUpload} />
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
 
 
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri})}
+        <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri,prescription})}
         style={{
     backgroundColor:'#629630',
     padding:50,

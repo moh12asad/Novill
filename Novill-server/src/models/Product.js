@@ -14,7 +14,7 @@ const ProductSchema = new mongoose.Schema({
     required: true
   },
   sale:{
-    type: String,
+    type: Boolean,
     required: true
   },
   salePrice:{
@@ -33,6 +33,10 @@ const ProductSchema = new mongoose.Schema({
   image: {
     type: String, // Assuming you want to store the image URL as a string
     //required: true // You can modify this validation as per your requirements
+  },
+  prescription:{
+    type:Boolean,
+    required:true,
   }
 
 });

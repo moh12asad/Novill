@@ -7,6 +7,7 @@ require("./models/Address");
 require("./models/Order");
 require("./models/Reports");
 require("./models/Testing");
+require("./models/Testing1");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");

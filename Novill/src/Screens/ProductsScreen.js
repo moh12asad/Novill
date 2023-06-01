@@ -7,6 +7,7 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import PharmListComp from './Components/PharmListComp';
+import ProductListComp from './Components/ProductListComp';
 
 
 const ProductsScreen=(props)=>{
@@ -55,10 +56,10 @@ const ProductsScreen=(props)=>{
         marginStart:10,
         top:-50}} 
                       data={productsCollection}
-                    numColumns={2} 
+                    
                  renderItem={({ item }) => {
-        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm1})}/>;
-                
+        return  <ProductListComp name={item.prodname} price={item.price+"$"}  onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm1})}/>;
+        
 
       }}/>
                 

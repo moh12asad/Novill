@@ -5,6 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import ProductListComp from './Components/ProductListComp';
 
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
@@ -26,10 +27,9 @@ const ViewOrderScreen=(props)=>{
     <Spacer />
     <FlatList
       data={orderdproducts}
-      numColumns={2}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <ProductListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
           <View>

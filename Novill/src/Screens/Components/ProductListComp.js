@@ -2,17 +2,20 @@ import React from 'react';
 import { View, Text, StyleSheet, Touchable,Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const PharmListComp = ({ name, location,image,onPress }) => {
+const ProductListComp = ({ name, price,image,onPress }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
+    
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.location}>{location}</Text>
+      <Text style={styles.price}>{price}</Text>
+     
+
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+   container: {
     backgroundColor: '#fff',
     borderRadius: 10,
     marginBottom: 5,
@@ -20,18 +23,16 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 5,
       height: 2,
-  
-
-    },  
-    width: 170,
-      height: 160,
+    },
+    width: 370, // Adjust the width value to your desired width
+    height: 90, // Adjust the height value to your desired height
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    flex:1,
-    justifyContent:'space-around',
-     marginHorizontal:10
-  },
+
+    justifyContent: 'space-around',
+    marginHorizontal: 10,
+},
   name: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -43,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PharmListComp;
+export default ProductListComp;

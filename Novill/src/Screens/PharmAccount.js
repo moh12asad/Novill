@@ -127,8 +127,8 @@ justifyContent:'center',
     borderRadius:30,
     bottom:-600,
     height:60,
-    right:40,
-    left:5,
+    right:35,
+    left:1,
 
     
   },

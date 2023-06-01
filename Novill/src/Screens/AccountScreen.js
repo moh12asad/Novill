@@ -75,7 +75,7 @@ justifyContent:'center',
 
       button: {
         padding:10,
-        marginTop:10,
+        marginTop:5,
         borderRadius:110,
         alignItems: 'center',
         paddingVertical:10,

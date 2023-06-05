@@ -464,10 +464,11 @@ router.post('/CreateCart',async(req,res)=>{
     let cart2 = new Cart({user});
     await cart2.save();
     cart=cart2;
+    console.log('The error is in the create cart function');
     res.status(200).send({message:'Cart created successfully',cart:cart});
   }
   else{
-    cart=cart1;  
+    cart=cart1;
     res.status(200).send({message:'Cart created successfully',cart:cart});
 }
 
@@ -476,6 +477,7 @@ router.post('/AddToCart',async(req,res)=>{
     const prod = req.body.prod;
     const cart = req.body.cart;
     const pharm = req.body.pharm;
+    console.log(cart);
   
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
   
@@ -533,9 +535,6 @@ router.post('/ProductInOrder', async (req, res) => {
   console.log(item,order);
   const id =order._id;
   console.log(order.pharm);
-  //await Order.updateOne({_id:id},{status:newStatus});
-  //const o = await Order.findOne({_id:id});
-  //console.log(o);
   const o = await Order.findOne({_id:id});
 
   //res.status(200).send({message:'The order is in Processing',order:o});
@@ -616,5 +615,38 @@ router.post('/DeleteProd', async (req, res) => {
   }
 });
 
+router.post('/AddToVProducts', async (req, res) => {
+  const {prod,pharm,order}=req.body;
+  console.log((prod,pharm,order));
+  let amount1=prod.amount;
+  amount1=amount1-1;
+  let p= await Product.findOne({_id:prod._id});
+  await Product.updateOne({_id:prod._id},{amount:amount1});
+  let ph1= await Pharm.findOne({pname:prod.pname});
+  let id = ph1._id;
+  let prodname=prod.prodname;
+  const updatedPharm = await Pharm.updateOne(
+    { _id: id, 'products.prodname': prodname },
+    { $inc: { 'products.$.amount': -1 } }
+  );
+  
+  const arr=[];
+   p= await Product.findOne({_id:prod._id});
+   let o = await Order.findOne({_id:order._id});
+  o.vproducts.push(p);
+  await o.save();
+  res.status(200).send({ message: 'The order created successfully', pharm: updatedPharm,order:o,prod:prod });
+});
+router.post('/AddToXProducts', async (req, res) => {
+  const {prod,pharm,order}=req.body;
+  console.log((prod,pharm,order));
+  let p= await Product.findOne({_id:prod._id});
+  let ph1= await Pharm.findOne({pname:prod.pname});
+  let prodname=prod.prodname;
+   let o = await Order.findOne({_id:order._id});
+  o.xproducts.push(prodname);
+  await o.save();
+  res.status(200).send({ message: 'The order created successfully', pharm: ph1,order:o,prod:prod });
+});
 
 module.exports = router;

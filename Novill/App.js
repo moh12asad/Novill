@@ -57,6 +57,7 @@ import ViewReportsScreen from './src/Screens/ViewReportsScreen';
 import ViewReportScreen from './src/Screens/ViewReportScreen';
 import TestScreen from './src/Screens/TestScreen';
 import ShowTestScreen from './src/Screens/ShowTestScreen';
+import ProductForOrderProcessScreen from './src/Screens/ProductForOrderProcessScreen';
 
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
@@ -101,6 +102,7 @@ const switchNavigator=createSwitchNavigator({
     PharmProduct:PharmProductScreen,
     ReportPharm:ReportPharmScreen,
     ReportSummary:ReportSummaryScreen,
+    ProductForOrderProcess:ProductForOrderProcessScreen,
  
 
     //AddProduct:AddProductScreen,

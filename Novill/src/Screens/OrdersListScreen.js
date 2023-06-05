@@ -17,6 +17,16 @@ const OrdersListScreen=(props)=>{
     console.log('Orders list screen',pharm);
     console.log('Orders is:',orders);
     const [loaded,updateloaded] =useState(false)
+
+    const handelOrderNavigate=(item,pharm)=>{
+      if(item.status=="Processing")
+      {
+        props.navigation.navigate('OrderProcess',{order:item,pharm:pharm})
+      }
+      else{
+        props.navigation.navigate('ViewOrder',{order:item,pharm:pharm})
+      }
+    }
     return(
         <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
           <SafeAreaView style={{ height: '80%' }}>
@@ -27,7 +37,7 @@ const OrdersListScreen=(props)=>{
               numColumns={2}
               style={{ height: '100%' }}
               renderItem={({ item }) => {
-                return <OrderListComp style={styles.item} name={item.status} location={item.address.city} onPress={()=>props.navigation.navigate('ViewOrder',{order:item,pharm:pharm})}/>;
+                return <OrderListComp style={styles.item} name={item.status} location={item.address.city} onPress={()=>{handelOrderNavigate(item,pharm)}}/>;
               }}
             />
           </SafeAreaView>

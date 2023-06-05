@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const CartSchema = new mongoose.Schema({
     user:{
         type:UserSchema,
-        //unique: true,
     },
   products:{
     type:[ProductSchema]

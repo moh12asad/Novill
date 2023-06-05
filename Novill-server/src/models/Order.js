@@ -35,6 +35,13 @@ const OrderSchema = new mongoose.Schema({
   },
   comment:{
     type:String,
+  },
+  vproducts:{
+    type:[ProductSchema],
+    default:[]
+  },
+  xproducts:{
+    type:[String],
   }
 
 });

@@ -15,12 +15,28 @@ const PharmStoreScreen=(props)=>{
     const [loaded,updateloaded] =useState(false)
     const [productsCollection,setproductsCollection]=useState();
     const [Pharm,setPharm]=useState();
+    const[cart2,setCart2]=useState();
     const pharm=props.navigation.state.params.pharm;
     const user = props.navigation.state.params.user;
     //let pharmsCollection=[];
-    const myuserpharms=useContext(GlobalContex); 
+    const myuserpharms=useContext(GlobalContex);
+    console.log('IM IN PHARMSTORESCREEN'); 
     //const[cart,SetCart]=useState();
     let cart;
+    const createCart = async () => {
+      try {
+        const response = await Server.post('/CreateCart', {
+          user
+        });
+        console.log(response.data.cart);
+        cart = response.data.cart;
+        console.log('The Cart in pharm store screen is:-----\n', cart, '------\n');
+        console.log(pharm.pname);
+      } catch (err) {
+        console.log('error in createCart');
+        console.log(err);
+      }
+    };
     useEffect(() => {(async () => {
             try {
                 //const response = await Server.get('/getPharms') 
@@ -29,13 +45,13 @@ const PharmStoreScreen=(props)=>{
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
                 setPharm(pharm);
                 setproductsCollection(pharm.products);
-                const response = await Server.post('/CreateCart',{
+                /*const response = await Server.post('/CreateCart',{
                   user
                 });
                 console.log(response.data.cart);
                 //cart= response.data.cart;
                 //SetCart(response.data.cart);
-                cart = response.data.cart;
+                cart = response.data.cart;*/
                 console.log('The Cart in pharm store screen is:-----\n',cart,'------\n');
                 //console.log('PharmStore:');
                 console.log(pharm.pname)
@@ -48,7 +64,7 @@ const PharmStoreScreen=(props)=>{
         })()
     },[loaded] )
 
-
+ createCart();
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
@@ -195,3 +211,4 @@ cartImage: {
 });
 
 export default PharmStoreScreen;
+//122 props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})

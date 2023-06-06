@@ -7,6 +7,7 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
+import ProductListComp from './Components/ProductListComp';
 
 const CartScreen=(props)=>{
 
@@ -27,18 +28,18 @@ const CartScreen=(props)=>{
     //console.log(props.navigation.state.params.cart);
     return(
       
-<ImageBackground source={require("../Screens/images/back1.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{user.Lname} {user.Fname}</Text>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{user.Fname} {user.Lname}</Text>
+    <Text style={{ fontSize: 20, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>My new order</Text>
     <Spacer />
    
     <FlatList
       data={productsToOrder}
-      numColumns={2}
       style={{ top:25}}
       
       renderItem={({ item }) => {
-        return <PharmListComp name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View style={{ top:30 }}>

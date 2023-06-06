@@ -22,8 +22,9 @@ const ProductScreen=(props)=>{
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
     <View>
+     <Text style={styles.title}>{prod.prodname}</Text>
     <Image source={{ uri: prod.image }} style={styles.img} />
- <Text style={styles.title}>{prod.prodname}</Text>
+
 <Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
         <Text style={styles.subtitle}>Description: {prod.desc}</Text>
     </View>
@@ -91,7 +92,7 @@ cartImage: {
 },
 Button:{
         padding:50,
-        marginTop:30,
+        marginTop:20,
         borderRadius:100 ,
           alignItems: 'center',
         paddingVertical:10,

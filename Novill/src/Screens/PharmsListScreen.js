@@ -56,7 +56,7 @@ if (isLoading) {
       numColumns={2}
   
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;
+        return <PharmListComp style={styles.item} name={item.pname} location={item.location} image={item.image} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;
       }}
     />
   </SafeAreaView>

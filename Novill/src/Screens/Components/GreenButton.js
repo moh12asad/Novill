@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:5,
-        top:1
+        top:-20
   },
   text: {
     color: 'white',

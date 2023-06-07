@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const CartSchema=require('./Cart')
+
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -29,6 +31,9 @@ const userSchema = new mongoose.Schema({
   },
   phone:{
     type:String,
+  },
+  cart:{
+    type:CartSchema,
   }
   
 });

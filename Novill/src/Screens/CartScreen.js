@@ -10,9 +10,11 @@ import GreenButton from './Components/GreenButton';
 
 const CartScreen=(props)=>{
 
-    const cart = props.navigation.state.params.cart;
+    //const cart = props.navigation.state.params.cart;
     const user = props.navigation.state.params.user;
-    const pharm=props.navigation.state.params.pharm;
+    const cart = user.cart;
+    const pharm = getPharmName(user,cart);
+    //const pharm=props.navigation.state.params.pharm;
     console.log('-----------Cart screen-----------\n the cart is: ',cart);
     console.log('---------\nThe cart belongs to -----\n',user);
 
@@ -52,6 +54,14 @@ const CartScreen=(props)=>{
 </ImageBackground>
 
         );
+}
+
+const getPharmName=async(user,cart)=>{
+  const response = await Server.post('/GetPharm', {
+    user,cart
+  });
+  let p = response.data.pharm;
+  return p;
 }
 
 const styles=StyleSheet.create({

@@ -1,7 +1,7 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image,TextInput} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
@@ -13,11 +13,12 @@ import BlueButton from './Components/BlueButton';
 import UPharmListComp from './Components/UPharmListComp';
 const OrderProcessScreen=(props)=>{
     let newStatus;
+    const [desc,setDesc]=useState();
     const{productinorder}=useContext(AuthContext);
     const order = props.navigation.state.params.order;
     const pharm=order.pharm;
     let Amount=0;
-    let Price =0;
+    let price =0;
     //console.log(order);
     let orderdproducts = order.products;
     Amount=orderdproducts.length;
@@ -28,6 +29,7 @@ const OrderProcessScreen=(props)=>{
     let vnames=[];
     ps.forEach(element => {
       vnames.push(element.prodname);
+      price =price+element.price;
     });
     console.log(vnames);
     
@@ -46,6 +48,20 @@ const OrderProcessScreen=(props)=>{
         xprods.push(prod.prodname);
       }
     });*/
+
+  const OrderIsReady=async (order,desc)=>{
+    try {
+      console.log('HiHi');
+      const response = await Server.post('/OrderIsReady', {
+        order,desc
+      });
+      const orders=response.data.orders;
+      props.navigation.navigate('OrdersList',{orders:orders,pharm:pharm});
+    } catch (err) {
+      console.log('error in Updating');
+      console.log(err);
+    }
+  }
     return(
         <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
@@ -82,13 +98,34 @@ const OrderProcessScreen=(props)=>{
       />
     );
   }}
-/>
+/><View>
+                            <TextInput
+                placeholder={"Notes"}
+                value={desc}
+                onChangeText={setDesc}
+                autoCapitalize="none"
+                autoCorrect={true}
+                     style={{ 
+          
+                       borderRadius:120,
+                     paddingHorizontal:70, width:'70%',
+                    backgroundColor:'rgb(220,220,220)',
+                    marginBottom:5,
+                    marginTop:10,
+                    left:50
+                 
+                        
+              
+                }}
+                />
+                </View>
     
           <View>
         <Text style={styles.text}>products: {Amount}</Text>
         <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
         <Text style={styles.text}>The total is: {order.prise}</Text>
-          <BlueButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
+        <Text style={styles.text}>Current ready products price: {price}</Text>
+          <BlueButton title="Ready, notify the delivery" onPress={() => OrderIsReady(order,desc)} />
           <RedButton title="Reject" onPress={() => console.log('Rejected')} />
       </View>
   </SafeAreaView>

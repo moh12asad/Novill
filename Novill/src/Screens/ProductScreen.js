@@ -13,7 +13,9 @@ const ProductScreen=(props)=>{
   const {AddToCart} = useContext(AuthContext);
     const pharm=props.navigation.state.params.pharm1;
     const prod=props.navigation.state.params.prod;
-    const cart = props.navigation.state.params.cart;
+    //const cart = props.navigation.state.params.cart;
+    const user=props.navigation.state.params.user;
+    const cart=user.cart;
     console.log('Cart is:',cart);
     console.log(pharm);
     console.log(prod);
@@ -30,7 +32,7 @@ const ProductScreen=(props)=>{
    
         
         <Spacer/>
-        <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm})}></GreenButton>
+        <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm,user})}></GreenButton>
   </SafeAreaView>
   <View style={styles.cartContainer}>
         <TouchableOpacity onPress={() => console.log('cart icon pressed')}>

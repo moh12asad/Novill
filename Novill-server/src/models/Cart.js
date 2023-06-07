@@ -4,16 +4,13 @@ const UserSchema=require('./User')
 const PharmSchema=require('./Pharm')
 const mongoose = require('mongoose');
 const CartSchema = new mongoose.Schema({
-    user:{
-        type:UserSchema,
-    },
   products:{
     type:[ProductSchema]
   },
-  Pharm:{
-    type:PharmSchema
+  pname:{
+    type:String,
   },
-  Pname:{
+  email:{
     type:String,
   }
   

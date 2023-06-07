@@ -46,8 +46,7 @@ const AccountScreen=(props)=>{
           </Pressable>
            
           <Pressable style={styles.IconBehave}>
-
-                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => props.navigation.navigate({user:user,pharm:pharm})} /> 
+                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => props.navigation.navigate('Cart',{user:user})} /> 
           </Pressable>
          {/* <Pressable style={styles.IconBehave}>
                 <Icon name="plus" color={'black'} size={20} /> 

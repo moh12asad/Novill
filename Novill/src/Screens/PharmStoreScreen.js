@@ -1,4 +1,4 @@
-import React,{useContext,useEffect, useState} from 'react';
+import React,{useContext,useEffect, useState,useNavigation} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
 import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image, TextInput} from 'react-native';
@@ -10,41 +10,29 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons';
 const PharmStoreScreen=(props)=>{
+
     //const {signout,getPharms} = useContext(AuthContext);
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
-    const [productsCollection,setproductsCollection]=useState();
-    const [Pharm,setPharm]=useState();
-    const[cart2,setCart2]=useState();
+    //const [productsCollection,setproductsCollection]=useState();
     const pharm=props.navigation.state.params.pharm;
+    console.log("HIHIHIHIHIHIHI",pharm);
     const user = props.navigation.state.params.user;
     //let pharmsCollection=[];
+    const productsCollection=pharm.products;
     const myuserpharms=useContext(GlobalContex);
     console.log('IM IN PHARMSTORESCREEN'); 
     //const[cart,SetCart]=useState();
-    let cart;
-    const createCart = async () => {
-      try {
-        const response = await Server.post('/CreateCart', {
-          user
-        });
-        console.log(response.data.cart);
-        cart = response.data.cart;
-        console.log('The Cart in pharm store screen is:-----\n', cart, '------\n');
-        console.log(pharm.pname);
-      } catch (err) {
-        console.log('error in createCart');
-        console.log(err);
-      }
-    };
+    let cart=user.cart;
     useEffect(() => {(async () => {
             try {
                 //const response = await Server.get('/getPharms') 
                 updateloaded(true);
                 //const pharmsArray = response.data.pharms1;
                 //console.log("ASDGHGSDF--------------------:",pharmsArray);
-                setPharm(pharm);
-                setproductsCollection(pharm.products);
+                //setPharm(pharm);
+                //setproductsCollection(pharm.products);
+                console.log(pharm.products);
                 /*const response = await Server.post('/CreateCart',{
                   user
                 });
@@ -64,7 +52,6 @@ const PharmStoreScreen=(props)=>{
         })()
     },[loaded] )
 
- createCart();
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
@@ -150,6 +137,23 @@ const PharmStoreScreen=(props)=>{
 
         );
 }
+const createCart = async (user,pharm) => {
+  console.log("The pharm is:",pharm);
+  try {
+    const response = await Server.post('/CreateCart', {
+      user
+    });
+    console.log(pharm);
+    cart = response.data.cart;
+    console.log('The Cart in pharm store screen is:-----\n', cart, '------\n');
+    console.log(pharm.pname);
+    const navigation = useNavigation();
+    navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})
+  } catch (err) {
+    console.log("Error in create cart");
+    console.log(err);
+  }
+};
 
 const styles=StyleSheet.create({
 

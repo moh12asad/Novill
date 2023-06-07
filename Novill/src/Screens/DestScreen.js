@@ -6,9 +6,9 @@ import { Context as AuthContext} from './context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 const DestScreen=(props)=>{
     const {state,setAddress,clearErrorMessage}=useContext(AuthContext);
-    const cart= props.navigation.state.params.cart;
-    const pharm=props.navigation.state.params.pharm;
     const user=props.navigation.state.params.user;
+    const pharm=props.navigation.state.params.pharm;
+    const cart=user.cart;
     //const [payMethod,setPayMethod]=useState('');
     const [city,setcity]=useState('');
     const [street,setstreet]=useState('');
@@ -144,7 +144,7 @@ const DestScreen=(props)=>{
             
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-            <TouchableOpacity title="Pay" onPress={()=>setAddress({city,street,building,floor,apartnum,phone,cart})}
+            <TouchableOpacity title="Pay" onPress={()=>setAddress({city,street,building,floor,apartnum,phone,cart,user})}
             style={{
         backgroundColor:'#629630',
         padding:50,

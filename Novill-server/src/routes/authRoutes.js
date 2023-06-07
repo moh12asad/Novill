@@ -21,8 +21,11 @@ router.post('/signup', async (req, res) => {1
     {
       throw('Passwords does not match');
     }
-    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype,phone });
+    const cart= new Cart({email});
+    await cart.save();
+    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype,phone,cart });
     console.log(user);
+    
     await user.save();
 
     const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
@@ -475,31 +478,41 @@ router.post('/CreateCart',async(req,res)=>{
 });
 router.post('/AddToCart',async(req,res)=>{
     const prod = req.body.prod;
-    const cart = req.body.cart;
+    //const cart = req.body.cart;
     const pharm = req.body.pharm;
-    console.log(cart);
-  
+    const user=req.body.user;
+    const id=user.id;
+    const cart = user.cart;
+    console.log("\n------------\n",cart);
+  //console.log(cart);
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
-  
+    await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
+
     const updatedCart = await Cart.findOne({_id: cart._id});
+    const u = await User.findOne({_id:user._id});
+    u.cart=updatedCart;
+    await u.save();
+    console.log(updatedCart);
   
     res.status(200).send({message:'Added the product to the cart successfully',cart: updatedCart});
 });
 router.post('/SetAddress',async(req,res)=>{
-  const {city,street,building,floor,apartnum,phone,cart} = req.body;
-  console.log(city,street,building,floor,apartnum,phone,cart.user);
-  const user=cart.user;
+  const {city,street,building,floor,apartnum,phone,cart,user} = req.body;
+  console.log(city,street,building,floor,apartnum,phone,cart,user);
+  //const user=cart.user;
+  const pname=cart.pname;
+  const pharm = await Pharm.findOne({pname:pname});
   let address = new Address({user,city,street,building,floor,apartnum,phone});
   await address.save();
-  res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:cart});
+  res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:cart,user:user,pharm:pharm});
 
 });
 
 router.post('/CreateOrderCash',async(req,res)=>{
-  const {cart,address,totalAmount,totalPrice} = req.body;
-  const user = cart.user;
+  const {cart,address,totalAmount,totalPrice,user,pharm} = req.body;
+  //const user = cart.user;
   const products = cart.products;
-  const pharm = cart.Pharm;
+  //const pharm = cart.Pharm;
   const payMethod='cash';
   const prise=totalPrice;
   const amount=totalAmount;
@@ -509,7 +522,14 @@ router.post('/CreateOrderCash',async(req,res)=>{
   console.log(cart,address,totalAmount,totalPrice);
   const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname});
   order.save();
-  await Cart.deleteOne({ _id: cart._id });
+  let cart1 = await Cart.findOne({_id:cart._id});
+  cart1.products=[];
+  cart1.pname="";
+  cart1.save();
+  let u = await User.findOne({_id:user._id});
+  u.cart.products=[];
+  await User.updateOne({_id:u._id},{cart:cart1});
+  //await Cart.deleteOne({ _id: cart._id });
   res.status(200).send({message:'The order created successfully'});
 });
 
@@ -540,6 +560,20 @@ router.post('/ProductInOrder', async (req, res) => {
   //res.status(200).send({message:'The order is in Processing',order:o});
 });
 
+router.post('/GetUser',async(req,res)=>{
+  const {user}=req.body.user;
+  const id=user._id;
+  const u = await User.findOne({_id:id});
+  res.status(200).send({message:'The order is in Processing',user:u});
+
+});
+router.post('/GetPharm',async(req,res)=>{
+  const {user,cart}=req.body.user;
+  const pname = cart.pname;
+  const pharm = await Pharm.findOne({pname:pname});
+  res.status(200).send({message:'The order is in Processing',pharm:pharm});
+
+});
 router.post('/TestingImage', async (req, res) => {
   const {imageUri}=req.body;
   console.log(imageUri);
@@ -647,6 +681,29 @@ router.post('/AddToXProducts', async (req, res) => {
   o.xproducts.push(prodname);
   await o.save();
   res.status(200).send({ message: 'The order created successfully', pharm: ph1,order:o,prod:prod });
+});
+
+router.post('/OrderIsReady', async (req, res) => {
+  const {order,desc}=req.body;
+  console.log(desc);
+  console.log("==========================InOrderIsReadyFunc===========================");
+  const id =order._id;
+  let newstatus="Ready,Waiting for delivery";
+  const o = await Order.findOne({_id:id});
+  o.desc=desc;
+  await o.save();
+  console.log(o);
+  await Order.updateOne({_id:id},{desc:desc});
+  await Order.updateOne({_id:id},{status:newstatus});
+  console.log("===order is===");
+  console.log(order.desc);
+  const pname=order.pname;
+  const orders = await Order.find({ status: { $in: ["New", "Processing"] },pname:pname});
+  orders.forEach(element=>{
+    console.log(element._id);
+  })
+  //const orders=await Order.find({});
+  res.status(200).send({ message: 'The order created successfully',orders:orders});
 });
 
 module.exports = router;

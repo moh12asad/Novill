@@ -414,19 +414,19 @@ const productlistforuser=(dispatch)=>{
 }}
 const AddToCart=(dispatch)=>{
 
-    return async({cart,prod,pharm})=>{
-        console.log('In AddToCart function in Authcontext the passed cart and prod is:',cart,prod,pharm);
-        const response = await server.post('/AddToCart',{cart,prod,pharm});
+    return async({cart,prod,pharm,user})=>{
+        console.log('In AddToCart function in Authcontext the passed cart and prod is:',cart,prod,pharm,user);
+        const response = await server.post('/AddToCart',{cart,prod,pharm,user});
     }
 }
 const setAddress= (dispatch) =>{
-    return async ({city,street,building,floor,apartnum,phone,cart})=>{
+    return async ({city,street,building,floor,apartnum,phone,cart,user})=>{
         try{
             console.log(city,street,building,floor,apartnum,phone,cart);
-            const response = await server.post('/SetAddress',{city,street,building,floor,apartnum,phone,cart});
+            const response = await server.post('/SetAddress',{city,street,building,floor,apartnum,phone,cart,user});
             console.log('Response! V');
             console.log('-------------Authcontex-------------\n',response.data.address,response.data.cart,'\n---------------------------------------\n');
-            navigate('PayMethod',{address:response.data.address,cart:response.data.cart});
+            navigate('PayMethod',{address:response.data.address,cart:response.data.cart,user:response.data.user,pharm:response.data.pharm});
 
         }catch(err){
             console.log(err);
@@ -439,11 +439,11 @@ const setAddress= (dispatch) =>{
     }
 }
 const order= (dispatch) =>{
-    return async ({cart,address,order,totalAmount,totalPrice})=>{
+    return async ({cart,address,order,totalAmount,totalPrice,user,pharm})=>{
         try{
             console.log(cart,address,totalAmount,totalPrice);
-            const response = await server.post('/CreateOrderCash',{cart,address,totalAmount,totalPrice});
-            const user=cart.user
+            const response = await server.post('/CreateOrderCash',{cart,address,totalAmount,totalPrice,user,pharm});
+            //const user=cart.user
             navigate('Account',{user});
         }catch(err){
             console.log(err);

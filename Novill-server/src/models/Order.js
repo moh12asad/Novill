@@ -2,6 +2,7 @@
 const ProductSchema = require('./Product');
 const UserSchema=require('./User')
 const PharmSchema=require('./Pharm')
+const DeliverySchema=require('./Delivery')
 const AddressSchema=require('./Address')
 const mongoose = require('mongoose');
 const OrderSchema = new mongoose.Schema({
@@ -42,6 +43,12 @@ const OrderSchema = new mongoose.Schema({
   },
   xproducts:{
     type:[String],
+  },
+  del:{
+    type:DeliverySchema,
+  },
+  desc:{
+    type:String,
   }
 
 });

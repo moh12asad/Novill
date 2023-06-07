@@ -7,7 +7,9 @@ import Spacer from './Components/Spacer';
 
 const PayMethodScreen=(props)=>{
     const cart= props.navigation.state.params.cart;
+    const user = props.navigation.state.params.user;
     const address= props.navigation.state.params.address;
+    const pharm= props.navigation.state.params.pharm;
     return(
         <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
         <View style={{alignItems:"center",marginTop:250}}> 
@@ -23,7 +25,7 @@ const PayMethodScreen=(props)=>{
        
     }}
             
-             onPress={()=>props.navigation.navigate('PayCash',{cart:cart,address:address})}>
+             onPress={()=>props.navigation.navigate('PayCash',{cart:cart,address:address,user:user,pharm})}>
                     <Text style={{ color:'#000',fontSize:12,
    fontWeight:"bold"}}>Cash</Text>
             </TouchableOpacity>

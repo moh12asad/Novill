@@ -10,10 +10,13 @@ import GreenButton from './Components/GreenButton';
 
 const PayCashScreen=(props)=>{
     const {state,order,clearErrorMessage}=useContext(AuthContext);
-    const cart = props.navigation.state.params.cart;
+    //const cart = props.navigation.state.params.cart;
+    const user = props.navigation.state.params.user;
+    const cart = user.cart;
     const address = props.navigation.state.params.address;
-    const user = cart.user;
-    const pharm=cart.Pharm;
+    const pharm = props.navigation.state.params.pharm;
+    //const user = cart.user;
+    //const pharm=cart.Pharm;
     console.log('-----------Cash screen-----------\n the cart is: ',cart);
     console.log('---------\nThe cart belongs to -----\n',user);
 
@@ -46,7 +49,7 @@ const PayCashScreen=(props)=>{
       <Text style={styles.subtitle}>Total products order: {totalAmount}</Text>
       <Text style={styles.subtitle}>The total prise is: {totalPrice}</Text>
       </View>
-    <GreenButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice})}></GreenButton>
+    <GreenButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice,user,pharm})}></GreenButton>
   </SafeAreaView>
 </ImageBackground>
 

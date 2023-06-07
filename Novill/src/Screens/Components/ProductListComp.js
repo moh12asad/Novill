@@ -5,10 +5,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const ProductListComp = ({ name, price,image,onPress }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-    
+<View style={styles.views}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>{price}</Text>
      
+
+      <Text style={styles.price}>{price}</Text>
+      </View>
+      <View style={styles.avatarContainer}>
+                 <Image source={{ uri: image }} style={styles.image} />
+</View>
 
     </TouchableOpacity>
   );
@@ -25,23 +30,57 @@ const styles = StyleSheet.create({
       height: 2,
     },
     width: 370, // Adjust the width value to your desired width
-    height: 90, // Adjust the height value to your desired height
+    height: 80, // Adjust the height value to your desired height
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
 
-    justifyContent: 'space-around',
-    marginHorizontal: 10,
+    flexDirection: 'row', // Align the content and avatarContainer horizontally
+    alignItems: 'center', // Center align vertically
 },
+
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 5,
+
   },
-  location: {
+  price: {
     fontSize: 18,
     color: '#666',
+    marginBottom:5,
+   
+   
   },
+  views:{
+alignItems:'flex-start',
+marginLeft:5
+  },
+  img:{
+    width:55,
+    height:55
+  },
+  imageContainer: {
+    width: 80, // Adjust the width value to your desired width
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 55,
+    height: 55,
+    borderRadius: 27.5, // Make the image circular
+  },
+  avatarContainer:{
+    backgroundColor:'#D9D9D9',
+    borderRadius:100,
+    height:60,
+    width:60,
+    justifyContent:'center',
+    alignItems:'center',
+    marginLeft: 'auto', // Align the avatarContainer to the right side
+    marginRight: 10,
+ 
+  }
 });
 
 export default ProductListComp;

@@ -19,10 +19,11 @@ const PharmAccountScreen=(props)=>{
     return(
                     <ImageBackground source={require("../Screens/images/imageback.jpg")} style={{ width:'100%', height:'100%' }}>        
       <View>
-        <Pressable style={styles.button} title="Sign out" onPress={signout}>
-        <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
+       
+        <TouchableOpacity style={styles.button} title="Sign out" onPress={signout}>
+                <Image  source={require("../Screens/icons/logout.png")} style={styles.Images}></Image>
 
- </Pressable>
+ </TouchableOpacity>
    </View>
     
          <SafeAreaView forceInset={{top:'always'}}>
@@ -86,13 +87,13 @@ justifyContent:'center',
   },
     button: {
         padding:10,
-        marginTop:10,
+        marginTop:20,
         borderRadius:110,
         alignItems: 'center',
         paddingVertical:10,
-        marginVertical:20,
+        marginVertical:10,
         width:'30%',
-        left:280,
+        left:290,
         borderWidth:0,
   },
   Images:{

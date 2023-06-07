@@ -5,7 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
-import PharmListComp from './Components/PharmListComp';
+import ProductListComp from './Components/ProductListComp';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons';
@@ -55,7 +55,7 @@ const PharmStoreScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-  <View  style={{backgroundColor:'#ccdf93',height:210,width:410,
+  <View  style={{backgroundColor:'#ccdf93',height:240,width:410,
                   
                      borderBottomRightRadius:150,
                  
@@ -65,7 +65,7 @@ const PharmStoreScreen=(props)=>{
     <Text style={{color:'#000', fontSize: 45, fontWeight: 'bold', marginVertical: 5, top: 5 ,textAlign: "center"}}>{pharm.pname}</Text>
     <Spacer />
     <View style={{marginBottom:10,top:-10}}>
-    <Text  style={{ fontSize: 18, marginVertical: 5, left: 10, top: 5 }}>{pharm.desc}</Text>
+    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: -5 }}>{pharm.desc}</Text>
     <View style={{ flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
@@ -120,16 +120,16 @@ const PharmStoreScreen=(props)=>{
   <View style={styles.view}>
     <FlatList
       data={productsCollection}
-      numColumns={2}
+     
       renderItem={({ item }) => {
-        return <PharmListComp name={item.prodname} location={item.price+"$"} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
                 
 
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     /></View>
   </SafeAreaView>
   <View style={styles.cartContainer}>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})}>
+     <TouchableOpacity onPress={() => props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
         </TouchableOpacity>
       </View>

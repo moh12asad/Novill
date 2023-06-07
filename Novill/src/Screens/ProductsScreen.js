@@ -17,6 +17,7 @@ const ProductsScreen=(props)=>{
     const [productsCollection,setproductsCollection]=useState();
     const [pharm,setPharm]=useState();
     const pharm1=props.navigation.state.params;
+    
     //console.log("The pharm 1 is:",pharm1);
     console.log('Look here!!::: ',pharm1)
     const user = props.navigation.state.params.user;
@@ -40,7 +41,7 @@ const ProductsScreen=(props)=>{
 
 
     return(
-                  <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
+                  <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width:'100%', height:'100%' }} >
 
         
 
@@ -55,15 +56,16 @@ const ProductsScreen=(props)=>{
         marginTop:50,
         marginStart:10,
         top:-50}} 
+        
                       data={productsCollection}
                     
                  renderItem={({ item }) => {
-        return  <ProductListComp name={item.prodname} price={item.price+"$"}  onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm1})}/>;
+        return  <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm1})}/>;
         
 
       }}/>
                 
-            
+
         </SafeAreaView>
 </ImageBackground>
         );

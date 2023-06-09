@@ -23,23 +23,31 @@ const ProductScreen=(props)=>{
     <View style={styles.container}>
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
-    <View>
-     <Text style={styles.title}>{prod.prodname}</Text>
-    <Image source={{ uri: prod.image }} style={styles.img} />
+    <View style={{backgroundColor:'#fff',height:350,width:460,
+                    borderBottomRightRadius:120,bottom:80,
+                    borderBottomLeftRadius:120
+                     }}>
 
-<Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
-        <Text style={styles.subtitle}>Description: {prod.desc}</Text>
-    </View>
+    <Image source={{ uri: prod.image }} style={styles.img} />
+   </View>
+   <View style={{bottom:20,height:300,width:430,}}>
+   <Text style={styles.title}>{prod.prodname}</Text>
+        <Text style={styles.dect}>Description: {prod.desc}</Text>
    
-        
+     
         <Spacer/>
         <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm,user})}></GreenButton>
+        <Text style={styles.subtitle}>{prod.price + "$"}</Text>
+
+  </View>
   </SafeAreaView>
   <View style={styles.cartContainer}>
-        <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
+    {/*   <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
-        </TouchableOpacity>
+        </TouchableOpacity>*/ } 
       </View>
+
+
       </View>
   );
 }
@@ -49,31 +57,35 @@ const styles=StyleSheet.create({
 
   container: {
 flex: 1,
-backgroundColor: '#fff',
+backgroundColor:'#F3EAC7',
 justifyContent:'center',
 alignItems:'center',
 marginTop:-50
 },
 title:{
 fontSize:32,
-marginTop:60,
 marginLeft:45,
 fontWeight:'bold',
-marginHorizontal:10
+bottom:10
+},
+dect:{
+  fontSize:20,
+color:"#474747",
+marginLeft:45,
 },
 subtitle:{
 fontSize:20,
 color:"#474747",
-marginLeft:45
-
+marginLeft:45,
+  bottom:-45,
 
 },
 img:{
 alignSelf:"center",
 borderTopRightRadius:80,
 borderBottomLeftRadius:80,
-height:350,
-width:350,
+height:310,
+width:320,bottom:-20
 
 },
 item: {

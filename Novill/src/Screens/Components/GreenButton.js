@@ -11,16 +11,16 @@ const GreenButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-  backgroundColor:'#629630',
-        padding:50,
+  backgroundColor:'#FEF9E7',
         borderRadius:100 ,
           alignItems: 'center',
         paddingVertical:10,
-        marginVertical:5,
-        top:-20
+    left:200,
+        bottom:-80,
+        width:200
   },
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
   },

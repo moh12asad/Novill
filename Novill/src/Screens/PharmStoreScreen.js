@@ -65,7 +65,7 @@ const PharmStoreScreen=(props)=>{
     <Text style={{color:'#000', fontSize: 45, fontWeight: 'bold', marginVertical: 5, top: 5 ,textAlign: "center"}}>{pharm.pname}</Text>
     <Spacer />
     <View style={{marginBottom:10,top:-10}}>
-    <Text  style={{ fontSize: 15, marginVertical: 5, left: 10, top: -5 }}>{pharm.desc}</Text>
+    <Text  style={{ fontSize: 12, marginVertical: 7, left: 3, top: -5 }}>{pharm.desc}</Text>
     <View style={{ flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,

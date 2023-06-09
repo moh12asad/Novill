@@ -483,12 +483,17 @@ router.post('/AddToCart',async(req,res)=>{
     const user=req.body.user;
     const id=user.id;
     const cart = user.cart;
+    const imageUri=req.body.imageUri;
     console.log("\n------------\n",cart);
   //console.log(cart);
+  console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
     await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
-
+    const c1 = await Cart.findOne({_id:cart._id});
+    c1.images.push(imageUri);
+    c1.save();
     const updatedCart = await Cart.findOne({_id: cart._id});
+
     const u = await User.findOne({_id:user._id});
     u.cart=updatedCart;
     await u.save();

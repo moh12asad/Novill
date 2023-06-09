@@ -414,9 +414,9 @@ const productlistforuser=(dispatch)=>{
 }}
 const AddToCart=(dispatch)=>{
 
-    return async({cart,prod,pharm,user})=>{
-        console.log('In AddToCart function in Authcontext the passed cart and prod is:',cart,prod,pharm,user);
-        const response = await server.post('/AddToCart',{cart,prod,pharm,user});
+    return async({cart,prod,pharm,user,imageUri})=>{
+        console.log('In AddToCart function in Authcontext the passed cart and prod is:',cart,prod,pharm,user,imageUri);
+        const response = await server.post('/AddToCart',{cart,prod,pharm,user,imageUri});
         
         navigate('Cart',{cart:response.data.cart,user:response.data.user,pharm:response.data.pharm});
     }

@@ -12,7 +12,11 @@ const CartSchema = new mongoose.Schema({
   },
   email:{
     type:String,
-  }
+  },
+  images: {
+    type: [String], // Define the field as an array of strings
+    // required: true // You can modify this validation as per your requirements
+  },
   
 });
   mongoose.model('Cart', CartSchema);

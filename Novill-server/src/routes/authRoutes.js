@@ -492,9 +492,11 @@ router.post('/AddToCart',async(req,res)=>{
     const u = await User.findOne({_id:user._id});
     u.cart=updatedCart;
     await u.save();
+    const u1= await User.findOne({_id:u._id});
     console.log(updatedCart);
+    console.log("\n------------\n",u1,"\n------------\n");
   
-    res.status(200).send({message:'Added the product to the cart successfully',cart: updatedCart});
+    res.status(200).send({message:'Added the product to the cart successfully',cart: updatedCart,user:u1,pharm:pharm});
 });
 router.post('/SetAddress',async(req,res)=>{
   const {city,street,building,floor,apartnum,phone,cart,user} = req.body;
@@ -561,14 +563,26 @@ router.post('/ProductInOrder', async (req, res) => {
 });
 
 router.post('/GetUser',async(req,res)=>{
-  const {user}=req.body.user;
+  const {user}=req.body;
+  console.log("===========user in get user is:==========\n",user);
   const id=user._id;
-  const u = await User.findOne({_id:id});
+  const u = await User.findOne({_id:user._id});
+  console.log("HIHIHIHIHIH");
+  console.log(u);
   res.status(200).send({message:'The order is in Processing',user:u});
+});
 
+router.post('/GetCart',async(req,res)=>{
+  const {cart}=req.body;
+  console.log("===========user in get user is:==========\n",user);
+  const id=cart._id;
+  const cart1 = await Cart.findOne({_id:cart._id});
+  console.log("HIHIHIHIHIH");
+  console.log(cart1);
+  res.status(200).send({message:'The order is in Processing',cart:cart1});
 });
 router.post('/GetPharm',async(req,res)=>{
-  const {user,cart}=req.body.user;
+  const {user,cart}=req.body;
   const pname = cart.pname;
   const pharm = await Pharm.findOne({pname:pname});
   res.status(200).send({message:'The order is in Processing',pharm:pharm});

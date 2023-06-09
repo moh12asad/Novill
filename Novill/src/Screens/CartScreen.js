@@ -13,6 +13,16 @@ const CartScreen=(props)=>{
 
     //const cart = props.navigation.state.params.cart;
     const user = props.navigation.state.params.user;
+    //console.log("===========user in get user is:==========\n",user);
+    /*let {user1}=getUser(user);
+    console.log("user1 in cart screen is:===========================\n",user1,":===========================\n");*/
+    //user=user1;
+    //console.log("=====================stamstam========",user1);
+    /*const cart1 = user.cart;
+    const cart = getCart(cart1);
+    console.log("=====================stamstam========",cart);*/
+    //getUser(user);
+    console.log("=====================stamstam========",user);
     const cart = user.cart;
     const pharm = getPharmName(user,cart);
     //const pharm=props.navigation.state.params.pharm;
@@ -57,6 +67,29 @@ const CartScreen=(props)=>{
         );
 }
 
+const getUser=async(user)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  user=response.data.user;
+  console.log("user in cart screen is:===========================\n",user,":===========================\n");
+  //return {user};
+  //let u=response.data.user;
+  /*console.log("==================user in get user function is2:=============\n",u);
+  return u;*/
+}
+/*const getCart=async(cart1)=>{
+  console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetCart', {
+    cart1
+  });
+  console.log(response.data.cart);
+  let c=response.data.cart;
+  //console.log("==================user in get user function is2:=============\n",u);
+  return c;
+}*/
 const getPharmName=async(user,cart)=>{
   const response = await Server.post('/GetPharm', {
     user,cart

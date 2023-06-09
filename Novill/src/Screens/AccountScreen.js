@@ -5,6 +5,7 @@ import {View,Button,StyleSheet,Text,ImageBackground,Pressable,Image} from 'react
 import Spacer from './Components/Spacer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Server from './api/Server';
 import { BackIcon } from 'react-native-vector-icons/Feather';
 import { StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -46,7 +47,7 @@ const AccountScreen=(props)=>{
           </Pressable>
            
           <Pressable style={styles.IconBehave}>
-                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => props.navigation.navigate('Cart',{user:user})} /> 
+                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => GetUpdatedUser(user,props)} /> 
           </Pressable>
          {/* <Pressable style={styles.IconBehave}>
                 <Icon name="plus" color={'black'} size={20} /> 
@@ -62,6 +63,17 @@ const AccountScreen=(props)=>{
         </View></View>
         </ImageBackground>
         );
+}
+const GetUpdatedUser=async(user,props)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  let u=user=response.data.user;
+  console.log("u in Account screen is:===========================\n",u,":===========================\n");
+  props.navigation.navigate('Cart',{user:user})
+
 }
 
 const styles=StyleSheet.create({
@@ -131,3 +143,4 @@ justifyContent:'center',
 });
 
 export default AccountScreen;
+//props.navigation.navigate('Cart',{user:user})

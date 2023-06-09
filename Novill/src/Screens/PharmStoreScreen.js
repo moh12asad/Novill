@@ -129,7 +129,7 @@ const PharmStoreScreen=(props)=>{
     /></View>
   </SafeAreaView>
   <View style={styles.cartContainer}>
-     <TouchableOpacity onPress={() => props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})}>
+     <TouchableOpacity onPress={() => GetUpdatedUser(user,cart,pharm,props)}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
         </TouchableOpacity>
       </View>
@@ -154,6 +154,18 @@ const createCart = async (user,pharm) => {
     console.log(err);
   }
 };
+
+const GetUpdatedUser=async(user,cart,pharm,props)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  let u=user=response.data.user;
+  console.log("u in Account screen is:===========================\n",u,":===========================\n");
+  props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})
+
+}
 
 const styles=StyleSheet.create({
 
@@ -215,4 +227,5 @@ cartImage: {
 });
 
 export default PharmStoreScreen;
+//props.navigation.navigate('Cart',{user:user,cart:cart,pharm:pharm})
 //122 props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})

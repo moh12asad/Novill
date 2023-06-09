@@ -61,7 +61,7 @@ if (isLoading) {
     />
   </SafeAreaView>
   <View style={styles.cartContainer}>
-        <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
+        <TouchableOpacity onPress={() => GetUpdatedUser(user,props)}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
         </TouchableOpacity>
       </View>
@@ -97,6 +97,19 @@ cartImage: {
   borderRadius: 25,
 },
 });
+
+const GetUpdatedUser=async(user,props)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  let u=user=response.data.user;
+  console.log("u in Account screen is:===========================\n",u,":===========================\n");
+  props.navigation.navigate('Cart',{user:user})
+
+}
+
 
 export default PharmsListScreen;
 

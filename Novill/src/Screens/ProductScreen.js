@@ -60,7 +60,7 @@ const ProductScreen=(props)=>{
 
      
         <Spacer/>
-        <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm,user})}></GreenButton>
+        <GreenButton title="Add to cart" onPress={() => AddToCart({ cart, prod, pharm, user,imageUri })}></GreenButton>
         <Text style={styles.subtitle}>{prod.price + "$"}</Text>
 
   </View>
@@ -188,29 +188,35 @@ const ProductScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ height: '80%' }}>
-        <Spacer />
-        <View>
-          <Text style={styles.title}>{prod.prodname}</Text>
-          <Image source={{ uri: prod.image }} style={styles.img} />
+  <SafeAreaView style={{ height: '80%' }}>
+    <Spacer />
+    <View style={{backgroundColor:'#fff',height:350,width:460,
+                    borderBottomRightRadius:120,bottom:80,
+                    borderBottomLeftRadius:120
+                     }}>
 
-          <Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
-          <Text style={styles.subtitle}>Description: {prod.desc}</Text>
-        </View>
-
-        {prod.prescription && ( 
+    <Image source={{ uri: prod.image }} style={styles.img} />
+    
+   </View>
+   <View style={{bottom:20,height:300,width:430,}}>
+   <Text style={styles.title}>{prod.prodname}</Text>
+        <Text style={styles.dect}>Description: {prod.desc}</Text>
+{prod.prescription && ( 
           <TouchableOpacity style={styles.uploadButton} onPress={handleImageUpload}>
             <Text style={styles.buttonText}>Upload Image</Text>
           </TouchableOpacity>
         )}
-
-        <Spacer />
+     
+        <Spacer/>
         <GreenButton title="Add to cart" onPress={() => AddToCart({ cart, prod, pharm, user,imageUri })}></GreenButton>
-      </SafeAreaView>
+        <Text style={styles.subtitle}>{prod.price + "$"}</Text>
+
+  </View>
+  </SafeAreaView>
       <View style={styles.cartContainer}>
-        <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
+       {/* <TouchableOpacity onPress={() => console.log('cart icon pressed')}>
           <Image source={require('../Screens/images/cart.jpeg')} style={styles.cartImage} />
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>
     </View>
   );

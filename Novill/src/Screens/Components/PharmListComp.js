@@ -10,9 +10,9 @@ const PharmListComp = ({ name, location,image,onPress }) => {
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.location}>{location}</Text>
       </View>
- {/*<View style={styles.avatarContainer}>
+ <View style={styles.avatarContainer}>
                  <Image source={{ uri: image }} style={styles.image} />
-</View>*/}
+</View>
     </TouchableOpacity>
   );
 };

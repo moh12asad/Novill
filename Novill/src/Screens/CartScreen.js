@@ -8,7 +8,7 @@ import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
 import ProductListComp from './Components/ProductListComp';
-
+import NewButton from './Components/NewButton';
 const CartScreen=(props)=>{
 
     //const cart = props.navigation.state.params.cart;
@@ -59,7 +59,7 @@ const CartScreen=(props)=>{
       <Text style={styles.titleout}>The total is: {totalPrice}</Text>
       </View>
       <View style={{ top:90 }}>
-    <GreenButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></GreenButton>
+    <NewButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></NewButton>
   </View>
   </SafeAreaView>
 </ImageBackground>

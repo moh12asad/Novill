@@ -8,6 +8,9 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { MaterialIcons } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { EvilIcons } from '@expo/vector-icons';
 
 const ProductScreen=(props)=>{
   const {AddToCart} = useContext(AuthContext);
@@ -49,11 +52,12 @@ const ProductScreen=(props)=>{
                      }}>
 
     <Image source={{ uri: prod.image }} style={styles.img} />
+    
    </View>
    <View style={{bottom:20,height:300,width:430,}}>
    <Text style={styles.title}>{prod.prodname}</Text>
         <Text style={styles.dect}>Description: {prod.desc}</Text>
-   
+
      
         <Spacer/>
         <GreenButton title="Add to cart" onPress={()=>AddToCart({cart,prod,pharm,user})}></GreenButton>
@@ -107,6 +111,9 @@ borderBottomLeftRadius:80,
 height:310,
 width:320,bottom:-20
 
+},
+icon: {
+  marginLeft: 5,
 },
 item: {
 marginTop: 20,

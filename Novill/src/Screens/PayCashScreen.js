@@ -33,9 +33,19 @@ const PayCashScreen=(props)=>{
       
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for:{user.Lname}</Text>
+  <View  style={styles.newcontainer}>
+   <Image
+    source={require("../Screens/images/NOVILL-02-03.png")}
+    style={{ width: '20%',
+    height: '150%',marginTop:30}}
+  />
+    <Text style={{ marginLeft: 10,
+    fontSize: 25,
+    marginTop:30,
+    fontWeight: 'bold', }}>My Order</Text>
+   </View>
     <Spacer />
-    <Text style={styles.subtitle}>Pharm name:{pharm.pname},{pharm.location} </Text>
+    <Text style={styles.subtitle}> Order from: {pharm.pname},{pharm.location} </Text>
     <Text style={styles.subtitle}>address:{address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
     <Text style={styles.subtitle}> Order:</Text>
     <FlatList
@@ -66,10 +76,14 @@ const styles=StyleSheet.create({
   paddingHorizontal: 10,
 
 },
+  newcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 subtitle:{
 fontSize:20,
 color:"#474747",
-marginLeft:45
 },
 item: {
   marginTop: 20,

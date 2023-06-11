@@ -38,7 +38,7 @@ const DestScreen=(props)=>{
               ,marginVertical:15,
               left:20,
             top:50
-              }}>Please write your address</Text>
+              }}>Shopping Adress</Text>
             <Spacer/>
             <TextInput
                 placeholder='City' 
@@ -146,15 +146,15 @@ const DestScreen=(props)=>{
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <TouchableOpacity title="Pay" onPress={()=>setAddress({city,street,building,floor,apartnum,phone,cart,user})}
             style={{
-        backgroundColor:'#629630',
+        backgroundColor:'#AACB63',
         padding:50,
         marginTop:20,
         borderRadius:170,
           alignItems: 'center',
         paddingVertical:10,
         marginVertical:20,
-        width:'50%',
-        left:85
+        width:'65%',
+        left:55
             }}>
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Payment</Text> 
             </TouchableOpacity> 

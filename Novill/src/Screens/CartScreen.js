@@ -9,6 +9,7 @@ import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
 import ProductListComp from './Components/ProductListComp';
 import NewButton from './Components/NewButton';
+import CartButton from './Components/CartButton';
 const CartScreen=(props)=>{
 
     //const cart = props.navigation.state.params.cart;
@@ -42,24 +43,31 @@ const CartScreen=(props)=>{
       
 <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{user.Fname} {user.Lname}</Text>
-    <Text style={{ fontSize: 20, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>My new order</Text>
+     <View style={styles.newcontainer}>
+  <Image
+    source={require("../Screens/images/NOVILL-02-03.png")}
+    style={{ width: '20%',
+    height: '150%',marginTop:30}}
+  />
+  <Text style={styles.text}>My Cart</Text>
+</View>
     <Spacer />
    
     <FlatList
       data={productsToOrder}
-      style={{ top:25}}
+      style={{ top:25,left:15}}
       
       renderItem={({ item }) => {
         return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
-    <View style={{ top:30 }}>
-      <Text style={styles.titleout}>Total products order: {totalAmount}</Text>
-      <Text style={styles.titleout}>The total is: {totalPrice}</Text>
+    <View style={styles.summaryContainer}>
+      <Text style={styles.summaryText}>Total items:                                             {totalAmount}</Text>
+
+      <Text style={styles.summaryText}>The total is:                                            {totalPrice + "$"}</Text>
       </View>
       <View style={{ top:90 }}>
-    <NewButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></NewButton>
+    <CartButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></CartButton>
   </View>
   </SafeAreaView>
 </ImageBackground>
@@ -108,6 +116,60 @@ const styles=StyleSheet.create({
   paddingHorizontal: 10,
 
 },
+ image: {
+    width: '10%',
+    height: '10%',
+    alignSelf: 'center',
+  },
+summaryContainer: {
+    top: 30,
+        position: 'relative',
+
+  },
+   line: {
+  position: 'absolute',
+    borderBottomColor: '#474747',
+    borderBottomWidth: 1,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  // ..
+   summaryText: {
+    fontSize: 20,
+    color: '#474747',
+    marginLeft: 20,
+    top: 25,
+    color: 'gray',
+  },
+    newcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+ 
+  text: {
+    marginLeft: 10,
+    fontSize: 25,
+    marginTop:30,
+    fontWeight: 'bold',
+  },
+   userName: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginVertical: 5,
+    left: 10,
+    top: 5,
+    color: 'black',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginVertical: 5,
+    left: 10,
+    top: 5,
+    color: 'white',
+  },
 titleout:{
 fontSize:20,
 color:"#474747",
@@ -131,6 +193,21 @@ cartImage: {
   height: 50,
   borderRadius: 25,
 },
+title:{
+fontSize: 40,
+ fontWeight: 'bold',
+  marginVertical: 5,
+   left: 10, 
+   top: 5
+
+},
+subtitle:{
+ fontSize: 20,
+  fontWeight: 'bold',
+   marginVertical: 5,
+    left: 10,
+     top: 5
+}
 });
 
 export default CartScreen;

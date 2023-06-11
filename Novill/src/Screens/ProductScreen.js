@@ -198,7 +198,7 @@ const ProductScreen = (props) => {
     <Image source={{ uri: prod.image }} style={styles.img} />
     
    </View>
-   <View style={{bottom:20,height:300,width:430,}}>
+   <View style={{bottom:20,height:260,width:430,}}>
    <Text style={styles.title}>{prod.prodname}</Text>
         <Text style={styles.dect}>Description: {prod.desc}</Text>
 {prod.prescription && ( 
@@ -208,9 +208,10 @@ const ProductScreen = (props) => {
         )}
      
         <Spacer/>
+        <View >
         <GreenButton title="Add to cart" onPress={() => AddToCart({ cart, prod, pharm, user,imageUri })}></GreenButton>
         <Text style={styles.subtitle}>{prod.price + "$"}</Text>
-
+</View>
   </View>
   </SafeAreaView>
       <View style={styles.cartContainer}>
@@ -311,7 +312,7 @@ subtitle:{
 fontSize:20,
 color:"#474747",
 marginLeft:45,
-  bottom:-45,
+   bottom:-10,
 
 },
 img:{

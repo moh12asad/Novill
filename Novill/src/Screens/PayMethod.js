@@ -15,7 +15,7 @@ const PayMethodScreen=(props)=>{
         <View style={{alignItems:"center",marginTop:250}}> 
             <TouchableOpacity
              style={{
-        backgroundColor:'#86c260',
+        backgroundColor:'#AACB63',
          borderRadius:100 ,
         alignItems: 'center',
         width:280,
@@ -32,7 +32,7 @@ const PayMethodScreen=(props)=>{
             <Spacer/>
             <TouchableOpacity
             style={{
-        backgroundColor:'#86c260',
+        backgroundColor:'#AACB63',
          borderRadius:100 ,
         alignItems: 'center',
         width:280,

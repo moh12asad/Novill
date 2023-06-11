@@ -1,9 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet,View } from 'react-native';
 
-const GreenButton = ({ title, onPress }) => {
+const CartButton = ({ title, onPress }) => {
   return (
-    <View>
+    <View style={styles.buttonContainer}>
+
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -12,16 +13,16 @@ const GreenButton = ({ title, onPress }) => {
 };
 
 const styles = StyleSheet.create({
+     buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   button: {
-   backgroundColor: '#FEF9E7',
+ backgroundColor: '#AACB63',
     borderRadius: 100,
     alignItems: 'center',
-   
-    left: 220,
-    width: 200,
-    height: 45,
-         paddingVertical:10,
-         bottom:-50
+    paddingVertical:10,
+    width: 370,
   },
   text: {
     color: 'black',
@@ -30,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GreenButton;
+export default CartButton;

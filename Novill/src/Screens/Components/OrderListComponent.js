@@ -15,7 +15,7 @@ const OrderListComp = ({ name, location,onPress }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
     marginBottom: 20,
     shadowColor: '#000',

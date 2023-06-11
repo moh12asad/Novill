@@ -7,6 +7,8 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
+import ProductListComp from './Components/ProductListComp';
+import CartButton from './Components/CartButton';
 
 const PayCashScreen=(props)=>{
     const {state,order,clearErrorMessage}=useContext(AuthContext);
@@ -15,10 +17,12 @@ const PayCashScreen=(props)=>{
     const cart = user.cart;
     const address = props.navigation.state.params.address;
     const pharm = props.navigation.state.params.pharm;
+    
     //const user = cart.user;
     //const pharm=cart.Pharm;
     console.log('-----------Cash screen-----------\n the cart is: ',cart);
     console.log('---------\nThe cart belongs to -----\n',user);
+    console.log('Look here!!::: ',pharm)
 
     const productsToOrder=cart.products;
     //console.log('Products is:' ,productsToOrder);
@@ -31,7 +35,7 @@ const PayCashScreen=(props)=>{
     //console.log(props.navigation.state.params.cart);
     return(
       
-<ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/img.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
   <View  style={styles.newcontainer}>
    <Image
@@ -45,21 +49,25 @@ const PayCashScreen=(props)=>{
     fontWeight: 'bold', }}>My Order</Text>
    </View>
     <Spacer />
-    <Text style={styles.subtitle}> Order from: {pharm.pname},{pharm.location} </Text>
-    <Text style={styles.subtitle}>address:{address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
-    <Text style={styles.subtitle}> Order:</Text>
+    <Text style={styles.subtitle}>Order from: {pharm.pname} located in {pharm.location} </Text>
+    <Text style={styles.subtitle}>My Address: {address.city} ,{address.street} ,{address.building} ,{address.floor} {address.apartnum}</Text>
+    <Text style={styles.subtitle}>My Phone: {address.phone} </Text>
+    <Text style={styles.subtitle}>Order:</Text>
     <FlatList
       data={productsToOrder}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <ProductListComp style={styles.item} name={item.prodname} location={item.price} image={item.image}  onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm})}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
-    <View>
-      <Text style={styles.subtitle}>Total products order: {totalAmount}</Text>
-      <Text style={styles.subtitle}>The total prise is: {totalPrice}</Text>
+    <View style={styles.summaryContainer}>
+ <Text style={styles.summaryText}>Total items:                                             {totalAmount}</Text>
+
+      <Text style={styles.summaryText}>The total is:                                            {totalPrice + "$"}</Text>
       </View>
-    <GreenButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice,user,pharm})}></GreenButton>
+      <View style={{ top:90 }}>
+    <CartButton title="Order Now" onPress={()=>order({cart,address,totalAmount,totalPrice,user,pharm})}></CartButton>
+ </View>
   </SafeAreaView>
 </ImageBackground>
 
@@ -81,9 +89,20 @@ const styles=StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  summaryContainer: {
+    top: 30,
+        position: 'relative',
+
+  },
+ summaryText: {
+    fontSize: 20,
+    color: '#474747',
+    top: 20,
+    color: 'gray',
+  },
 subtitle:{
 fontSize:20,
-color:"#474747",
+color:"#000",
 },
 item: {
   marginTop: 20,

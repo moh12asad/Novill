@@ -43,22 +43,23 @@ const AccountScreen=(props)=>{
        <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportUser',{user})} />
 
            <Pressable style={styles.IconBehave}>
-                <Icon name="truck" color={'black'} size={20} /> 
+                    <MaterialIcons name="delivery-dining" size={24} color="black" />
           </Pressable>
-           
-          <Pressable style={styles.IconBehave}>
-                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => GetUpdatedUser(user,props)} /> 
-          </Pressable>
-         {/* <Pressable style={styles.IconBehave}>
-                <Icon name="plus" color={'black'} size={20} /> 
-          </Pressable>*/}
-           <Pressable style={styles.IconBehave}>
-                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>props.navigation.navigate('PharmsList',{user:user})}/> 
+             <Pressable style={styles.IconBehave}>
+                <MaterialIcons name="history" size={24} color="black" />
           </Pressable>
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditUser',{user:user})} /> 
               
           </Pressable>
+          <Pressable style={styles.IconBehave}>
+                <Icon name="shopping-cart" color={'black'} size={20} onPress={() => GetUpdatedUser(user,props)} /> 
+          </Pressable>
+        
+           <Pressable style={styles.IconBehave}>
+                <Icon name="medkit" color={'black'} size={20}  title="Pharms" onPress={()=>props.navigation.navigate('PharmsList',{user:user})}/> 
+          </Pressable>
+          
 
         </View></View>
         </ImageBackground>
@@ -121,13 +122,13 @@ justifyContent:'center',
   NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'90%',
+    width:'98%',
     justifyContent:'space-between',
     borderRadius:30,
     bottom:-600,
     height:60,
-    right:40,
-    left:10,
+   
+  
 
     
   },

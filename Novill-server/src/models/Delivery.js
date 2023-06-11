@@ -41,6 +41,10 @@ const DeliverySchema = new mongoose.Schema({
   },
   phone:{
     type:String,
+  },
+  available:{
+    type:Boolean,
+    default:true
   }
   
 });

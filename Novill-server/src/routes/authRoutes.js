@@ -484,13 +484,16 @@ router.post('/AddToCart',async(req,res)=>{
     const id=user.id;
     const cart = user.cart;
     const imageUri=req.body.imageUri;
+    const per=prod.prodname;
     console.log("\n------------\n",cart);
   //console.log(cart);
   console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
     await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
     const c1 = await Cart.findOne({_id:cart._id});
-    c1.images.push(imageUri);
+    if(prod.prescription){
+    c1.images.set(per,imageUri);
+    }
     c1.save();
     const updatedCart = await Cart.findOne({_id: cart._id});
 
@@ -519,6 +522,8 @@ router.post('/CreateOrderCash',async(req,res)=>{
   const {cart,address,totalAmount,totalPrice,user,pharm} = req.body;
   //const user = cart.user;
   const products = cart.products;
+  const images = cart.images;
+  const city = pharm.location;
   //const pharm = cart.Pharm;
   const payMethod='cash';
   const prise=totalPrice;
@@ -527,10 +532,11 @@ router.post('/CreateOrderCash',async(req,res)=>{
   const status='New';
   console.log('---------------CreateOrder------------');
   console.log(cart,address,totalAmount,totalPrice);
-  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname});
+  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city});
   order.save();
   let cart1 = await Cart.findOne({_id:cart._id});
   cart1.products=[];
+  cart1.images=[];
   cart1.pname="";
   cart1.save();
   let u = await User.findOne({_id:user._id});
@@ -724,5 +730,28 @@ router.post('/OrderIsReady', async (req, res) => {
   //const orders=await Order.find({});
   res.status(200).send({ message: 'The order created successfully',orders:orders});
 });
+router.post('/GetReadyOrders', async (req, res) => {
+  const {del}=req.body;
+  console.log('-------------------------------------\n',del);
+  const location = del.location;
+  const orders = await Order.find({city:location,status:"Ready,Waiting for delivery"});
+  console.log("\nResponse.data.orders:\n=============================\n",orders,"\n=============================\n")
+  res.status(200).send({ message: 'The order created successfully',orders:orders});
+});
 
+router.post('/DelIsComing', async (req, res) => {
+  const {order,del}=req.body;
+  console.log('-------------------------------------\n',del);
+  const id=order._id;
+  const d = await Delivery.findOne({_id:del._id});
+  d.available="false";
+  d.save();
+  const d1 = await Delivery.findOne({_id:d._id});
+  const o = await Order.findOne({_id:id});
+  o.del = d;
+  o.status = "Delivery is coming";
+  
+  o.save();
+  res.status(200).send({ message: 'The order created successfully',order:o,del:d1});
+});
 module.exports = router;

@@ -49,6 +49,16 @@ const OrderSchema = new mongoose.Schema({
   },
   desc:{
     type:String,
+  },
+  images: {
+    type: [String], // Define the field as an array of strings
+    // required: true // You can modify this validation as per your requirements
+  },
+  pers:{
+    type:[String]
+  },
+  city:{
+    type:String
   }
 
 });

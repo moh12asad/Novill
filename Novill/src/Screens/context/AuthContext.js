@@ -180,11 +180,12 @@ const signinDelivery=(dispatch)=>{
         console.log(email,password);
         try{
             const response = await server.post('/signinDelivery',{email,password});
+            console.log(response.data);
             if(response.data.del.AdminAccept){
             navigate('DeliveryAccount',{del:response.data.del});
             }
             else{
-                navigate('WaitingAdminD');
+                navigate('WaitingAdminD',{del:response.data.del});
             }
         }catch(err){
             console.log(err);

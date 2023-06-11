@@ -53,7 +53,7 @@ const PharmStoreScreen=(props)=>{
     },[loaded] )
 
     return(
-<ImageBackground source={require("../Screens/images/image.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '110%' }}>
   <SafeAreaView style={{ height: '80%' }}>
   <View  style={{backgroundColor:'#ccdf93',height:240,width:410,
                   
@@ -117,16 +117,16 @@ const PharmStoreScreen=(props)=>{
 
      
 
-  <View style={styles.view}>
+ 
     <FlatList
       data={productsCollection}
-     
+       style={{ top:25,left:15}}
       renderItem={({ item }) => {
         return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
                 
 
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
-    /></View>
+    />
   </SafeAreaView>
   <View style={styles.cartContainer}>
      <TouchableOpacity onPress={() => GetUpdatedUser(user,cart,pharm,props)}>

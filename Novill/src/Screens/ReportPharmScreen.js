@@ -14,16 +14,16 @@ const ReportPharmScreen=(props)=>{
     const [title,setTitle]=useState('');
     const [text,setText] = useState('');
     return (            
-    <ImageBackground source={require("../Screens/images/photo.jpg")} style={{ width:'100%', height:'100%' }} >
+    <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
 
         <View style={styles.container}>
 
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
+        <View style={{height:350,width:460,
                      borderTopLeftRadius:130,
-                     paddingTop:75,
+                     paddingTop:150,
                      alignItems:'center',
                      right:30
                      }}>

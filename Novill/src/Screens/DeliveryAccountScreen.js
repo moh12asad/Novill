@@ -3,11 +3,13 @@ import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
 import {View,Button,StyleSheet,Text,ImageBackground,TouchableOpacity,Pressable,Image} from 'react-native';
 import Spacer from './Components/Spacer';
+import Server from './api/Server';
 import HomeScreen from './HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { MaterialIcons } from '@expo/vector-icons';
 const DeliveryAccountScreen=(props)=>{
-    console.log(props.navigation.state.params.del);
+  console.log('DElivery account screen:');
+    console.log(props.navigation.state.params);
     const del = props.navigation.state.params.del;
     const {signout} = useContext(AuthContext);
 
@@ -39,7 +41,7 @@ const DeliveryAccountScreen=(props)=>{
         <View style={styles.NavBar}>
        
           {/*Delivery status*/}
-          <MaterialIcons style={styles.IconBehave} name="delivery-dining" size={24} color="black" />
+          <MaterialIcons style={styles.IconBehave} name="delivery-dining" size={24} color="black" onPress={()=>CheckForOrders(del,props)} />
         {/*reports , request*/}
           <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportDelivery',{del})} />
         {/*edit profile*/}
@@ -51,6 +53,18 @@ const DeliveryAccountScreen=(props)=>{
         </View></View>
         </ImageBackground>
         );
+}
+
+const CheckForOrders=async(del,props)=>{
+  const response = await Server.post('/GetReadyOrders', {
+    del
+  });
+  console.log("\nResponse.data.orders:\n=============================\n",response.data.orders,"\n=============================\n")
+  console.log(response.data.orders);
+  const orders=response.data.orders;
+  props.navigation.navigate('ReadyOrdersForDel',{del:del,orders:orders});
+
+
 }
 
 const styles=StyleSheet.create({

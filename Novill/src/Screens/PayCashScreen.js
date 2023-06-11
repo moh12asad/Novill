@@ -35,7 +35,7 @@ const PayCashScreen=(props)=>{
     //console.log(props.navigation.state.params.cart);
     return(
       
-<ImageBackground source={require("../Screens/images/img.jpg")} style={{ width: '100%', height: '100%' }}>
+<ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
   <View  style={styles.newcontainer}>
    <Image

@@ -88,17 +88,15 @@ justifyContent:'center',
       button: {
         padding:10,
         marginTop:5,
-        borderRadius:110,
         alignItems: 'center',
         paddingVertical:10,
         marginVertical:20,
-        width:'40%',
+        width:'30%',
         left:290,
-        borderWidth:0,
   },
   Images:{
-    width:30,
-    height:30,
+    width:45,
+    height:45,
         
   },
    ImageIcon:{

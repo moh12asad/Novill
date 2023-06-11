@@ -42,7 +42,7 @@ const AddProductsScreen=({navigation})=>{
       };
     
     return( 
-        <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/back1.jpg")} style={{ width:'100%', height:'100%' }} >
 
 <>
     <View style={styles.container}>
@@ -121,12 +121,15 @@ backgroundColor:'rgb(220,220,220)',
            
         }}
         />
+            <View style={styles.container}>
+
                 <CheckBox
           title='Sale'
           checked={sale}
           onPress={() => setSale(!sale)}
-          containerStyle={styles.checkboxContainer}
+           containerStyle={styles.checkboxContainer}
           textStyle={styles.checkboxText}
+  
         />
 
 {sale && (
@@ -137,17 +140,28 @@ backgroundColor:'rgb(220,220,220)',
             placeholder='Sale price'
             autoCapitalize="none"
             autoCorrect={false}
-            style={styles.input}
+        style={{ 
+            borderRadius:120,
+paddingHorizontal:70, width:'70%',
+backgroundColor:'rgb(220,220,220)',
+ marginBottom:5,
+
+ left:50   
+        }}
           />
         )}
+
                 <CheckBox
           title='prescription'
           checked={prescription}
           onPress={() => setPrescription(!prescription)}
           containerStyle={styles.checkboxContainer}
           textStyle={styles.checkboxText}
+        
         />
-              <Button title="Upload Image" onPress={handleImageUpload} />
+        </View>
+              <Button title="Upload Image" buttonStyle={styles.uploadButton}
+        titleStyle={styles.uploadButtonText}  onPress={handleImageUpload} />
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
 
 
@@ -174,6 +188,46 @@ backgroundColor:'rgb(220,220,220)',
 );
 }
 
-const styles=StyleSheet.create({});
+const styles=StyleSheet.create({
+
+ container: {
+    flex: 1,
+    justifyContent: 'center',
+   
+  },
+   checkboxContainer: {
+    backgroundColor: '#EEE3BA',
+    borderWidth: 0,
+    marginLeft: 50,
+    marginRight:50,
+    padding: 0,  
+    borderRadius:120,
+    alignItems:'flex-start',
+    alignSelf:'flex-start',
+    width:270,
+     marginVertical:15,
+            paddingVertical:7,
+           
+  },
+  checkboxText: {
+    color: '#000',
+    marginLeft: 8,
+  },
+  uploadButton: {
+     backgroundColor: '#EEE3BA',
+    borderWidth: 0,
+    marginLeft: 50,
+    padding: 0,
+    width:270,
+     marginVertical:10,
+            paddingVertical:5,
+                        borderRadius:120,
+
+  },
+  uploadButtonText: {
+    color: '#000000',
+    fontSize: 16,
+  },
+});
 
 export default AddProductsScreen;

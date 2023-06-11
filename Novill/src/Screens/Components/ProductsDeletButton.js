@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const GreenButton = ({ title, onPress }) => {
+const ProductsDeletButton = ({ title, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
@@ -11,13 +11,16 @@ const GreenButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-   backgroundColor: '#FEF9E7',
-    borderRadius: 100,
-    alignItems: 'center',
-    position: 'absolute',
-    left: 200,
-    width: 200,
-    height: 50,
+   backgroundColor: '#AACB63',
+    borderWidth: 0,
+    marginLeft: 50,
+    padding: 0,
+    width:290,
+     marginVertical:10,
+    paddingVertical:5,
+    borderRadius:120,
+    alignItems:'center'
+  
   },
   text: {
     color: 'black',
@@ -26,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GreenButton;
+export default ProductsDeletButton;

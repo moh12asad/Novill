@@ -28,22 +28,25 @@ const ReportSummaryScreen=(props)=>{
     console.log(r);
     const {signout} = useContext(AuthContext);
     return(
-            <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+            <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }}>        
 
-    <View> 
-        <Text style={{fontSize: 48,top:100}}>Thank you!</Text>
-        <Text style={{top:120}}>We got your report about {r.title} issue, we wil check it and contact you a as soon as possible.</Text>
+    <View style={{height:350,width:460,
+                     borderTopLeftRadius:130,
+                     paddingTop:100,
+                
+                    }}> 
+        <Text style={{fontSize: 48,top:100}}> Thank you!</Text>
+        <Text style={{top:100,fontSize: 19}}> We got your report about {r.title} issue,</Text><Text style={{top:100,fontSize:19}}> we wil check it and contact you a as soon as possible.</Text>
              <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
-        padding:30,
-        marginTop:20,
-        borderRadius:110,
-          alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:10,
-        width:'40%',
-        left:200,
-        marginTop:360,
-        borderWidth:0
+     
+    borderRadius: 100,
+    alignItems: 'center',
+    paddingVertical: 10,
+    position: 'absolute',
+    bottom: -250,
+    width: 200,
+
+      
         
         }} title="Back to account screen" onPress={() => {
             if (utype === 'user') {

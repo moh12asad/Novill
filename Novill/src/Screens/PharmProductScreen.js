@@ -10,7 +10,7 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
+import ProductsDeletButton from './Components/ProductsDeletButton';
 const PharmProductScreen=(props)=>{
     const pharm=props.navigation.state.params.pharm1;
     const prod=props.navigation.state.params.item;
@@ -27,9 +27,9 @@ const PharmProductScreen=(props)=>{
  <Text style={styles.title}>price: {prod.price}</Text>
  <Text style={styles.title}>quantity: {prod.amount}</Text>
  <Text style={styles.title}>desc: {prod.desc}</Text>
- <GreenButton title="Edit" onPress={()=>console.log('HRllooo')}></GreenButton>
-  <BlueButton title="Update quantity" onPress={()=>console.log('Pressed')}></BlueButton>
-  <RedButton title="Delete" onPress={()=>deleteproduct({prod,pharm})}></RedButton>
+ <ProductsDeletButton title="Edit" onPress={()=>console.log('HRllooo')}></ProductsDeletButton>
+  <ProductsDeletButton title="Update quantity" onPress={()=>console.log('Pressed')}></ProductsDeletButton>
+  <ProductsDeletButton title="Delete" onPress={()=>deleteproduct({prod,pharm})}></ProductsDeletButton>
     </View>
         <Spacer/>
   </SafeAreaView>

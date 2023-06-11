@@ -208,9 +208,10 @@ const ProductScreen = (props) => {
         )}
      
         <Spacer/>
+        <View >
         <GreenButton title="Add to cart" onPress={() => AddToCart({ cart, prod, pharm, user,imageUri })}></GreenButton>
         <Text style={styles.subtitle}>{prod.price + "$"}</Text>
-
+</View>
   </View>
   </SafeAreaView>
       <View style={styles.cartContainer}>
@@ -311,7 +312,7 @@ subtitle:{
 fontSize:20,
 color:"#474747",
 marginLeft:45,
-   bottom:-70,
+   bottom:-10,
 
 },
 img:{

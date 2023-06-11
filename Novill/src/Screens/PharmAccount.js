@@ -51,9 +51,17 @@ const PharmAccountScreen=(props)=>{
   <View style={styles.NavContainer}>
         <View style={styles.NavBar}>
               <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportPharm',{pharm})} />
+    <Pressable style={styles.IconBehave}>
+<MaterialIcons name="done" size={24} color="black" />               
 
+          </Pressable>
            <Pressable style={styles.IconBehave}>
                   <Octicons name="list-ordered" size={24} color="black" onPress={()=>getordersforpharm({pharm})}/>
+          </Pressable>
+            <Pressable style={styles.IconBehave}>
+                 <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditPharm',pharm)}  /> 
+               
+
           </Pressable>
            <Pressable style={styles.IconBehave}>
                 <FontAwesome name="product-hunt" size={20} color="black" title="Pharms" onPress={()=>props.navigation.navigate('Products',pharm)}  />
@@ -63,11 +71,7 @@ const PharmAccountScreen=(props)=>{
                
 
           </Pressable>
-           <Pressable style={styles.IconBehave}>
-                 <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditPharm',pharm)}  /> 
-               
-
-          </Pressable>
+       
           
         </View></View>
 
@@ -128,8 +132,8 @@ justifyContent:'center',
     borderRadius:30,
     bottom:-600,
     height:60,
-    right:35,
-    left:1,
+    right:30,
+    left:10,
 
     
   },

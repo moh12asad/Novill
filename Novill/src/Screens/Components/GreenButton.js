@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 200,
     width: 200,
-    height: 50,
+    height: 45,
+         paddingVertical:10,
+         bottom:5
   },
   text: {
     color: 'black',

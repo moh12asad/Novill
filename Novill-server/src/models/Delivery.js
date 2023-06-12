@@ -45,6 +45,12 @@ const DeliverySchema = new mongoose.Schema({
   available:{
     type:Boolean,
     default:true
+  },
+  oid:{
+    type:String,
+  },
+  oids:{
+    type:[String],
   }
   
 });

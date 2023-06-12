@@ -41,7 +41,23 @@ const DeliveryAccountScreen=(props)=>{
         <View style={styles.NavBar}>
        
           {/*Delivery status*/}
-          <MaterialIcons style={styles.IconBehave} name="delivery-dining" size={24} color="black" onPress={()=>CheckForOrders(del,props)} />
+          {del.available ? (
+    <MaterialIcons
+      style={styles.IconBehave}
+      name="delivery-dining"
+      size={24}
+      color="black"
+      onPress={() => CheckForOrders(del, props)}
+    />
+  ) : (
+    <MaterialIcons
+      style={styles.IconBehave}
+      name="delivery-dining"
+      size={24}
+      color="black"
+      onPress={() => GoToOrder(del, props)}
+    /> // Replace this with the desired action when del.available is false
+  )}
         {/*reports , request*/}
           <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportDelivery',{del})} />
         {/*edit profile*/}
@@ -63,7 +79,18 @@ const CheckForOrders=async(del,props)=>{
   console.log(response.data.orders);
   const orders=response.data.orders;
   props.navigation.navigate('ReadyOrdersForDel',{del:del,orders:orders});
+}
 
+const GoToOrder=async(del,props)=>{
+  const response = await Server.post('/GetUpdatedDel', {
+    del
+  });
+  console.log("\nResponse.data.orders:\n=============================\n","HEHEHHEHEHEH","\n=============================\n")
+  console.log(response.data.orders);
+  const order=response.data.order;
+  const d = response.data.del;
+  const pharm = response.data.pharm;
+  props.navigation.navigate('OnGoingOrderDelivery',{del:d,order:order,pharm:pharm});
 
 }
 

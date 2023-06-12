@@ -41,12 +41,24 @@ const ViewOrderScreen=(props)=>{
         ) : order.status === 'Ready' ? (
           <BlueButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
         ) : (
-          <RedButton title="Rejected" onPress={() => console.log('Rejected')} />
+          <View>
+          <RedButton title="Cancel" onPress={() => console.log('Rejected')} />
+          <BlueButton title="Pass to delivery" onPress={() => PassTheOrderToDelivery(order,props)}/>
+          </View>
         )}
       </View>
   </SafeAreaView>
 </ImageBackground>
         );
+}
+const PassTheOrderToDelivery=async(order,props)=>{
+  const pharm=order.pharm;
+  const response = await Server.post('/PassOrderToDelivery',{
+    order,pharm
+  });
+  const orders=response.data.orders;
+  const p = response.data.pharm;
+  props.navigation.navigate('OrdersList',{pharm:p,orders:orders});
 }
 
 const styles=StyleSheet.create({

@@ -745,13 +745,53 @@ router.post('/DelIsComing', async (req, res) => {
   const id=order._id;
   const d = await Delivery.findOne({_id:del._id});
   d.available="false";
+  d.oid = id;
   d.save();
   const d1 = await Delivery.findOne({_id:d._id});
   const o = await Order.findOne({_id:id});
   o.del = d;
   o.status = "Delivery is coming";
-  
   o.save();
-  res.status(200).send({ message: 'The order created successfully',order:o,del:d1});
+  const pharm=o.pharm;
+  res.status(200).send({ message: 'The order created successfully',order:o,del:d1,pharm:pharm});
+});
+router.post('/PassOrderToDelivery', async (req, res) => {
+  const {order,pharm}=req.body;
+  console.log("==========================InPassOrderScreen===========================");
+  console.log(pharm);
+  console.log("======================================================================");
+
+  const o = await Order.findOne({_id:order._id});
+  o.status="Passed To Delivery: "+order.del.Fname;
+  o.save();
+  const p = await Pharm.findOne({_id:pharm._id});
+  const name = p.pname;
+  const orders = await Order.find({pname:name});
+  res.status(200).send({ message: 'The order passed successfully',orders:orders,pharm:p});
+});
+
+router.post('/GetUpdatedDel', async (req, res) => {
+  const {del}=req.body;
+  const d = await Delivery.findOne({_id:del._id});
+  const oid = d.oid;
+  const o = await Order.findOne({_id:oid});
+  const name = o.pname;
+  const pharm = await Pharm.findOne({pname:name});
+  res.status(200).send({ message: 'The order passed successfully',pharm:pharm,order:o,del:d});
+});
+
+router.post('/OrderPassedToCustomer', async (req, res) => {
+  const {del,order}=req.body;
+  const d = await Delivery.findOne({_id:del._id});
+  d.available=true;
+  const oid = d.oid;
+  const o = await Order.findOne({_id:oid});
+  o.status="Done";
+  d.oid="";
+  d.oids.push(o._id);
+  d.save();
+  o.save();
+  const d1 = await Delivery.findOne({_id:del._id});
+  res.status(200).send({ message: 'The order passed successfully',del:d1});
 });
 module.exports = router;

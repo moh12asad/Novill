@@ -51,8 +51,11 @@ const OrderSchema = new mongoose.Schema({
     type:String,
   },
   images: {
-    type: [String], // Define the field as an array of strings
+    //type: [String], // Define the field as an array of strings
     // required: true // You can modify this validation as per your requirements
+    type: Map,
+    of: String,
+    default: new Map()
   },
   pers:{
     type:[String]

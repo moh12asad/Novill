@@ -58,9 +58,11 @@ const DelIsComing=async(order,del,props)=>{
         order,del
     });
     console.log("\nResponse.data.orders:\n=============================\n",response.data.order,"\n=============================\n");
-    console.log("\nResponse.data.orders:\n=============================\n",response.data.del,"\n=============================\n")
-
-
+    console.log("\nResponse.data.orders:\n=============================\n",response.data.del,"\n=============================\n");
+    const order1=response.data.order;
+    const pharm1=response.data.pharm;
+    const del1=response.data.del;
+    props.navigation.navigate('OnGoingOrderDelivery',{order:order1,del:del1,pharm:pharm1});
 
 }
 

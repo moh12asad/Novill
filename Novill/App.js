@@ -61,6 +61,7 @@ import ProductForOrderProcessScreen from './src/Screens/ProductForOrderProcessSc
 import ReadyOrdersScreen from './src/Screens/ReadyOrdersScreen';
 import ReadyOrdersForDelScreen from './src/Screens/ReadyOrdersForDelScreen';
 import ShowOrderScreen from './src/Screens/ShowOrderScreen';
+import OnGoingOrderDeliveryScreen from './src/Screens/OnGoingOrderDeliveryScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -135,6 +136,7 @@ const switchNavigator=createSwitchNavigator({
     ReportSummary:ReportSummaryScreen,
     ReadyOrdersForDel:ReadyOrdersForDelScreen,
     ShowOrder:ShowOrderScreen,
+    OnGoingOrderDelivery:OnGoingOrderDeliveryScreen,
 
   }),
   

@@ -5,6 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import { Alert } from 'react-native';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
 
@@ -62,7 +63,11 @@ const DelIsComing=async(order,del,props)=>{
     const order1=response.data.order;
     const pharm1=response.data.pharm;
     const del1=response.data.del;
-    props.navigation.navigate('OnGoingOrderDelivery',{order:order1,del:del1,pharm:pharm1});
+    const pname = pharm1.pname;
+    const location  = pharm1.location;
+    Alert.alert('Go to Pharm');
+    
+    //props.navigation.navigate('OnGoingOrderDelivery',{order:order1,del:del1,pharm:pharm1});
 
 }
 

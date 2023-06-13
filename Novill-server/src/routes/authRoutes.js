@@ -760,7 +760,6 @@ router.post('/PassOrderToDelivery', async (req, res) => {
   console.log("==========================InPassOrderScreen===========================");
   console.log(pharm);
   console.log("======================================================================");
-
   const o = await Order.findOne({_id:order._id});
   o.status="Passed To Delivery: "+order.del.Fname;
   o.save();
@@ -782,10 +781,12 @@ router.post('/GetUpdatedDel', async (req, res) => {
 
 router.post('/OrderPassedToCustomer', async (req, res) => {
   const {del,order}=req.body;
+  console.log(order);
+  const id = order._id;
   const d = await Delivery.findOne({_id:del._id});
   d.available=true;
-  const oid = d.oid;
-  const o = await Order.findOne({_id:oid});
+  const o = await Order.findOne({_id:id});
+  const oid = o._id;
   o.status="Done";
   d.oid="";
   d.oids.push(o._id);

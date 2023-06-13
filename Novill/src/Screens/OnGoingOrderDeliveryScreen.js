@@ -7,6 +7,7 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
+import RedButton from './Components/RedButton';
 import { Alert } from 'react-native';
 
 const OnGoingOrderDeliveryScreen=(props)=>{
@@ -23,9 +24,9 @@ const OnGoingOrderDeliveryScreen=(props)=>{
     if (order.status ="Passed To Delivery: "+del.Fname){
       newstatus = "Order: "+del.oid+" passed to you.";
     } 
-    
+    console.log("Order.Status is:*********************\n",order.status);
     return(
-      
+      /*
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for:{user.Lname}</Text>
@@ -37,6 +38,27 @@ const OnGoingOrderDeliveryScreen=(props)=>{
       <Text style={styles.subtitle}>Pay method: {paymethod}</Text>
       </View>
     <GreenButton title="Pass to customer" onPress={()=>PassToCustomer(del,order,props)}></GreenButton>
+  </SafeAreaView>
+</ImageBackground>*/
+<ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
+  <SafeAreaView style={{ height: '80%' }}>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for: {user.Lname}</Text>
+    <Spacer />
+    <Text style={styles.subtitle}>Ordered from: {pharm.pname}, {pharm.location}</Text>
+    <Text style={styles.subtitle}>Order to address: {address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
+    <Text style={styles.subtitle}>Order Status: {newstatus}</Text>
+    <View>
+      <Text style={styles.subtitle}>Pay method: {paymethod}</Text>
+    </View>
+    
+    {order.status === "Delivery is coming" && (
+  <RedButton title="Waiting for pharm approval" />
+)}
+
+{order.status === 'Passed To Delivery: ' + del.Fname && (
+  <GreenButton title="Pass to customer" onPress={() => PassToCustomer(del, order, props)} />
+)}
+
   </SafeAreaView>
 </ImageBackground>
 

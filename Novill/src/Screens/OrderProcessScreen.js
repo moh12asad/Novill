@@ -5,12 +5,15 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import ProductListComp from './Components/ProductListComp';
 
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
 import RedButton from './Components/RedButton';
 import BlueButton from './Components/BlueButton';
 import UPharmListComp from './Components/UPharmListComp';
+import PassDeliveryButton from './Components/PassDeliveryButton';
+import CancelButton from './Components/CancelButton';
 const OrderProcessScreen=(props)=>{
     let newStatus;
     const [desc,setDesc]=useState();
@@ -65,12 +68,20 @@ const OrderProcessScreen=(props)=>{
     return(
         <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
+    <View style={styles.newcontainer}>
+  <Image
+    source={require("../Screens/images/NOVILL-02-03.png")}
+    style={{ width: '20%',
+    height: '150%',marginTop:30}}
+  />
+  <Text style={styles.text1}>My Cart</Text>
+</View>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{order.user.Fname} {order.user.Lname}</Text>
     <Spacer />
     <FlatList
   data={orderdproducts}
-  numColumns={2}
-  style={{ height: '100%' }}
+
+
   renderItem={({ item }) => {
     let statusIndicator = ''; // Initialize the status indicator as an empty string
 
@@ -84,10 +95,10 @@ const OrderProcessScreen=(props)=>{
     }
 
     return (
-      <PharmListComp
-        style={styles.item}
+      <ProductListComp
+         style={{ left:15,height:'150%'}}
         name={`${item.prodname} ${statusIndicator}`} // Include the status indicator in the product name
-        location={item.price}
+        price={item.price+"$"} image={item.image}
         onPress={() =>
           props.navigation.navigate('ProductForOrderProcess', {
             prod: item,
@@ -98,7 +109,9 @@ const OrderProcessScreen=(props)=>{
       />
     );
   }}
-/><View>
+/>
+
+<View style={{bottom:-60,}}>
                             <TextInput
                 placeholder={"Notes"}
                 value={desc}
@@ -107,26 +120,26 @@ const OrderProcessScreen=(props)=>{
                 autoCorrect={true}
                      style={{ 
           
-                       borderRadius:120,
-                     paddingHorizontal:70, width:'70%',
-                    backgroundColor:'rgb(220,220,220)',
-                    marginBottom:5,
-                    marginTop:10,
-                    left:50
+                        height: 70,
+                         margin: 12,
+                        borderWidth: 1,
+                        padding: 15,
+                        bottom:-25
                  
                         
               
                 }}
                 />
-                </View>
+              
     
           <View>
-        <Text style={styles.text}>products: {Amount}</Text>
-        <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
-        <Text style={styles.text}>The total is: {order.prise}</Text>
+        <Text style={styles.text}>Products Amount: {Amount}</Text>
+        <Text style={styles.text}>Customer Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
+        <Text style={styles.text}>The total price: {order.prise}</Text>
         <Text style={styles.text}>Current ready products price: {price}</Text>
-          <BlueButton title="Ready, notify the delivery" onPress={() => OrderIsReady(order,desc)} />
-          <RedButton title="Reject" onPress={() => console.log('Rejected')} />
+          <PassDeliveryButton title="Ready, notify the delivery" onPress={() => OrderIsReady(order,desc)} />
+          <CancelButton title="Reject" onPress={() => console.log('Rejected')} />
+            </View>
       </View>
   </SafeAreaView>
 </ImageBackground>
@@ -160,10 +173,13 @@ cartImage: {
   borderRadius: 25,
 },
 text:{
- fontSize:20,
-color:"#474747",
-marginLeft:45
-},
+
+    fontSize: 20,
+    color: '#6C6C65',
+    marginLeft: 20,
+    top: 25,
+    color: 'gray',
+  },
 item: {
     flex: 1,
     marginHorizontal: 10,
@@ -193,6 +209,18 @@ item: {
   },
   buttonText: {
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+   newcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+ 
+  text1: {
+    marginLeft: 10,
+    fontSize: 25,
+    marginTop:30,
     fontWeight: 'bold',
   },
   // your other styles here...

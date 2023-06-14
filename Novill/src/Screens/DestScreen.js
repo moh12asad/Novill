@@ -7,8 +7,8 @@ import { NavigationEvents } from 'react-navigation';
 const DestScreen=(props)=>{
     const {state,setAddress,clearErrorMessage}=useContext(AuthContext);
     const user=props.navigation.state.params.user;
-    const pharm=props.navigation.state.params.pharm;
     const cart=user.cart;
+    console.log("===============cart in DestScreen\n",cart.images ,"\n========\n");
     //const [payMethod,setPayMethod]=useState('');
     const [city,setcity]=useState('');
     const [street,setstreet]=useState('');

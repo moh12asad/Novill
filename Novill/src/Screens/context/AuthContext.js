@@ -446,9 +446,10 @@ const setAddress= (dispatch) =>{
     }
 }
 const order= (dispatch) =>{
-    return async ({cart,address,order,totalAmount,totalPrice,user,pharm})=>{
+    return async ({cart,address,totalAmount,totalPrice,user,pharm})=>{
         try{
             console.log(cart,address,totalAmount,totalPrice);
+            console.log("\n=================================The cart images  in authcontex is:\n",cart.images,"\n=================================\n");
             const response = await server.post('/CreateOrderCash',{cart,address,totalAmount,totalPrice,user,pharm});
             //const user=cart.user
             navigate('Account',{user});

@@ -6,8 +6,10 @@ import Spacer from './Components/Spacer';
 
 
 const PayMethodScreen=(props)=>{
-    const cart= props.navigation.state.params.cart;
+
     const user = props.navigation.state.params.user;
+    const cart = user.cart;
+    console.log("===============cart in paymethodscreen\n",cart ,"\n========\n");
     const address= props.navigation.state.params.address;
     const pharm= props.navigation.state.params.pharm;
     return(

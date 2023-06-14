@@ -67,7 +67,7 @@ const CartScreen=(props)=>{
       <Text style={styles.summaryText}>The total is:                                            {totalPrice + "$"}</Text>
       </View>
       <View style={{ top:90 }}>
-    <CartButton title="Order" onPress={()=>props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})}></CartButton>
+    <CartButton title="Order" onPress={()=>SetAddress(cart,user,pharm,props)}></CartButton>
   </View>
   </SafeAreaView>
 </ImageBackground>
@@ -75,6 +75,15 @@ const CartScreen=(props)=>{
         );
 }
 
+const SetAddress=async(cart,user,pharm,props)=>{
+  const res1 = await Server.post('/GetCart',{
+    cart,user
+  });
+  cart = res1.data.cart;
+  console.log("Updated cart in setAddress is:\n==============================",cart,"\n==============================");
+  props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm});
+
+}
 const getUser=async(user)=>{
   //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
   const response = await Server.post('/GetUser', {
@@ -211,3 +220,4 @@ subtitle:{
 });
 
 export default CartScreen;
+//props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm})

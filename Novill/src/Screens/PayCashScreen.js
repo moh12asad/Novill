@@ -17,7 +17,7 @@ const PayCashScreen=(props)=>{
     const cart = user.cart;
     const address = props.navigation.state.params.address;
     const pharm = props.navigation.state.params.pharm;
-    
+    console.log("\n=================================The cart images is:\n",cart.images,"\n=================================\n");
     //const user = cart.user;
     //const pharm=cart.Pharm;
     console.log('-----------Cash screen-----------\n the cart is: ',cart);
@@ -49,8 +49,8 @@ const PayCashScreen=(props)=>{
     fontWeight: 'bold', }}>My Order</Text>
    </View>
     <Spacer />
-    <Text style={styles.subtitle}>Order from: {pharm.pname} located in {pharm.location} </Text>
-    <Text style={styles.subtitle}>My Address: {address.city} ,{address.street} ,{address.building} ,{address.floor} {address.apartnum}</Text>
+    <Text style={styles.subtitle}>Order from: {pharm.pname} , {pharm.location} </Text>
+    <Text style={styles.subtitle}>Address: {address.city} ,{address.street} ,{address.building} ,{address.floor} {address.apartnum}</Text>
     <Text style={styles.subtitle}>My Phone: {address.phone} </Text>
     <Text style={styles.subtitle}>Order:</Text>
     <FlatList
@@ -72,6 +72,9 @@ const PayCashScreen=(props)=>{
 </ImageBackground>
 
         );
+}
+const CreateOrder=async(cart,address,totalAmount,totalPrice,user,pharm)=>{
+  console.log(cart.images);
 }
 
 const styles=StyleSheet.create({
@@ -123,3 +126,4 @@ cartImage: {
 });
 
 export default PayCashScreen;
+//69-

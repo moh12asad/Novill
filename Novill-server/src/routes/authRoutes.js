@@ -495,6 +495,7 @@ router.post('/AddToCart',async(req,res)=>{
     c1.images.set(per,imageUri);
     }
     c1.save();
+    console.log("\n=================================The cart iamges is:\n",c1.images,"\n=================================\n");
     const updatedCart = await Cart.findOne({_id: cart._id});
 
     const u = await User.findOne({_id:user._id});
@@ -502,7 +503,7 @@ router.post('/AddToCart',async(req,res)=>{
     await u.save();
     const u1= await User.findOne({_id:u._id});
     console.log(updatedCart);
-    console.log("\n------------\n",u1,"\n------------\n");
+    console.log("\n=================================The cart is:\n",cart,"\n=================================\n");
   
     res.status(200).send({message:'Added the product to the cart successfully',cart: updatedCart,user:u1,pharm:pharm});
 });
@@ -510,11 +511,15 @@ router.post('/SetAddress',async(req,res)=>{
   const {city,street,building,floor,apartnum,phone,cart,user} = req.body;
   console.log(city,street,building,floor,apartnum,phone,cart,user);
   //const user=cart.user;
+  const c = await Cart.findOne({_id:cart._id});
+  const u = await User.findOne({_id:user._id});
+  u.cart = c;
+  u.save();
   const pname=cart.pname;
   const pharm = await Pharm.findOne({pname:pname});
   let address = new Address({user,city,street,building,floor,apartnum,phone});
   await address.save();
-  res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:cart,user:user,pharm:pharm});
+  res.status(200).send({message:'Added the product to the cart successfully',address:address,cart:c,user:u,pharm:pharm});
 
 });
 
@@ -523,6 +528,7 @@ router.post('/CreateOrderCash',async(req,res)=>{
   //const user = cart.user;
   const products = cart.products;
   const images = cart.images;
+  console.log("\n=================================The cart images is:\n",cart,"\n=================================\n");
   const city = pharm.location;
   //const pharm = cart.Pharm;
   const payMethod='cash';
@@ -534,6 +540,7 @@ router.post('/CreateOrderCash',async(req,res)=>{
   console.log(cart,address,totalAmount,totalPrice);
   const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city});
   order.save();
+  console.log("\n=================================The order images is:\n",order.images,"\n=================================\n");
   let cart1 = await Cart.findOne({_id:cart._id});
   cart1.products=[];
   cart1.images=[];
@@ -584,7 +591,7 @@ router.post('/GetUser',async(req,res)=>{
 });
 
 router.post('/GetCart',async(req,res)=>{
-  const {cart}=req.body;
+  const {cart,user}=req.body;
   console.log("===========user in get user is:==========\n",user);
   const id=cart._id;
   const cart1 = await Cart.findOne({_id:cart._id});

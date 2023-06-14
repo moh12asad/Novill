@@ -51,15 +51,28 @@ const ProductForOrderProcessScreen=(props)=>{
 <Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
 <Text style={styles.subtitle}>Amount: {prod.amount}</Text>
         <Text style={styles.subtitle}>Description: {prod.desc}</Text>
+        {prod.prescription&&
+          <GreenButton title="Show prescription" onPress={()=>ShowPrescription(prod,pharm,order,props)}></GreenButton>
+        }
+        
     </View>
    
-        
+        <View>
         <Spacer/>
         <GreenButton title="Add to order" onPress={()=>AddTovproducts(prod,pharm,order)}></GreenButton>
-        <RedButton title="Don't" onPress={()=>AddToxproducts(prod,pharm,order)}></RedButton>
+        </View>
   </SafeAreaView>
       </View>
   );
+}
+
+const ShowPrescription=async (prod,pharm,order,props)=>{
+  const name = prod.prodname;
+  const images = order.images;
+  const imageUrl = images[name];
+  console.log(imageUrl);
+
+  props.navigation.navigate('ShowPrescription',{prod:prod,image:imageUrl});
 }
 
 const styles=StyleSheet.create({
@@ -121,3 +134,4 @@ Button:{
 });
 
 export default ProductForOrderProcessScreen;
+//62-        <RedButton title="Don't" onPress={()=>AddToxproducts(prod,pharm,order)}></RedButton>

@@ -5,7 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
-import OrderListComp from './Components/PharmListComp';
+import OrderListComp from './Components/OrderListComponent';
 
 
 
@@ -30,14 +30,18 @@ const OrdersListScreen=(props)=>{
     return(
         <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
           <SafeAreaView style={{ height: '80%' }}>
-            <Text style={{ fontSize: 45, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Waiting Orders</Text>
+            <Text style={{ fontSize: 30, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Waiting Orders</Text>
             <Spacer />
             <FlatList
               data={orders}
               
-              style={{ height: '100%' }}
+              style={{ marginVertical:40,
+        marginBottom:-10,
+        marginTop:50,
+        marginStart:10,
+        top:-50}} 
               renderItem={({ item }) => {
-                return <OrderListComp style={styles.item} name={item.status} location={item.address.city} onPress={()=>{handelOrderNavigate(item,pharm)}}/>;
+                return <OrderListComp  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,pharm)}}/>;
               }}
             />
           </SafeAreaView>

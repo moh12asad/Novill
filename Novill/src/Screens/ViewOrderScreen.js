@@ -6,9 +6,10 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import ProductListComp from './Components/ProductListComp';
-
+import StartButton from './Components/StartButton';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
+import CancelButton from './Components/CancelButton'
 import RedButton from './Components/RedButton';
 import BlueButton from './Components/BlueButton';
 const ViewOrderScreen=(props)=>{
@@ -23,13 +24,21 @@ const ViewOrderScreen=(props)=>{
     return(
         <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{order.user.Fname} {order.user.Lname}</Text>
+     <View style={styles.newcontainer}>
+  <Image
+    source={require("../Screens/images/NOVILL-02-03.png")}
+    style={{ width: '20%',
+    height: '150%',marginTop:30}}
+  />
+  <Text style={styles.tex1}>New Order</Text>
+</View>
+    <Text style={{ fontSize: 25, fontWeight: 'bold', marginVertical: 10, left: 10, top:40,color:'#706F6A' }}>{order.user.Fname} {order.user.Lname}</Text>
     <Spacer />
     <FlatList
       data={orderdproducts}
-      style={{ height: '100%' }}
+      style={{ top:25,left:15 }}
       renderItem={({ item }) => {
-        return <ProductListComp style={styles.item} name={item.prodname} location={item.price} onPress={()=>console.log('Product has been clicked')}/>;
+        return <ProductListComp style={styles.item} name={item.prodname} price={item.price +'$'} image={item.image} onPress={()=>console.log('Product has been clicked')}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
           <View>
@@ -37,13 +46,13 @@ const ViewOrderScreen=(props)=>{
         <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
         <Text style={styles.text}>The total is: {order.prise}</Text>
         {order.status === 'New' ? (
-          <GreenButton title="Start" onPress={() => {newStatus='Processing'; changestatus({order,newStatus})}} />
+          <StartButton title="Start" onPress={() => {newStatus='Processing'; changestatus({order,newStatus})}} />
         ) : order.status === 'Ready' ? (
-          <BlueButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
+          <CancelButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
         ) : (
           <View>
-          <RedButton title="Cancel" onPress={() => console.log('Rejected')} />
-          <BlueButton title="Pass to delivery" onPress={() => PassTheOrderToDelivery(order,props)}/>
+          <CancelButton title="Cancel" onPress={() => console.log('Rejected')} />
+          <CancelButton title="Pass to delivery" onPress={() => PassTheOrderToDelivery(order,props)}/>
           </View>
         )}
       </View>
@@ -87,11 +96,26 @@ cartImage: {
   height: 50,
   borderRadius: 25,
 },
+ newcontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
 text:{
- fontSize:20,
-color:"#474747",
-marginLeft:45
-}
+ fontSize: 20,
+    color: '#32322F',
+    marginLeft: 10,
+    top:80,
+  
+},
+tex1: {
+    marginLeft: 10,
+    fontSize: 25,
+    marginTop:30,
+    fontWeight: 'bold',
+    borderColor:'green'
+  },
 });
 
 export default ViewOrderScreen;

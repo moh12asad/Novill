@@ -121,13 +121,13 @@ backgroundColor:'rgb(220,220,220)',
            
         }}
         />
-            <View style={styles.container}>
+            <View style={styles.containerCheckBox}>
 
                 <CheckBox
           title='Sale'
           checked={sale}
           onPress={() => setSale(!sale)}
-           containerStyle={styles.checkboxContainer}
+           containerStyle={styles.checkbox}
           textStyle={styles.checkboxText}
   
         />
@@ -142,11 +142,11 @@ backgroundColor:'rgb(220,220,220)',
             autoCorrect={false}
         style={{ 
             borderRadius:120,
-paddingHorizontal:70, width:'70%',
+paddingHorizontal:70, width:'95%',
 backgroundColor:'rgb(220,220,220)',
  marginBottom:5,
 
- left:50   
+ left:5
         }}
           />
         )}
@@ -155,7 +155,7 @@ backgroundColor:'rgb(220,220,220)',
           title='prescription'
           checked={prescription}
           onPress={() => setPrescription(!prescription)}
-          containerStyle={styles.checkboxContainer}
+          containerStyle={styles.checkbox}
           textStyle={styles.checkboxText}
         
         />
@@ -168,15 +168,20 @@ backgroundColor:'rgb(220,220,220)',
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
         <TouchableOpacity title="Add" onPress={()=>addproduct({prodname,desc,salePrice,sale,price,amount,pname,status,imageUri,prescription})}
         style={{
-    backgroundColor:'#629630',
-    padding:50,
-    marginTop:20,
-    borderRadius:170,
-      alignItems: 'center',
-    paddingVertical:10,
-    marginVertical:20,
+    
+    backgroundColor: '#fff',
+   padding:50,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+     padding:50,
+    marginTop:40,
     width:'50%',
-    left:85
+    left:85,
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2
         }}>
         <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Add</Text> 
         </TouchableOpacity> 
@@ -193,10 +198,23 @@ const styles=StyleSheet.create({
  container: {
     flex: 1,
     justifyContent: 'center',
+    
    
   },
+  containerCheckBox:{
+
+
+    borderWidth: 0,
+    marginLeft: 50,
+    marginRight: 50,
+  
+    borderRadius: 120,
+    width: 270,
+    marginVertical: 15,
+    paddingVertical: 7,
+  },
    checkboxContainer: {
-    backgroundColor: '#EEE3BA',
+
     borderWidth: 0,
     marginLeft: 50,
     marginRight:50,
@@ -206,27 +224,35 @@ const styles=StyleSheet.create({
     alignSelf:'flex-start',
     width:270,
      marginVertical:15,
-            paddingVertical:7,
+            paddingVertical:5,
+           
            
   },
   checkboxText: {
     color: '#000',
     marginLeft: 8,
   },
+  
   uploadButton: {
      backgroundColor: '#EEE3BA',
     borderWidth: 0,
-    marginLeft: 50,
+    marginLeft: 60,
     padding: 0,
-    width:270,
+    width:250,
      marginVertical:10,
-            paddingVertical:5,
-                        borderRadius:120,
+    paddingVertical:5,
+    borderRadius:120,
+    bottom:10
 
   },
   uploadButtonText: {
     color: '#000000',
     fontSize: 16,
+  },
+  		checkbox: {
+    borderRadius: 25,
+    borderColor: 'black', // Set the border color to black
+    borderWidth: 1, // Set the border width to 1 pixel
   },
 });
 

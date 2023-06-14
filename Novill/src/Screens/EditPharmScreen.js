@@ -23,7 +23,7 @@ const EditPharmScreen=(props)=>{
       
    
         <>
-        <ImageBackground source={require("../Screens/images/image.jpg")} style={{ width:'100%', height:'100%' }}>        
+        <ImageBackground source={require("../Screens/images/image3.jpg")} style={{ width:'100%', height:'99%' }}>        
             <View style={styles.container}>
                 <NavigationEvents onWillFocus={clearErrorMessage}/>
                 <Spacer/>
@@ -176,6 +176,7 @@ const EditPharmScreen=(props)=>{
           
                        borderRadius:120,
                      paddingHorizontal:70, width:'70%',
+                     height:'15%',
                     backgroundColor:'rgb(220,220,220)',
                     marginBottom:5,
                     marginTop:10,
@@ -191,15 +192,20 @@ const EditPharmScreen=(props)=>{
                 {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
                 <TouchableOpacity
                  style={{
-                    backgroundColor:'#629630',
-                     padding:50,
-                    marginTop:20,
-                    borderRadius:170,
-                    alignItems: 'center',
-                    paddingVertical:10,
-                    marginVertical:20,
-                    width:'50%',
-                    marginLeft:120
+                    
+    backgroundColor: '#fff',
+   padding:50,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+     padding:50,
+    marginTop:5  ,
+    width:'50%',
+    left:120,
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2
                 }}
                  title="Save changes" onPress={()=>editpharm({email,Fname,Lname,location,pname,phone,desc,pharm})}>
                  
@@ -244,7 +250,8 @@ const styles=StyleSheet.create({
 
         flex:1,
         justifyContent:'center',
-        marginBottom:150
+        marginBottom:250,
+        left:15
     },
     errormsg:{
         fontSize:16,

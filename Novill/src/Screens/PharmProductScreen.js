@@ -28,7 +28,7 @@ const PharmProductScreen=(props)=>{
  <Text style={styles.title}>quantity: {prod.amount}</Text>
  <Text style={styles.title}>desc: {prod.desc}</Text>
  <ProductsDeletButton title="Edit" onPress={()=>console.log('HRllooo')}></ProductsDeletButton>
-  <ProductsDeletButton title="Update quantity" onPress={()=>console.log('Pressed')}></ProductsDeletButton>
+  <ProductsDeletButton title="Update quantity" onPress={()=>props.navigation.navigate('UpdateAmount',{prod:prod,pharm:pharm})}></ProductsDeletButton>
   <ProductsDeletButton title="Delete" onPress={()=>deleteproduct({prod,pharm})}></ProductsDeletButton>
     </View>
         <Spacer/>
@@ -36,6 +36,7 @@ const PharmProductScreen=(props)=>{
       </View>
   );
 }
+
 
 const styles=StyleSheet.create({
 

@@ -681,6 +681,36 @@ router.post('/DeleteProd', async (req, res) => {
   }
 });
 
+
+router.post('/UpdateAmount', async (req, res) => {
+  const { prod,amount } = req.body;;
+  const prodid = prod._id;
+  const pname = prod.pname;
+  const pharm1 = await Pharm.findOne({ pname: pname });
+  const prod1 = await Product.findOne({_id:prodid})
+  try {
+    prod1.amount=amount;
+    prod1.save();
+    //const product = pharm1.products.find(p => p._id.toString() === prodid);
+    const i = pharm1.products.findIndex(p => p._id.toString() === prodid);
+    console.log(pharm1.products[i]);
+    pharm1.products.splice(i, 1);
+    pharm1.products.push(prod1);
+    pharm1.save();
+    /*pharm1.products[i].amount=amount;
+    console.log(pharm1.products[i].amount);
+    pharm1.save();*/
+    //pharm1.products[i]=prod1;
+    //pharm1.save();
+    //product.amount=50;
+
+    //console.log(product);
+    res.status(200).send({ message: 'The order created successfully', pharm: pharm1 });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while deleting the product' });
+  }
+});
+
 router.post('/AddToVProducts', async (req, res) => {
   const {prod,pharm,order}=req.body;
   console.log((prod,pharm,order));
@@ -802,4 +832,6 @@ router.post('/OrderPassedToCustomer', async (req, res) => {
   const d1 = await Delivery.findOne({_id:del._id});
   res.status(200).send({ message: 'The order passed successfully',del:d1});
 });
+
+
 module.exports = router;

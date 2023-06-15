@@ -251,7 +251,7 @@ const SignupPharmScreen=({navigation})=>{
             }}
             />
           
-      <Button buttonStyle={styles.uploadButton} title="Upload Pharmacy license"   color="black"  onPress={handleImageUpload} />
+      <Button buttonStyle={styles.uploadButton} title="Upload Pharmacy logo"   color="black"  onPress={handleImageUpload} />
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
           
 

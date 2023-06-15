@@ -64,6 +64,9 @@ import ShowOrderScreen from './src/Screens/ShowOrderScreen';
 import OnGoingOrderDeliveryScreen from './src/Screens/OnGoingOrderDeliveryScreen';
 import ShowPrescriptionScreen from './src/Screens/ShowPrescriptionScreen';
 import UpdateAmountScreen from './src/Screens/UpdateAmountScreen';
+import HistoryScreen from './src/Screens/HistoryScreen';
+import OnGoingOrderForUserScreen from './src/Screens/OnGoingOrderForUserScreen';
+import WaitingForPharmApproveScreen from './src/Screens/WaitingForPharmApproveScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -94,6 +97,8 @@ const switchNavigator=createSwitchNavigator({
     EditUser:EditUserScreen,
     ReportUser:ReportUserScreen,
     ReportSummary:ReportSummaryScreen,
+    History:HistoryScreen,
+    OnGoingOrderForUser:OnGoingOrderForUserScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,
@@ -141,6 +146,7 @@ const switchNavigator=createSwitchNavigator({
     ReadyOrdersForDel:ReadyOrdersForDelScreen,
     ShowOrder:ShowOrderScreen,
     OnGoingOrderDelivery:OnGoingOrderDeliveryScreen,
+    WaitingForPharmApprove:WaitingForPharmApproveScreen,
 
   }),
   

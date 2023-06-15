@@ -13,7 +13,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 const AccountScreen=(props)=>{
     const {signout,getPharms} = useContext(AuthContext);
     const user=props.navigation.state.params.user;
-        const pharm=props.navigation.state.params.pharm1;
+    const pharm=props.navigation.state.params.pharm1;
 
     //const u=props.navigation.navigate.params;
     //console.log('the u is:',u);
@@ -43,10 +43,10 @@ const AccountScreen=(props)=>{
        <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportUser',{user})} />
 
            <Pressable style={styles.IconBehave}>
-                    <MaterialIcons name="delivery-dining" size={24} color="black" />
+                    <MaterialIcons name="delivery-dining" size={24} color="black" onPress={()=>OnGoingOrderForUser(user,props)} />
           </Pressable>
              <Pressable style={styles.IconBehave}>
-                <MaterialIcons name="history" size={24} color="black" />
+                <MaterialIcons name="history" size={24} color="black" onPress={()=>GoToHistory(user,props)} />
           </Pressable>
            <Pressable style={styles.IconBehave}>
                  <Icon name="user" color={'black'} size={20} onPress={()=>props.navigation.navigate('EditUser',{user:user})} /> 
@@ -74,6 +74,29 @@ const GetUpdatedUser=async(user,props)=>{
   let u=user=response.data.user;
   console.log("u in Account screen is:===========================\n",u,":===========================\n");
   props.navigation.navigate('Cart',{user:user})
+
+}
+
+const GoToHistory=async(user,props)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetOrdersForUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  let u=user=response.data.user;
+  let orders = response.data.orders;
+  props.navigation.navigate('History',{user:u,orders:orders});
+
+}
+const GoToOnGoingOrder=async(user,props)=>{
+  //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
+  const response = await Server.post('/GetOnGoindOrdersForUser', {
+    user
+  });
+  //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
+  let u=user=response.data.user;
+  let orders = response.data.orders;
+  props.navigation.navigate('OnGoingOrderForUser',{user:u,orders:orders});
 
 }
 

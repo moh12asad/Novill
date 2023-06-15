@@ -90,8 +90,12 @@ const GoToOrder=async(del,props)=>{
   const order=response.data.order;
   const d = response.data.del;
   const pharm = response.data.pharm;
+  if (order.status=="Delivery is coming"){
+    props.navigation.navigate("WaitingForPharmApprove",{del:d,order:order,pharm:pharm})
+  }
+  else{
   props.navigation.navigate('OnGoingOrderDelivery',{del:d,order:order,pharm:pharm});
-
+  }
 }
 
 const styles=StyleSheet.create({

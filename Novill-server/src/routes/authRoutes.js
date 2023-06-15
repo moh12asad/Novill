@@ -486,7 +486,6 @@ router.post('/AddToCart',async(req,res)=>{
     const imageUri=req.body.imageUri;
     const per=prod.prodname;
     console.log("\n------------\n",cart);
-  //console.log(cart);
   console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
     await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
@@ -697,14 +696,6 @@ router.post('/UpdateAmount', async (req, res) => {
     pharm1.products.splice(i, 1);
     pharm1.products.push(prod1);
     pharm1.save();
-    /*pharm1.products[i].amount=amount;
-    console.log(pharm1.products[i].amount);
-    pharm1.save();*/
-    //pharm1.products[i]=prod1;
-    //pharm1.save();
-    //product.amount=50;
-
-    //console.log(product);
     res.status(200).send({ message: 'The order created successfully', pharm: pharm1 });
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while deleting the product' });
@@ -833,5 +824,31 @@ router.post('/OrderPassedToCustomer', async (req, res) => {
   res.status(200).send({ message: 'The order passed successfully',del:d1});
 });
 
+router.post('/GetOrdersForUser', async (req, res) => {
+  const {user}=req.body;
+  const orders = await Order.find({});
+  let os=[];
+  orders.forEach(element => {
+    if (element.user._id==user._id && element.status =='Done'){
+      os.push(element);
+    }
+  });
+  console.log(os);
+  const u = await User.findOne({_id:user._id})
+  res.status(200).send({message:'The order created successfully',orders:os,user:u});
+});
+router.post('/GetOnGoindOrdersForUser', async (req, res) => {
+  const {user}=req.body;
+  const orders = await Order.find({});
+  let os=[];
+  orders.forEach(element => {
+    if (element.user._id==user._id && element.status !='Done'){
+      os.push(element);
+    }
+  });
+  console.log(os);
+  const u = await User.findOne({_id:user._id})
+  res.status(200).send({message:'The order created successfully',orders:os,user:u});
+});
 
 module.exports = router;

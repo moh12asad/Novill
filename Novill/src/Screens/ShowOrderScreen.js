@@ -66,7 +66,7 @@ const DelIsComing=async(order,del,props)=>{
     const pname = pharm1.pname;
     const location  = pharm1.location;
     Alert.alert('Go to Pharm');
-    props.navigation.navigate('OnGoingOrderDelivery',{order:order1,del:del1,pharm:pharm1});
+    props.navigation.navigate('WaitingForPharmApprove',{order:order1,del:del1,pharm:pharm1});
 
 }
 

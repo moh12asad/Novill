@@ -16,6 +16,7 @@ const PharmStoreScreen=(props)=>{
     const [loaded,updateloaded] =useState(false)
     //const [productsCollection,setproductsCollection]=useState();
     const pharm=props.navigation.state.params.pharm;
+    const [searchQuery, setSearchQuery] = useState('');
     console.log("HIHIHIHIHIHIHI",pharm);
     const user = props.navigation.state.params.user;
     //let pharmsCollection=[];
@@ -51,6 +52,9 @@ const PharmStoreScreen=(props)=>{
     
         })()
     },[loaded] )
+    const filteredProducts = productsCollection.filter((item) =>
+    item.prodname.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
     return(
 <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width: '100%', height: '110%' }}>
@@ -105,21 +109,25 @@ const PharmStoreScreen=(props)=>{
     paddingHorizontal: 10,}}>
     <Icon name="search" style={{fontSize:20,color:'#000',opacity:0.8,marginRight: 10,
 }} /> 
-      <TextInput placeholder='Search...'
-        
-        style={{fontSize: 18,
+<TextInput
+  placeholder="Search..."
+  style={{
+    fontSize: 18,
     fontWeight: 'bold',
     textShadowOffset: { width: 2, height: 2 },
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowRadius: 2,}}
-      />
+    textShadowRadius: 2,
+  }}
+  value={searchQuery}
+  onChangeText={setSearchQuery}
+/>
   </View>
 
      
 
- 
+    
     <FlatList
-      data={productsCollection}
+      data={filteredProducts}
        style={{ top:25,left:15}}
       renderItem={({ item }) => {
         return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;

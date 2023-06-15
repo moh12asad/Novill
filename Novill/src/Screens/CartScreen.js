@@ -58,7 +58,7 @@ const CartScreen=(props)=>{
       style={{ top:25,left:15}}
       
       renderItem={({ item }) => {
-        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>console.log('Product has been clicked')}/>;
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>console.log("Product has been clicked")}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View style={styles.summaryContainer}>

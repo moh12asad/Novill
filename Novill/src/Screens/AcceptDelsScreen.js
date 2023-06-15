@@ -11,19 +11,19 @@ const AcceptDelsScreen=()=>{
     const [email,setEmail] = useState(''); 
     const [location,setLocation]=useState('');
     return (
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
         <NavigationEvents onWillFocus={clearErrorMessage}/>
         <View style={styles.container}>
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
+        <View style={{height:350,width:460,
                      borderTopLeftRadius:130,
-                     paddingTop:75,
+                     paddingTop:200,
                      alignItems:'center',
                      right:30
                      }}>
-        <Text >Accept Delivery Employee</Text>
+        <Text  style={{fontSize:20,fontWeight:'bold',bottom:10}}>Accept Delivery Employee</Text>
 
         <TextInput
             placeholder='Email' 

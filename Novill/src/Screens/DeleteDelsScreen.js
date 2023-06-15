@@ -10,19 +10,19 @@ const DeleteDelsScreen=()=>{
     const {state,deletedel,clearErrorMessage}=useContext(AuthContext);
     const [email,setEmail] = useState(''); 
     return (
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
         <NavigationEvents onWillFocus={clearErrorMessage}/>
         <View style={styles.container}>
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
+        <View style={{height:350,width:460,
                      borderTopLeftRadius:130,
-                     paddingTop:75,
+                     paddingTop:195,
                      alignItems:'center',
                      right:30
                      }}>
-        <Text >Delete Delivery Employee</Text>
+        <Text style={{fontSize:25,marginBottom:20,fontWeight:'bold'}} >Delete Delivery Employee</Text>
 
         <TextInput
             placeholder='Email' 
@@ -37,7 +37,7 @@ const DeleteDelsScreen=()=>{
                paddingHorizontal:70,
                width:'65%',
                backgroundColor:'rgb(220,220,220)',
-              marginBottom:20  
+              marginBottom:-10  
             }}
         />
 

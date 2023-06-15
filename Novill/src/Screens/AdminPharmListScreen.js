@@ -54,7 +54,7 @@ const AdminPharmListScreen=(props)=>{
       data={pharmsCollection}
      style={styles.container}
       renderItem={({ item }) => {
-        return <PharmListComp style={styles.item} name={item.pname} location={item.location} onPress={()=>productlistforuser({item})}/>;
+        return <PharmListComp style={styles.item} name={item.pname} location={item.location} image={item.image} onPress={()=>productlistforuser({item})}/>;
       }}
     /> 
             </View>
@@ -62,7 +62,7 @@ const AdminPharmListScreen=(props)=>{
             <TouchableOpacity style={{backgroundColor:'#6ba93a',
         borderRadius:150 ,
         alignItems: 'center',
-        width:180,
+        width:170,
               left:200,
         top:20,
         marginHorizontal:20,
@@ -84,8 +84,8 @@ const AdminPharmListScreen=(props)=>{
         <TouchableOpacity style={{ backgroundColor:'#6ba93a',
         borderRadius:150 ,
         alignItems: 'center',
-        width:180,
-        top:-20,
+        width:170,
+        top:-31,
         left:-20,
         marginHorizontal:20,
         paddingVertical:5,
@@ -110,11 +110,11 @@ const styles=StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
  
-      width: '100%',
+      width: '110%',
       height: '75%',
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
- 
+ left:10,
     marginTop:-15
   },
     item: {

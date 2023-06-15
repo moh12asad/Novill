@@ -10,19 +10,20 @@ const DeleteUsersScreen=()=>{
     const {state,deleteuser,clearErrorMessage}=useContext(AuthContext);
     const [email,setEmail] = useState(''); 
     return (
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
         <NavigationEvents onWillFocus={clearErrorMessage}/>
         <View style={styles.container}>
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
-                     borderTopLeftRadius:130,
-                     paddingTop:75,
+        <View style={{height:250,width:450,
+                     paddingTop:200,
                      alignItems:'center',
                      right:30
                      }}>
-        <Text >Delete User</Text>
+        <Text  style={{fontSize:20,
+        fontWeight:'bold',
+        top:-20}}>Delete User</Text>
 
         <TextInput
             placeholder='Email' 
@@ -45,7 +46,7 @@ const DeleteUsersScreen=()=>{
         <TouchableOpacity style={{
         backgroundColor:'#629630',
         padding:50,
-        marginTop:30,
+       
         borderRadius:100 ,
           alignItems: 'center',
         paddingVertical:10,

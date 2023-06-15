@@ -6,8 +6,11 @@ const ShowPrescriptionScreen=(props)=>{
     const image = props.navigation.state.params.image;
     const prod = props.navigation.state.params.prod;
     return (
-        <View>
-             <Text>Product Name: {prod.prodname}</Text>
+        <View style={styles.container}>
+<View style={{    justifyContent: 'flex-start',bottom:210
+}}>
+             <Text style={styles.title}>Product Name: {prod.prodname}</Text>
+             </View>
       <Image source={{ uri: image }} style={styles.image} />
 
         </View>
@@ -17,10 +20,22 @@ const ShowPrescriptionScreen=(props)=>{
 }
 
 const styles = StyleSheet.create({
-    image: {
-      width: 200,
-      height: 200,
-    },
+    container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+justifyContent:'flex-end'
+  },
+  image: {
+    width: 100,
+    height:  100, // Subtracting 100 to leave space for the title
+    resizeMode: 'contain',
+  },
   });
 
 export default ShowPrescriptionScreen;

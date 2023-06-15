@@ -3,7 +3,8 @@ import { TouchableOpacity, Text, StyleSheet,View } from 'react-native';
 
 const CancelButton = ({ title, onPress }) => {
   return (
-    <View>
+    <View style={styles.views}>
+
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -12,6 +13,12 @@ const CancelButton = ({ title, onPress }) => {
 };
 
 const styles = StyleSheet.create({
+  views:{ 
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 20,
+    right:40
+},
   button: {
     
     backgroundColor: '#fff',
@@ -25,6 +32,7 @@ const styles = StyleSheet.create({
      width:'80%',
 left:45,
 bottom:-50,
+    justifyContent: 'flex-end',
 
     borderColor: 'red',
     alignItems:'center',

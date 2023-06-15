@@ -203,7 +203,7 @@ const ProductScreen = (props) => {
         <Text style={styles.dect}>Description: {prod.desc}</Text>
 {prod.prescription && ( 
           <TouchableOpacity style={styles.uploadButton} onPress={handleImageUpload}>
-            <Text style={styles.buttonText}>Upload Image</Text>
+            <Text style={styles.buttonText}>Raising a medication prescription</Text>
           </TouchableOpacity>
         )}
      
@@ -284,14 +284,19 @@ Button:{
         marginVertical:5
 },
 uploadButton: {
-  alignItems: 'center',
-  backgroundColor: 'blue',
-  padding: 10,
-  margin: 10,
-  borderRadius: 5,
+backgroundColor: '#fff',
+    borderRadius: 100,
+    alignItems: 'center',
+   
+    left: 40,
+    width: 250,
+    height: 45,
+         paddingVertical:10,
+         bottom:-10
+
 },
 buttonText: {
-  color: 'white',
+  color: 'black',
   fontSize: 16,
 },
 });

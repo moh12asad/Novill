@@ -222,71 +222,7 @@ const ProductScreen = (props) => {
     </View>
   );
 };
-/*
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: -50
-  },
-  title: {
-    fontSize: 32,
-    marginTop: 60,
-    marginLeft: 45,
-    fontWeight: 'bold',
-    marginHorizontal: 10
-  },
-  subtitle: {
-    fontSize: 20,
-    color: "#474747",
-    marginLeft: 45
-  },
-  img: {
-    alignSelf: "center",
-    borderTopRightRadius: 80,
-    borderBottomLeftRadius: 80,
-    height: 350,
-    width: 350,
-  },
-  item: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#fff',
-    fontSize: 20,
-  },
-  cartContainer: {
-    position: 'absolute',
-    bottom: 60,
-    right: 20,
-  },
-  cartImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-  uploadButton: {
-    alignItems: 'center',
-    backgroundColor: 'blue',
-    padding: 10,
-    margin: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-  },
-  Button: {
-    padding: 50,
-    marginTop: 20,
-    borderRadius: 100,
-    alignItems: 'center',
-    paddingVertical: 10,
-    marginVertical: 5
-  }
-});
-*/
+
 const styles=StyleSheet.create({
 
 

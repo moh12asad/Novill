@@ -151,15 +151,18 @@ const SignupScreen=({navigation})=>{
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
             <TouchableOpacity title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype,phone})}
             style={{
-        backgroundColor:'#629630',
-        padding:50,
-        marginTop:20,
-        borderRadius:170,
-          alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:20,
-        width:'50%',
-        left:85
+       backgroundColor: '#fff',
+
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+bottom:-20,
+    width:'50%',
+left:80,
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2
             }}>
             <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Signup</Text> 
             </TouchableOpacity> 

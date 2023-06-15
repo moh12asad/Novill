@@ -45,7 +45,7 @@ const SignupPharmScreen=({navigation})=>{
       
    
     <>
-    <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
+    <ImageBackground source={require("../Screens/images/back1.jpg")} style={{ width:'100%', height:'100%' }}>        
         <View style={styles.container}>
             <NavigationEvents onWillFocus={clearErrorMessage}/>
             <Spacer/>
@@ -250,23 +250,28 @@ const SignupPharmScreen=({navigation})=>{
           
             }}
             />
-      <Button title="Upload Image" onPress={handleImageUpload} />
+          
+      <Button buttonStyle={styles.uploadButton} title="Upload Pharmacy license"   color="black"  onPress={handleImageUpload} />
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
           
 
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
+        
             <TouchableOpacity
              style={{
-                backgroundColor:'#629630',
-                 padding:50,
-                marginTop:20,
-                borderRadius:170,
-                alignItems: 'center',
-                paddingVertical:10,
-                marginVertical:20,
-                width:'50%',
-                left:85
+          backgroundColor: '#fff',
+
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+bottom:-10,
+    width:'50%',
+left:80,
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2
             }}
              title="Signup" onPress={()=>signupPharm({email,password,Confirmpassword,Fname,Lname,AdminAccept,location,pname,phone,utype,desc,imageUri})}>
              
@@ -282,7 +287,8 @@ const SignupPharmScreen=({navigation})=>{
             marginVertical:-20,
             paddingVertical:0,
             left:50,
-            marginBottom:110
+            marginBottom:110,
+            top:10
                 }}>Already have an account? Sign in here</Text>
             </TouchableOpacity>
         </View>
@@ -329,6 +335,30 @@ const styles=StyleSheet.create({
         fontSize:16,
         color:'red'
     },
+    but:{
+       backgroundColor: '#EEE3BA',
+    borderWidth: 0,
+    marginLeft: 60,
+    padding: 0,
+    width:250,
+     marginVertical:10,
+    paddingVertical:5,
+    borderRadius:120,
+    bottom:10
+    },
+     uploadButton: {
+     backgroundColor: 'green',
+    borderWidth: 0,
+    marginLeft: 50,
+    padding: 0,
+    width:'70%',
+     marginVertical:10,
+    paddingVertical:5,
+    borderRadius:120,
+    bottom:1,
+    
+
+  },
     boto:{
          backgroundColor:'#629630',
         padding:50,

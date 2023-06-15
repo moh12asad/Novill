@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet,View } from 'react-native';
 
-const GreenButton = ({ title, onPress }) => {
+const OrderProcessButton = ({ title, onPress }) => {
   return (
-    <View>
+    <View style={styles.view}>
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -13,21 +13,24 @@ const GreenButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-   backgroundColor: '#fff',
+   backgroundColor: '#FEF9E7',
     borderRadius: 100,
     alignItems: 'center',
    
-    left: 220,
+
     width: 200,
-    height: 45,
+right:25,
          paddingVertical:10,
-         bottom:-50
   },
   text: {
     color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
   },
+  view:{
+    alignItems:'flex-end',
+    position:'relative'
+  }
 });
 
-export default GreenButton;
+export default OrderProcessButton;

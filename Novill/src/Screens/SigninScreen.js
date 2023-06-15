@@ -11,7 +11,7 @@ const SigninScreen=({navigation})=>{
     const [email,setEmail]=useState('');
     const [password,setPassword] = useState('');
     return (            
-    <ImageBackground source={require("../Screens/images/photo.jpg")} style={{ width:'100%', height:'100%' }} >
+    <ImageBackground source={require("../Screens/images/a1.jpg")} style={{ width:'100%', height:'100%' }} >
 
         <View style={styles.container}>
 
@@ -83,13 +83,19 @@ const SigninScreen=({navigation})=>{
         />
         {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
         <TouchableOpacity style={{
-        backgroundColor:'#629630',
-        padding:50,
-        marginTop:30,
-        borderRadius:100 ,
-          alignItems: 'center',
-        paddingVertical:10,
-        marginVertical:5
+        backgroundColor: '#fff',
+
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+     padding:40,
+
+    width:'50%',
+
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2
     }} title="Sign In" onPress={()=>signin({email,password})} >
         <Text style={{color:'black',fontWeight:'bold' ,fontSize:16}}>Login</Text>
      </TouchableOpacity>

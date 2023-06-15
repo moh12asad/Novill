@@ -9,7 +9,7 @@ import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-
+import OrderProcessButton from './Components/OrderProcessButton'
 const ProductForOrderProcessScreen=(props)=>{
     const pharm=props.navigation.state.params.pharm1;
     const prod=props.navigation.state.params.prod;
@@ -45,22 +45,27 @@ const ProductForOrderProcessScreen=(props)=>{
     <View style={styles.container}>
   <SafeAreaView style={{ height: '80%' }}>
     <Spacer />
-    <View>
+  <View style={{backgroundColor:'#fff',height:350,width:460,
+                    borderBottomRightRadius:120,bottom:80,
+                    borderBottomLeftRadius:120
+                     }}>
     <Image source={{ uri: prod.image }} style={styles.img} />
+    </View>
+     <View style={{bottom:50,height:260,width:430,}}>
  <Text style={styles.title}>{prod.prodname}</Text>
 <Text style={styles.subtitle}>Price: {prod.price + "$"}</Text>
 <Text style={styles.subtitle}>Amount: {prod.amount}</Text>
         <Text style={styles.subtitle}>Description: {prod.desc}</Text>
         {prod.prescription&&
-          <GreenButton title="Show prescription" onPress={()=>ShowPrescription(prod,pharm,order,props)}></GreenButton>
+          <OrderProcessButton title="Show prescription" onPress={()=>ShowPrescription(prod,pharm,order,props)}></OrderProcessButton>
         }
         
-    </View>
+ 
    
-        <View>
+     
         <Spacer/>
-        <GreenButton title="Add to order" onPress={()=>AddTovproducts(prod,pharm,order)}></GreenButton>
-        </View>
+        <OrderProcessButton title="Add to order" onPress={()=>AddTovproducts(prod,pharm,order)}></OrderProcessButton>
+       </View>
   </SafeAreaView>
       </View>
   );
@@ -80,22 +85,21 @@ const styles=StyleSheet.create({
 
   container: {
 flex: 1,
-backgroundColor: '#fff',
+backgroundColor:'#F3EAC7',
 justifyContent:'center',
 alignItems:'center',
 marginTop:-50
 },
 title:{
 fontSize:32,
-marginTop:60,
 marginLeft:45,
 fontWeight:'bold',
-marginHorizontal:10
+bottom:10
 },
 subtitle:{
-fontSize:20,
+ fontSize:20,
 color:"#474747",
-marginLeft:45
+marginLeft:45,
 
 
 },
@@ -103,8 +107,8 @@ img:{
 alignSelf:"center",
 borderTopRightRadius:80,
 borderBottomLeftRadius:80,
-height:350,
-width:350,
+height:310,
+width:320,bottom:-20
 
 },
 item: {

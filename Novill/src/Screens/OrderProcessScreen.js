@@ -74,9 +74,9 @@ const OrderProcessScreen=(props)=>{
     style={{ width: '20%',
     height: '150%',marginTop:30}}
   />
-  <Text style={styles.text1}>My Cart</Text>
+  <Text style={styles.text1}>New Order in processing</Text>
 </View>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>{order.user.Fname} {order.user.Lname}</Text>
+    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top:20 }}>{order.user.Fname} {order.user.Lname}</Text>
     <Spacer />
     <FlatList
   data={orderdproducts}
@@ -111,7 +111,7 @@ const OrderProcessScreen=(props)=>{
   }}
 />
 
-<View style={{bottom:-60,}}>
+<View style={{bottom:-80,}}>
                             <TextInput
                 placeholder={"Notes"}
                 value={desc}
@@ -121,10 +121,12 @@ const OrderProcessScreen=(props)=>{
                      style={{ 
           
                         height: 70,
-                         margin: 12,
+                         margin: -40,
                         borderWidth: 1,
                         padding: 15,
-                        bottom:-25
+                        bottom:25,
+                        left:55,
+                        width:'90%'
                  
                         
               
@@ -218,7 +220,7 @@ item: {
   },
  
   text1: {
-    marginLeft: 10,
+   
     fontSize: 25,
     marginTop:30,
     fontWeight: 'bold',

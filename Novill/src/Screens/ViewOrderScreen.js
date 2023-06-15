@@ -9,7 +9,8 @@ import ProductListComp from './Components/ProductListComp';
 import StartButton from './Components/StartButton';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
-import CancelButton from './Components/CancelButton'
+import CancelButton from './Components/CancelButton';
+import PassDeliveryButton from './Components/PassDeliveryButton';
 import RedButton from './Components/RedButton';
 import BlueButton from './Components/BlueButton';
 const ViewOrderScreen=(props)=>{
@@ -48,11 +49,12 @@ const ViewOrderScreen=(props)=>{
         {order.status === 'New' ? (
           <StartButton title="Start" onPress={() => {newStatus='Processing'; changestatus({order,newStatus})}} />
         ) : order.status === 'Ready' ? (
-          <CancelButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
+          <PassDeliveryButton title="Ready, notify the delivery" onPress={() => console.log('WaitingForDelivery')} />
         ) : (
-          <View>
+          <View style={styles.views}>
+                    <PassDeliveryButton title="Pass to delivery" onPress={() => PassTheOrderToDelivery(order,props)}/>
+
           <CancelButton title="Cancel" onPress={() => console.log('Rejected')} />
-          <CancelButton title="Pass to delivery" onPress={() => PassTheOrderToDelivery(order,props)}/>
           </View>
         )}
       </View>
@@ -101,7 +103,10 @@ cartImage: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+views:{
+  bottom:-50,
+  justifyContent:'space-between'
+},
 text:{
  fontSize: 20,
     color: '#32322F',

@@ -139,7 +139,9 @@ const OrderProcessScreen=(props)=>{
         <Text style={styles.text}>Customer Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
         <Text style={styles.text}>The total price: {order.prise}</Text>
         <Text style={styles.text}>Current ready products price: {price}</Text>
-          <PassDeliveryButton title="Ready, notify the delivery" onPress={() => OrderIsReady(order,desc)} />
+        <View>
+            <PassDeliveryButton title="Ready, notify the delivery" onPress={() => OrderIsReady(order,desc)} />
+        </View>
           <CancelButton title="Reject" onPress={() => console.log('Rejected')} />
             </View>
       </View>

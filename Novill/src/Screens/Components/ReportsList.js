@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
     width: 370, // Adjust the width value to your desired width
-    height:120, // Adjust the height value to your desired height
+    height:80, // Adjust the height value to your desired height
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,

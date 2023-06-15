@@ -18,7 +18,7 @@ const PharmListComp = ({ name, location,image,onPress }) => {
 };
 
 const styles = StyleSheet.create({
- container: {
+     container: {
     backgroundColor: '#fff',
     borderRadius: 10,
     marginBottom: 5,
@@ -27,47 +27,60 @@ const styles = StyleSheet.create({
       width: 5,
       height: 2,
     },
-    width: 170,
-    height: 160,
+    width: 370, // Adjust the width value to your desired width
+    height:120, // Adjust the height value to your desired height
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    justifyContent: 'space-around',
-    marginHorizontal: 10,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  avatarContainer: {
-    backgroundColor: '#D9D9D9',
-    borderRadius: 100,
-    height: 65,
-    width: 65,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-    marginLeft: 10,
-  },
-  image: {
-    width: 59,
-    height: 59,
-    borderRadius: 35,
-  },
-  textContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginLeft: 10,
-  },
+
+    flexDirection: 'row', // Align the content and avatarContainer horizontally
+    alignItems: 'center', // Center align vertically
+},
+
   name: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 5,
-    marginTop:49
-  },
-  location: {
-    fontSize: 18,
-    color: '#666',
-        marginTop:10
 
   },
+  price: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom:5,
+   
+   
+  },
+  views:{
+alignItems:'flex-start',
+marginLeft:5
+  },
+  img:{
+    width:55,
+    height:55
+  },
+  imageContainer: {
+    width: 80, // Adjust the width value to your desired width
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 55,
+    height: 55,
+    borderRadius: 27.5, // Make the image circular
+  },
+  avatarContainer:{
+    backgroundColor:'#D9D9D9',
+    borderRadius:100,
+    height:60,
+    width:60,
+    justifyContent:'center',
+    alignItems:'center',
+    marginLeft: 'auto', // Align the avatarContainer to the right side
+    marginRight: 10,
+ 
+  },
+  location:{  fontSize: 18,
+    color: '#666',
+    marginBottom:5,}
 });
 export default PharmListComp;

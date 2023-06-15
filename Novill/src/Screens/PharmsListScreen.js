@@ -1,12 +1,13 @@
 import React,{useContext,useEffect, useState} from 'react';
 import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
-import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image} from 'react-native';
+import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,TextInput,ImageBackground,Image} from 'react-native';
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import ProductListComp from './Components/ProductListComp'
 const PharmsListScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
@@ -50,10 +51,34 @@ if (isLoading) {
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Pharm stores</Text>
+
     <Spacer />
+    <View style={{ flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginTop:10}}>
+    <Icon name="search" style={{fontSize:20,color:'#000',opacity:0.8,marginRight: 10,
+}} /> 
+<TextInput
+  placeholder="Search..."
+  style={{
+    fontSize: 18,
+    fontWeight: 'bold',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowRadius: 2,
+  }}
+ 
+/>
+  </View>
     <FlatList
       data={pharmsCollection}
-      numColumns={2}
+ style={{ top:25,left:15}}
   
       renderItem={({ item }) => {
         return <PharmListComp style={styles.item} name={item.pname} location={item.location} image={item.image} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;

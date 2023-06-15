@@ -22,9 +22,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
      padding:40,
 
-    width:'40%',
+     width:'80%',
+left:45,
+bottom:-50,
 
-    borderColor: 'green',
+    borderColor: 'red',
     alignItems:'center',
      borderWidth: 2
   },

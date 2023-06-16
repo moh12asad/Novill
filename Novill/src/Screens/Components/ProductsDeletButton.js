@@ -11,15 +11,16 @@ const ProductsDeletButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-   backgroundColor: '#AACB63',
+   backgroundColor: '#fff',
     borderWidth: 0,
     marginLeft: 50,
     padding: 0,
-    width:290,
+    width:180,
      marginVertical:10,
     paddingVertical:5,
     borderRadius:120,
-    alignItems:'center'
+    alignItems:'center',
+    right:10
   
   },
   text: {

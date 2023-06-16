@@ -67,6 +67,8 @@ import UpdateAmountScreen from './src/Screens/UpdateAmountScreen';
 import HistoryScreen from './src/Screens/HistoryScreen';
 import OnGoingOrderForUserScreen from './src/Screens/OnGoingOrderForUserScreen';
 import WaitingForPharmApproveScreen from './src/Screens/WaitingForPharmApproveScreen';
+import PayWithCreditScreen from './src/Screens/PayWithCreditScreen';
+import PayWithCreditCardScreen from './src/Screens/PayWithCreditCardScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -99,6 +101,8 @@ const switchNavigator=createSwitchNavigator({
     ReportSummary:ReportSummaryScreen,
     History:HistoryScreen,
     OnGoingOrderForUser:OnGoingOrderForUserScreen,
+    PayWithCredit:PayWithCreditScreen,
+    PayWithCreditCard:PayWithCreditCardScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,

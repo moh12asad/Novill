@@ -463,6 +463,24 @@ const order= (dispatch) =>{
         
     }
 }
+const ordercredit= (dispatch) =>{
+    return async ({cart,address,totalAmount,totalPrice,user,pharm})=>{
+        try{
+            console.log(cart,address,totalAmount,totalPrice);
+            console.log("\n=================================The cart images  in authcontex is:\n",cart.images,"\n=================================\n");
+            const response = await server.post('/CreateOrderCredit',{cart,address,totalAmount,totalPrice,user,pharm});
+            //const user=cart.user
+            navigate('Account',{user});
+        }catch(err){
+            console.log(err);
+            dispatch({type:'add_error',
+            payload:'Something went wrong with sign up'
+        });
+            //console.log(err.message);
+        }
+        
+    }
+}
 const getordersforpharm=(dispatch)=>{
     return async ({pharm})=>{
         console.log('AuthContex',pharm);
@@ -579,6 +597,6 @@ const deleteproduct=(dispatch)=>{
 
 export const {Provider,Context}=CreateDataContext(
     authReducer,
-    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage,TestingDocument,deleteproduct},
+    {signin,signup,signout,clearErrorMessage,editdel,reportuser,reportpharm,reportdel,signupPharm,signinPharm,editpharm,edituser,getPharms,signinAdmin,signupDelivery,signinDelivery,acceptpharm,acceptdel,deleteuser,deletepharm,deletedel,addproduct,productlistforuser,AddToCart,setAddress,order,getordersforpharm,changestatus,productinorder,TestingImage,TestingDocument,deleteproduct,ordercredit},
     {token:null, errorMessage:''}
 );

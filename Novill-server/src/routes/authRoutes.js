@@ -555,6 +555,36 @@ router.post('/CreateOrderCash',async(req,res)=>{
   res.status(200).send({message:'The order created successfully'});
 });
 
+router.post('/CreateOrderCredit',async(req,res)=>{
+  const {cart,address,totalAmount,totalPrice,user,pharm} = req.body;
+  //const user = cart.user;
+  const products = cart.products;
+  const images = cart.images;
+  console.log("\n=================================The cart images is:\n",cart,"\n=================================\n");
+  const city = pharm.location;
+  //const pharm = cart.Pharm;
+  const payMethod='credit card';
+  const prise=totalPrice;
+  const amount=totalAmount;
+  const pname=pharm.pname;
+  const status='New';
+  console.log('---------------CreateOrder------------');
+  console.log(cart,address,totalAmount,totalPrice);
+  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city});
+  order.save();
+  console.log("\n=================================The order images is:\n",order.images,"\n=================================\n");
+  let cart1 = await Cart.findOne({_id:cart._id});
+  cart1.products=[];
+  cart1.images=[];
+  cart1.pname="";
+  cart1.save();
+  let u = await User.findOne({_id:user._id});
+  u.cart.products=[];
+  await User.updateOne({_id:u._id},{cart:cart1});
+  //await Cart.deleteOne({ _id: cart._id });
+  res.status(200).send({message:'The order created successfully'});
+});
+
 router.get('/GetOrdersForPharm', async (req, res) => {
   const {pharm}=req.query;
   console.log(pharm);

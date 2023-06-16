@@ -44,7 +44,7 @@ const PayMethodScreen=(props)=>{
        
     }}
       
-             onPress={()=>props.navigation.navigate('PayWithCredit',{cart:cart,address:address})}>
+             onPress={()=>props.navigation.navigate('PayWithCredit',{cart:cart,address:address,user:user,pharm})}>
                 <Text
                 style={{ color:'#000',fontSize:12,
    fontWeight:"bold"}}

@@ -13,14 +13,14 @@ const ReportDeliveryScreen=(props)=>{
     const [title,setTitle]=useState('');
     const [text,setText] = useState('');
     return (            
-    <ImageBackground source={require("../Screens/images/photo.jpg")} style={{ width:'100%', height:'100%' }} >
+    <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
 
         <View style={styles.container}>
 
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
+        <View style={{height:350,width:460,
                      borderTopLeftRadius:130,
                      paddingTop:75,
                      alignItems:'center',
@@ -31,10 +31,11 @@ const ReportDeliveryScreen=(props)=>{
 
                     
         <Text style={{ 
-            color:'#629630' ,
-             fontSize: 40,
+            color:'#000' ,
+             fontSize: 30,
               fontWeight:'bold'
               ,marginVertical:5,
+              marginTop:25
               
              }}>Report to admin</Text>
 

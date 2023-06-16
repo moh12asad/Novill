@@ -21,7 +21,7 @@ const OrderProcessForUserScreen=(props)=>{
     return(
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for: {user.Lname}</Text>
+    <Text style={{ fontSize: 30, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for: {user.Fname} {user.Lname}</Text>
     <Spacer />
     <Text style={styles.subtitle}>Ordered from: {pharm.pname}, {pharm.location}</Text>
     <Text style={styles.subtitle}>Order to address: {address.city} {address.street} {address.building} {address.floor} {address.apartnum}</Text>
@@ -57,7 +57,7 @@ const styles=StyleSheet.create({
 subtitle:{
 fontSize:20,
 color:"#474747",
-marginLeft:45
+marginLeft:20
 },
 item: {
   marginTop: 20,

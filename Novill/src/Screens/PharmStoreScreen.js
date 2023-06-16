@@ -128,7 +128,7 @@ const PharmStoreScreen=(props)=>{
     
     <FlatList
       data={filteredProducts}
-       style={{ top:25,left:15}}
+       style={{ left:15}}
       renderItem={({ item }) => {
         return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>props.navigation.navigate('Product',{pharm1:pharm,prod:item,cart:cart,user:user})} />;
                 

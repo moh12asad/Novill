@@ -141,15 +141,22 @@ Button:{
         marginVertical:5
 },
 uploadButton: {
-backgroundColor: '#fff',
-    borderRadius: 100,
-    alignItems: 'center',
-   
-    left: 40,
-    width: 250,
-    height: 45,
-         paddingVertical:10,
-         bottom:-10
+  
+     backgroundColor: '#fff',
+ 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+    borderWidth: 1,
+
+     width:'70%',
+left:35,
+bottom:-15,
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2,
+
+       justifyContent: 'flex-end', 
 
 },
 buttonText: {

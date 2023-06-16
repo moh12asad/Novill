@@ -45,7 +45,7 @@ const ViewOrderScreen=(props)=>{
           <View>
         <Text style={styles.text}>products: {order.amount}</Text>
         <Text style={styles.text}>Address: {order.address.city} {order.address.street}, {order.address.building}</Text>
-        <Text style={styles.text}>The total is: {order.prise}</Text>
+        <Text style={styles.text}>The total is: {order.prise + '$'}</Text>
         {order.status === 'New' ? (
           <StartButton title="Start" onPress={() => {newStatus='Processing'; changestatus({order,newStatus})}} />
         ) : order.status === 'Ready' ? (

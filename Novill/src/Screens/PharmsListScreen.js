@@ -84,7 +84,7 @@ if (isLoading) {
   </View>
     <FlatList
       data={pharmsCollection.filter(item => item.pname.includes(searchQuery))}
- style={{ top:25,left:15}}
+ style={{ top:25,left:25}}
   
       renderItem={({ item }) => {
         return <PharmListComp style={styles.item} name={item.pname} location={item.location} image={item.image} onPress={()=>props.navigation.navigate('PharmStore',{pharm:item,user:user})}/>;

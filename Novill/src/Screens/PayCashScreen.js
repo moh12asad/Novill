@@ -57,7 +57,7 @@ const PayCashScreen=(props)=>{
       data={productsToOrder}
       style={{ height: '100%' }}
       renderItem={({ item }) => {
-        return <ProductListComp style={styles.item} name={item.prodname} location={item.price} image={item.image}  onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm})}/>;
+        return <ProductListComp style={styles.item} name={item.prodname} price={item.price +'$'} image={item.image}  onPress={()=>props.navigation.navigate('PharmProduct',{item,pharm})}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View style={styles.summaryContainer}>
@@ -106,6 +106,7 @@ const styles=StyleSheet.create({
 subtitle:{
 fontSize:20,
 color:"#000",
+left:20
 },
 item: {
   marginTop: 20,

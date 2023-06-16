@@ -5,6 +5,7 @@ import { View, Button, StyleSheet, Text, FlatList, ImageBackground, TouchableOpa
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
+import WaitingPharmListComp from './Components/WaitingPharmListComp';
 
 const WaitingPharmsScreen = (props) => {
   const [loaded, updateloaded] = useState(false);
@@ -32,13 +33,9 @@ const WaitingPharmsScreen = (props) => {
         <FlatList
           style={styles.container}
           data={wpharmsCollection}
-          renderItem={({ item }) => (
-            <View style={styles.itemContainer}>
-              <Text style={styles.name}>{item.pname}</Text>
-              <Text style={styles.email}>{item.location}</Text>
-              <View style={styles.separator} />
-            </View>
-          )}
+          renderItem={({ item }) => {
+        return <WaitingPharmListComp style={styles.item} name={item.pname} location={item.location} phone={item.phone} image={item.image} onPress={()=>productlistforuser({item})}/>;
+      }}
         />
         <TouchableOpacity onPress={() => props.navigation.navigate('AcceptPharms')} style={styles.acceptButton}>
           <Text style={styles.buttonText}>Accept pharm</Text>
@@ -50,20 +47,22 @@ const WaitingPharmsScreen = (props) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 5,
     left: 10,
-    top: 10,
+    top: 1,
   },
   container: {
-    backgroundColor: '#fff',
+   backgroundColor: '#fff',
     borderRadius: 10,
-    width: '100%',
-    height: '70%',
+ 
+      width: '110%',
+      height: '75%',
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    marginTop: 20,
+ left:10,
+    marginTop:15
   },
   itemContainer: {
     marginTop: 20,

@@ -23,13 +23,17 @@ const PharmProductScreen=(props)=>{
     <Spacer />
     <View>
     <Image source={{ uri: prod.image }} style={styles.img} />
+    <View style={{right:50}}>
  <Text style={styles.title}>Name: {prod.prodname}</Text>
- <Text style={styles.title}>price: {prod.price}</Text>
+ <Text style={styles.title}>price: {prod.price +'$'}</Text>
  <Text style={styles.title}>quantity: {prod.amount}</Text>
  <Text style={styles.title}>desc: {prod.desc}</Text>
+ </View>
+ <View style={{alignItems:'flex-end'}}>
  <ProductsDeletButton title="Edit" onPress={()=>console.log('HRllooo')}></ProductsDeletButton>
   <ProductsDeletButton title="Update quantity" onPress={()=>props.navigation.navigate('UpdateAmount',{prod:prod,pharm:pharm})}></ProductsDeletButton>
   <ProductsDeletButton title="Delete" onPress={()=>deleteproduct({prod,pharm})}></ProductsDeletButton>
+   </View>
     </View>
         <Spacer/>
   </SafeAreaView>
@@ -43,7 +47,7 @@ const styles=StyleSheet.create({
 
   container: {
 flex: 1,
-backgroundColor: '#fff',
+backgroundColor:'#F3EAC7',
 justifyContent:'center',
 alignItems:'center',
 marginTop:-50
@@ -51,22 +55,22 @@ marginTop:-50
 title:{
 fontSize:20,
 color:"#474747",
-marginLeft:45
+marginLeft:70
 
 },
 subtitle:{
 fontSize:20,
 color:"#474747",
-marginLeft:45
+
 
 
 },
 img:{
 alignSelf:"center",
-borderTopRightRadius:80,
-borderBottomLeftRadius:80,
-height:300,
-width:300,
+borderTopRightRadius:10,
+borderBottomLeftRadius:120,
+height:330,
+width:400,bottom:70
 
 },
 item: {

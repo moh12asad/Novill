@@ -11,28 +11,44 @@ const PharmScreen=({navigation})=>{
         <View style={{alignItems:'center',marginTop:300}}> 
             <TouchableOpacity onPress={()=>navigation.navigate('SigninPharm')}
               style={{
-        backgroundColor:'#86c260',
-         borderRadius:100 ,
-        alignItems: 'center',
-        width:280,
-        paddingVertical:15,
-        marginVertical:10,
+      
+    backgroundColor: '#fff',
+ 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+
+
+    
+    width:'90%',
+ 
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2,
         alignSelf:'flex-end',
       
     }}
             >
-                    <Text style={{ color:'#000',fontSize:12,
+                    <Text style={{ color:'#000',fontSize:14,
    fontWeight:"bold"}}>Already have an account? Sign in here</Text>
             </TouchableOpacity>
             <Spacer/>
             <TouchableOpacity onPress={()=>navigation.navigate('SignupPharm')}
             style={{
-        backgroundColor:'#86c260',
-         borderRadius:100 ,
-        alignItems: 'center',
-        width:280,
-        paddingVertical:15,
-        marginVertical:10,
+     
+    backgroundColor: '#fff',
+ 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+
+
+    
+    width:'90%',
+ 
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2,
         alignSelf:'flex-end',
        
         

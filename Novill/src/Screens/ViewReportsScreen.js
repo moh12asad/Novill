@@ -6,7 +6,7 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import PharmListComp from './Components/PharmListComp';
+import ReportsList from './Components/ReportsList';
 
 
 const ViewReportsScreen=(props)=>{
@@ -35,15 +35,15 @@ const ViewReportsScreen=(props)=>{
 
 
     return(
-                  <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width:'100%', height:'100%' }} >
+                  <ImageBackground source={require("../Screens/images/img.jpeg")} style={{ width:'100%', height:'100%' }} >
 
         
 
         <SafeAreaView>
-            <Text style={{fontSize: 38,
+            <Text style={{fontSize: 30,
               fontWeight:'bold'
               ,marginVertical:5,
-            top:20}}>Reports</Text>
+            top:20}}>Reports from users</Text>
             <Spacer/>
             <FlatList style={{ marginVertical:30,
         marginBottom:-10,
@@ -51,9 +51,9 @@ const ViewReportsScreen=(props)=>{
         marginStart:10,
         top:-50}} 
                       data={reportsCollection}
-                    numColumns={2} 
+               
                  renderItem={({ item }) => {
-        return <PharmListComp name={item.title} onPress={()=>props.navigation.navigate('ViewReport',{item})}/>;
+        return <ReportsList name={item.title} onPress={()=>props.navigation.navigate('ViewReport',{item})}/>;
                 
 
       }}/>

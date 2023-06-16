@@ -146,13 +146,13 @@ justifyContent:'center',
     NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'80%',
+    width:'90%',
     justifyContent:'space-between',
     borderRadius:30,
     bottom:-600,
     height:60,
     right:40,
-    left:10,
+    left:5
 
     
   },

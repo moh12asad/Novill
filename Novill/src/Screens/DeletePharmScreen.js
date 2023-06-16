@@ -10,19 +10,21 @@ const DeletePharmScreen=()=>{
     const {state,deletepharm,clearErrorMessage}=useContext(AuthContext);
     const [pname,setPname] = useState(''); 
     return (
-        <ImageBackground source={require("../Screens/images/im.jpg")} style={{ width:'100%', height:'100%' }} >
+        <ImageBackground source={require("../Screens/images/background.jpg")} style={{ width:'100%', height:'100%' }} >
         <NavigationEvents onWillFocus={clearErrorMessage}/>
         <View style={styles.container}>
         <Spacer/>
         <Spacer/>
         
-        <View style={{backgroundColor:'#fff',height:350,width:460,
+        <View style={{height:350,width:460,
                      borderTopLeftRadius:130,
-                     paddingTop:75,
+                     paddingTop:170,
                      alignItems:'center',
-                     right:30
+                     right:30,
+                     top:10,
+                     bottom:10
                      }}>
-        <Text >Delete Pharm</Text>
+        <Text style={{fontSize:25,fontWeight:'bold'}} >Delete Pharm</Text>
 
         <TextInput
             placeholder='Pharm name' 

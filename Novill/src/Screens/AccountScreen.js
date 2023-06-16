@@ -94,7 +94,7 @@ const GetPharmsInTheSameCity=async(user)=>{
   props.navigation.navigate('PharmsList',{user:user})
 }
 
-const GoToOnGoingOrder=async(user,props)=>{
+const OnGoingOrderForUser=async(user,props)=>{
   //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
   const response = await Server.post('/GetOnGoindOrdersForUser', {
     user

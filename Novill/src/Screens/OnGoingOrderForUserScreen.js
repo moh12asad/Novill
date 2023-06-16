@@ -18,14 +18,8 @@ const OnGoingOrderForUserScreen=(props)=>{
     console.log('Hahahahhon',user);
     const [loaded,updateloaded] =useState(false)
 
-    const handelOrderNavigate=(item,pharm)=>{
-      if(item.status=="Processing")
-      {
-        props.navigation.navigate('OrderProcess',{order:item,pharm:pharm})
-      }
-      else{
-        props.navigation.navigate('ViewOrder',{order:item,pharm:pharm})
-      }
+    const handelOrderNavigate=(item,user)=>{
+        props.navigation.navigate('OrderProcessForUser',{order:item,user:user})
     }
     return(
         <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
@@ -41,7 +35,7 @@ const OnGoingOrderForUserScreen=(props)=>{
         marginStart:10,
         top:-50}} 
               renderItem={({ item }) => {
-                return <OrderListComp  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,pharm)}}/>;
+                return <OrderListComp  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,user)}}/>;
               }}
             />
           </SafeAreaView>

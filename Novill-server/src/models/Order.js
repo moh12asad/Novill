@@ -62,6 +62,9 @@ const OrderSchema = new mongoose.Schema({
   },
   city:{
     type:String
+  },
+  date:{
+    type:Date,
   }
 
 });

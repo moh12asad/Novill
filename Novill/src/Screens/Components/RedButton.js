@@ -11,11 +11,12 @@ const RedButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'red',
+    backgroundColor: '#fff',
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,
     alignItems: 'center',
+    borderColor:'green'
   },
   text: {
     color: 'white',

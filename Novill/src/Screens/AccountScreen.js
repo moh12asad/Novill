@@ -31,7 +31,7 @@ const AccountScreen=(props)=>{
               fontWeight:'bold'
               ,marginVertical:5,
               left:10,
-            top:20,}}> Welcome back {user.Fname} </Text>
+            top:20,}}> Welcome back {user.Fname} {user.Lname}</Text>
        
          <SafeAreaView forceInset={{top:'always'}}>
         </SafeAreaView>

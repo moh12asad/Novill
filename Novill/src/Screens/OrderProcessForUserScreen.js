@@ -3,7 +3,7 @@ import { Context as AuthContext} from './context/AuthContext';
 import { SafeAreaView } from 'react-navigation';
 import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Image} from 'react-native';
 import Spacer from './Components/Spacer';
-import GlobalContex from './context/CContex';
+import ProductListComp from './Components/ProductListComp';
 import Server from './api/Server';
 import PharmListComp from './Components/PharmListComp';
 import GreenButton from './Components/GreenButton';
@@ -16,6 +16,7 @@ const OrderProcessForUserScreen=(props)=>{
     const pharm = order.pharm;
     const user = props.navigation.state.params.user;
     const address=order.address;
+    let filteredProducts=order.products;
     console.log("Order.Status is:*********************\n",order.status);
     return(
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
@@ -28,6 +29,15 @@ const OrderProcessForUserScreen=(props)=>{
     <View>
       <Text style={styles.subtitle}>Pay method: {paymethod}</Text>
     </View>
+    <FlatList
+      data={filteredProducts}
+       style={{ top:25,left:15}}
+      renderItem={({ item }) => {
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} />;
+                
+
+      }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
+    />
   </SafeAreaView>
 </ImageBackground>
 

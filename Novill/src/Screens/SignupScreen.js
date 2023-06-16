@@ -12,6 +12,7 @@ const SignupScreen=({navigation})=>{
     const [phone,setPhone]=useState('');
     const [password,setPassword] = useState('');
     const [Confirmpassword,setConfirmpassword] = useState('');
+    const [location,setLocation] = useState('');
     const utype="user";
 
 
@@ -94,6 +95,22 @@ const SignupScreen=({navigation})=>{
                
             }}
             />
+                                    <TextInput
+                placeholder='City' 
+                label="City"
+                value={location}
+                onChangeText={setLocation}
+                autoCorrect={true}
+                 style={{ 
+                 borderRadius:120,
+    paddingHorizontal:70, width:'70%',
+    backgroundColor:'rgb(220,220,220)',
+     marginBottom:5,
+     marginTop:30,
+     left:50
+               
+            }}
+            />
             <TextInput
                 placeholder='example@email.com' 
                 label="Email"
@@ -149,7 +166,7 @@ const SignupScreen=({navigation})=>{
             />
 
             {state.errorMessage ?<Text style= {styles.errormsg}>{state.errorMessage}</Text>: null}
-            <TouchableOpacity title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype,phone})}
+            <TouchableOpacity title="Signup" onPress={()=>signup({email,password,Confirmpassword,Fname,Lname,utype,phone,location})}
             style={{
        backgroundColor: '#fff',
 

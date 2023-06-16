@@ -14,8 +14,8 @@ const Testing1=mongoose.model('Testing1');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {1
-  const { email, password,Confirmpassword,Fname,Lname,utype,phone } = req.body;
-  console.log(email, password,Confirmpassword,Fname,Lname,utype,phone);
+  const { email, password,Confirmpassword,Fname,Lname,utype,phone,location } = req.body;
+  console.log(email, password,Confirmpassword,Fname,Lname,utype,phone,location);
   try {
     if(Confirmpassword!=password)
     {
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {1
     }
     const cart= new Cart({email});
     await cart.save();
-    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype,phone,cart });
+    const user = new User({ email, password,Confirmpassword,Fname,Lname,utype,phone,cart,location });
     console.log(user);
     
     await user.save();
@@ -176,10 +176,12 @@ router.post('/signinPharm', async (req, res) => {
 
 
 router.get('/getPharms', async (req, res) => {
+  const { user } = req.query; // Retrieve user from query parameters
+  console.log(user);
   const pharms = await Pharm.find();
   const pharmsArray=[];
   pharms.forEach(pharm=>{
-    if(pharm.AdminAccept){
+    if(pharm.AdminAccept && pharm.location==user.location){
       pharmsArray.push(pharm);
 }})
   //console.log(pharms);
@@ -486,6 +488,7 @@ router.post('/AddToCart',async(req,res)=>{
     const imageUri=req.body.imageUri;
     const per=prod.prodname;
     console.log("\n------------\n",cart);
+
   console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
     await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
@@ -582,6 +585,16 @@ router.post('/ProductInOrder', async (req, res) => {
 router.post('/GetUser',async(req,res)=>{
   const {user}=req.body;
   console.log("===========user in get user is:==========\n",user);
+  const id=user._id;
+  const u = await User.findOne({_id:user._id});
+  console.log("HIHIHIHIHIH");
+  console.log(u);
+  res.status(200).send({message:'The order is in Processing',user:u});
+});
+
+router.post('/GetPharmsForUserInTheSameCity',async(req,res)=>{
+  const {user}=req.body;
+  const location = user.location
   const id=user._id;
   const u = await User.findOne({_id:user._id});
   console.log("HIHIHIHIHIH");

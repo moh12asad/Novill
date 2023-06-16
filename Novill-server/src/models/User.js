@@ -34,6 +34,9 @@ const userSchema = new mongoose.Schema({
   },
   cart:{
     type:CartSchema,
+  },
+  location:{
+    type:String,
   }
   
 });

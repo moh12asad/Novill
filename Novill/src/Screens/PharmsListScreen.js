@@ -12,7 +12,10 @@ const PharmsListScreen=(props)=>{
     //const {signout,getPharms} = useContext(AuthContext);
     const {state,productlistforuser,clearErrorMessage}=useContext(AuthContext);
     const [loaded,updateloaded] =useState(false)
-    const [pharmsCollection,setPharmsCollection]=useState();
+    //const [pharmsCollection,setPharmsCollection]=useState();
+    const [pharmsCollection, setPharmsCollection] = useState([]);
+
+    const [searchQuery, setSearchQuery] = useState('');
     const [cart,setCart]=useState();
 
     //const u=props.navigation.state.params.user;
@@ -30,7 +33,7 @@ useEffect(() => {
       });
       const cart=response1.data.cart;
       setCart(cart);*/
-      const response = await Server.get('/getPharms');
+      const response = await Server.get('/getPharms',{ params: { user } }); 
       const pharmsArray = response.data.pharms1;
       setPharmsCollection(pharmsArray);
       setIsLoading(false); // set isLoading to false when data is loaded
@@ -45,6 +48,7 @@ useEffect(() => {
 if (isLoading) {
   // return loading screen here
 }
+
 
 
     return(
@@ -73,11 +77,13 @@ if (isLoading) {
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowRadius: 2,
   }}
- 
+  value={searchQuery}
+  onChangeText={setSearchQuery}
 />
+
   </View>
     <FlatList
-      data={pharmsCollection}
+      data={pharmsCollection.filter(item => item.pname.includes(searchQuery))}
  style={{ top:25,left:15}}
   
       renderItem={({ item }) => {

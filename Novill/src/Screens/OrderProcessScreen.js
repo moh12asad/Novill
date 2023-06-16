@@ -74,7 +74,7 @@ const OrderProcessScreen=(props)=>{
     style={{ width: '20%',
     height: '150%',marginTop:30}}
   />
-  <Text style={styles.text1}>New Order in processing</Text>
+  <Text style={styles.text1}>New Order in process</Text>
 </View>
     <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top:20 }}>{order.user.Fname} {order.user.Lname}</Text>
     <Spacer />

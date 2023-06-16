@@ -88,6 +88,12 @@ const GoToHistory=async(user,props)=>{
   props.navigation.navigate('History',{user:u,orders:orders});
 
 }
+const GetPharmsInTheSameCity=async(user)=>{
+  const response = Server.post('/GetPharmsForUserInTheSameCity',{
+  })
+  props.navigation.navigate('PharmsList',{user:user})
+}
+
 const GoToOnGoingOrder=async(user,props)=>{
   //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
   const response = await Server.post('/GetOnGoindOrdersForUser', {

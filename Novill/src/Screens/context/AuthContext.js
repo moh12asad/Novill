@@ -39,10 +39,10 @@ const clearErrorMessage=dispatch=>()=>{
 }
 
 const signup= (dispatch) =>{
-    return async ({email,password,Confirmpassword,Fname,Lname,utype,phone})=>{
+    return async ({email,password,Confirmpassword,Fname,Lname,utype,phone,location})=>{
         try{
-            //console.log(email,password,Confirmpassword,Fname,Lname,utype);
-            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype,phone});
+            console.log("lcoation is: ",location);
+            const response = await server.post('/signup',{email,password,Confirmpassword,Fname,Lname,utype,phone,location});
             console.log('Response! V');
             await AsyncStorage.setItem('token',response.data.token);
             console.log(response.data.user);

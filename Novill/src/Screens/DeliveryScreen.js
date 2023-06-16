@@ -11,12 +11,18 @@ const DeliveryScreen=({navigation})=>{
         <View style={{alignItems:'center',marginTop:300}}> 
             <TouchableOpacity onPress={()=>navigation.navigate('SigninDelivery')}
               style={{
-        backgroundColor:'#86c260',
-         borderRadius:100 ,
-        alignItems: 'center',
-        width:280,
-        paddingVertical:15,
-        marginVertical:10,
+       backgroundColor: '#fff',
+ 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+
+
+    marginTop:10,
+    width:'80%',
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2,
         alignSelf:'flex-end',
    
     }}
@@ -27,12 +33,19 @@ const DeliveryScreen=({navigation})=>{
             <Spacer/>
             <TouchableOpacity onPress={()=>navigation.navigate('SignupDelivery')}
             style={{
-        backgroundColor:'#86c260',
-         borderRadius:100 ,
-        alignItems: 'center',
-        width:280,
-        paddingVertical:15,
-        marginVertical:10,
+     
+    backgroundColor: '#fff',
+ 
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 170,
+
+
+    marginTop:10,
+    width:'100%',
+    borderColor: 'green',
+    alignItems:'center',
+     borderWidth: 2,
         alignSelf:'flex-end',
       
     }}

@@ -58,7 +58,7 @@ const CartScreen=(props)=>{
       style={{ top:25,left:15}}
       
       renderItem={({ item }) => {
-        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>console.log("Product has been clicked")}/>;
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} onPress={()=>ShowProductInCartForUser(user,item,props)}/>;
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}
     />
     <View style={styles.summaryContainer}>
@@ -84,14 +84,15 @@ const SetAddress=async(cart,user,pharm,props)=>{
   props.navigation.navigate('Dest',{cart:cart,user:user,pharm:pharm});
 
 }
-const getUser=async(user)=>{
+const ShowProductInCartForUser=async(user,item,props)=>{
   //console.log("===========user in get user is in getuser function in cart screen:==========\n",user);
-  const response = await Server.post('/GetUser', {
+  /*const response = await Server.post('/GetUser', {
     user
-  });
+  });*/
   //console.log("Response.data.user in cart screen is:===========================\n",response.data.user,":===========================\n");
-  user=response.data.user;
-  console.log("user in cart screen is:===========================\n",user,":===========================\n");
+  //user=response.data.user;
+  //console.log("user in cart screen is:===========================\n",user,":===========================\n");
+  props.navigation.navigate('ShowProductInCartForUser',{user:user,prod:item});
   //return {user};
   //let u=response.data.user;
   /*console.log("==================user in get user function is2:=============\n",u);

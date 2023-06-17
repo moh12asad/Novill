@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-justifyContent:'flex-end'
+    bottom:10
   },
   image: {
-    width: 100,
-    height:  100, // Subtracting 100 to leave space for the title
+    width: 350,
+    height:  350, // Subtracting 100 to leave space for the title
     resizeMode: 'contain',
   },
   });

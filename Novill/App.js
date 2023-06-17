@@ -70,6 +70,7 @@ import WaitingForPharmApproveScreen from './src/Screens/WaitingForPharmApproveSc
 import PayWithCreditScreen from './src/Screens/PayWithCreditScreen';
 import PayWithCreditCardScreen from './src/Screens/PayWithCreditCardScreen';
 import OrderProcessForUserScreen from './src/Screens/OrderProcessForUserScreen';
+import ShowProductInCartForUserScreen from './src/Screens/ShowProductInCartForUserScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -105,6 +106,7 @@ const switchNavigator=createSwitchNavigator({
     PayWithCredit:PayWithCreditScreen,
     PayWithCreditCard:PayWithCreditCardScreen,
     OrderProcessForUser:OrderProcessForUserScreen,
+    ShowProductInCartForUser:ShowProductInCartForUserScreen,
   }),
   PharmFlow:createStackNavigator({
     WaitingAdmin:WaitingForAdmin,

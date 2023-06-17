@@ -502,7 +502,7 @@ router.post('/AddToCart',async(req,res)=>{
 
     const u = await User.findOne({_id:user._id});
     u.cart=updatedCart;
-    await u.save();
+    u.save();
     const u1= await User.findOne({_id:u._id});
     console.log(updatedCart);
     console.log("\n=================================The cart is:\n",cart,"\n=================================\n");
@@ -612,6 +612,21 @@ router.post('/ProductInOrder', async (req, res) => {
   const o = await Order.findOne({_id:id});
 
   //res.status(200).send({message:'The order is in Processing',order:o});
+});
+
+router.post('/DeleteProductFromTheCart', async (req, res) => {
+  const {user,prod}=req.body;
+  console.log("\n==============================\nUserIS:\n",user,"\n========================\n");
+  console.log("\n==============================\nprodIS:\n",prod,"\n========================\n");
+  const c = user.cart;
+  const cart = await Cart.findOne({_id:c._id});
+  cart.products = cart.products.filter((product) => product.prodname !== prod.prodname);
+  cart.save();
+  console.log(cart);
+  const u = await User.findOne({_id:user._id});
+  u.cart = cart;
+  u.save();
+  res.status(200).send({message:'The order is in Processing',user:u});
 });
 
 router.post('/GetUser',async(req,res)=>{

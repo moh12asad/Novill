@@ -502,7 +502,7 @@ router.post('/AddToCart',async(req,res)=>{
 
     const u = await User.findOne({_id:user._id});
     u.cart=updatedCart;
-    u.save();
+    await u.save();
     const u1= await User.findOne({_id:u._id});
     console.log(updatedCart);
     console.log("\n=================================The cart is:\n",cart,"\n=================================\n");

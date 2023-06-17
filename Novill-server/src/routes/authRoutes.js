@@ -591,10 +591,22 @@ router.get('/GetOrdersForPharm', async (req, res) => {
   const {pharm}=req.query;
   console.log(pharm);
   const name=pharm.pname;
-  const orders = await Order.find({pname:name});
+  const orders = await Order.find({pname:name,status: { $ne: "Done" }});
   console.log(orders);
   res.status(200).send({message:'The order created successfully',orders:orders});
 });
+
+router.post('/GetDoneOrdersForPharm', async (req, res) => {
+  const {pharm}=req.body;
+  console.log(pharm);
+  const name=pharm.pname;
+  const orders = await Order.find({pname:name,status:"Done"});
+  console.log(orders);
+  const p = await Pharm.findOne({pname:name});
+  res.status(200).send({message:'',orders:orders,pharm1:p});
+});
+
+
 router.get('/ChangeStatus', async (req, res) => {
   const {order,newStatus}=req.query;
   const id =order._id;

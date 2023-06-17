@@ -52,7 +52,7 @@ const PharmAccountScreen=(props)=>{
         <View style={styles.NavBar}>
               <MaterialIcons style={styles.IconBehave} name="report" size={24} color="black" onPress={()=>props.navigation.navigate('ReportPharm',{pharm})} />
     <Pressable style={styles.IconBehave}>
-<MaterialIcons name="done" size={24} color="black" />               
+<MaterialIcons name="done" size={24} color="black" onPress={()=>GetDoneOrdersForPharm(pharm,props)} />               
 
           </Pressable>
            <Pressable style={styles.IconBehave}>
@@ -79,6 +79,16 @@ const PharmAccountScreen=(props)=>{
          
         </ImageBackground>
         );
+}
+
+const GetDoneOrdersForPharm=async(pharm,props)=>{
+  const res1 = await Server.post('/GetDoneOrdersForPharm',{
+    pharm
+  });
+  const os = res1.data.orders;
+  const p = res1.data.pharm;
+  props.navigation.navigate('DoneOrdersForPharm',{orders:os,pharm:p});
+
 }
 
 const styles=StyleSheet.create({

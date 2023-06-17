@@ -146,8 +146,9 @@ const switchNavigator=createSwitchNavigator({
   }),
   DeliveryFlow:createStackNavigator({
     //DeliveryAccount:DeliveryAccountScreen,
-    DeliveryAccount:DeliveryAccountScreen,
     WaitingAdminD:WaitingAdminDScreen,
+    DeliveryAccount:DeliveryAccountScreen,
+
     EditDelivery:EditDeliveryScreen,
     ReportDelivery:ReportDeliveryScreen,
     ReportSummary:ReportSummaryScreen,

@@ -60,7 +60,7 @@ const ProductScreen = (props) => {
         <Text style={styles.dect}>Description: {prod.desc}</Text>
 {prod.prescription && ( 
           <TouchableOpacity style={styles.uploadButton} onPress={handleImageUpload}>
-            <Text style={styles.buttonText}>Raising a medication prescription</Text>
+            <Text style={styles.buttonText}>Upload prescription</Text>
           </TouchableOpacity>
         )}
      

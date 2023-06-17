@@ -7,12 +7,13 @@ import Spacer from './Components/Spacer';
 
 const WaitingAdminDScreen=()=>{
     const {signout} = useContext(AuthContext);
+    console.log("Hello from the other side");
     return(
             <ImageBackground source={require("../Screens/images/imag.jpg")} style={{ width:'100%', height:'100%' }}>        
 
     <View> 
         <Text style={{fontSize: 48,top:100}}>Thank you!</Text>
-        <Text style={{top:120}}>We got your request, we wil check it and contact you in a few days.</Text>
+        <Text style={{top:120}}>We got your request, we wil check it and contact you as soon as possible.</Text>
              <TouchableOpacity style={{ backgroundColor:'#d1f0c7',
         padding:30,
         marginTop:20,

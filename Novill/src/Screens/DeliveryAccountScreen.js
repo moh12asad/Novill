@@ -132,13 +132,13 @@ const styles=StyleSheet.create({
     NavBar:{
     flexDirection:'row-reverse',
     backgroundColor:'#6ba93a',
-    width:'75%',
+    width:'85%',
     justifyContent:'space-between',
     borderRadius:30,
-    bottom:-600,
+    bottom:-610,
     height:60,
-    right:40,
-    left:10,
+    right:20,
+    
 
     
   },

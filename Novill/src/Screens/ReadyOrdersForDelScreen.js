@@ -25,7 +25,7 @@ const ReadyOrdersForDelScreen=(props)=>{
           
               style={{ height: '100%' }}
               renderItem={({ item }) => {
-                return <PharmListComp style={styles.item} name={item.status} location={item.city} image={item.pimage} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
+                return <OrderListComponent style={styles.item} name={item.status} location={item.city} image={item.pimage} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
               }}
             />
           </SafeAreaView>

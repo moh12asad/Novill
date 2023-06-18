@@ -8,11 +8,11 @@ const OrderListComponent = ({ name, location,pimage,onPress }) => {
       <View style={styles.views}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.location}>{location}</Text>
-
+  </View>
        <View style={styles.avatarContainer}>
                  <Image source={{ uri: pimage }} style={styles.image} />
 </View>
-      </View>
+    
     </TouchableOpacity>
   );
 };

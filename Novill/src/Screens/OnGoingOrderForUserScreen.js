@@ -35,7 +35,7 @@ const OnGoingOrderForUserScreen=(props)=>{
         marginStart:10,
         top:-50}} 
               renderItem={({ item }) => {
-                return <OrderListComponent  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,user)}}/>;
+                return <OrderListComponent  name={item.status} location={item.city} pimage={item.pimage} onPress={()=>{handelOrderNavigate(item,user)}}/>;
               }}
             />
           </SafeAreaView>

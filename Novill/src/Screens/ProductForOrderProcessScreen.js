@@ -68,7 +68,7 @@ const ProductForOrderProcessScreen=(props)=>{
        </View>
   </SafeAreaView>
       </View>
-  );
+  );  
 }
 
 const ShowPrescription=async (prod,pharm,order,props)=>{

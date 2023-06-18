@@ -6,6 +6,7 @@ import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
 import OrderListComponent from './Components/OrderListComponent';
+import PharmListComp from './Components/PharmListComp';
 
 
 const ReadyOrdersForDelScreen=(props)=>{
@@ -24,7 +25,7 @@ const ReadyOrdersForDelScreen=(props)=>{
           
               style={{ height: '100%' }}
               renderItem={({ item }) => {
-                return <OrderListComponent style={styles.item} name={item.status} location={item.address.city} image={item.image} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
+                return <PharmListComp style={styles.item} name={item.status} location={item.city} image={item.image} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
               }}
             />
           </SafeAreaView>

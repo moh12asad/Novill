@@ -587,11 +587,13 @@ router.post('/CreateOrderCredit',async(req,res)=>{
   const prise=totalPrice;
   const amount=totalAmount;
   const pname=pharm.pname;
+    const pimage=pharm.image;
+
   const status='New';
   const date = new Date();
   console.log('---------------CreateOrder------------');
   console.log(cart,address,totalAmount,totalPrice);
-  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city,date});
+  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city,date,pimage});
   order.save();
   console.log("\n=================================The order images is:\n",order.images,"\n=================================\n");
   let cart1 = await Cart.findOne({_id:cart._id});

@@ -33,7 +33,7 @@ const OrderProcessForUserScreen=(props)=>{
       data={filteredProducts}
        style={{ top:25,left:15}}
       renderItem={({ item }) => {
-        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.image} />;
+        return <ProductListComp name={item.prodname} price={item.price+"$"} image={item.pimage} />;
                 
 
       }}                                                                                     //onPress={()=>props.navigation.navigate('PharmStore',{pharm:item})}

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Touchable } from 'react-native';
+import { View, Text, StyleSheet, Touchable ,Image} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const OrderListComp = ({ name, location,amount,onPress }) => {
+const OrderListComponent = ({ name, location,amount,onPress,image }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.views}>
@@ -11,6 +11,9 @@ const OrderListComp = ({ name, location,amount,onPress }) => {
       <Text style={styles.location}>{location}</Text>
   
       </View>
+       <View style={styles.avatarContainer}>
+                 <Image source={{ uri: image }} style={styles.image} />
+</View>
       </View>
     </TouchableOpacity>
   );
@@ -57,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderListComp;
+export default OrderListComponent;

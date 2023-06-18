@@ -5,8 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
-import OrderListComp from './Components/PharmListComp';
-
+import OrderListComponent from './Components/OrderListComponent';
 
 
 const ReadyOrdersForDelScreen=(props)=>{
@@ -22,10 +21,10 @@ const ReadyOrdersForDelScreen=(props)=>{
             <Spacer />
             <FlatList
               data={orders}
-              numColumns={2}
+          
               style={{ height: '100%' }}
               renderItem={({ item }) => {
-                return <OrderListComp style={styles.item} name={item.status} location={item.address.city} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
+                return <OrderListComponent style={styles.item} name={item.status} location={item.address.city} image={item.image} onPress={()=>props.navigation.navigate('ShowOrder',{order:item,del:del})}/>;
               }}
             />
           </SafeAreaView>

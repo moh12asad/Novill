@@ -73,6 +73,7 @@ import OrderProcessForUserScreen from './src/Screens/OrderProcessForUserScreen';
 import ShowProductInCartForUserScreen from './src/Screens/ShowProductInCartForUserScreen';
 import DoneOrdersForPharmScreen from './src/Screens/DoneOrdersForPharmScreen';
 import ShowOrderForPharmScreen from './src/Screens/ShowOrderForPharmScreen';
+import EditProductForPharmScreen from './src/Screens/EditProductForPharmScreen';
 const switchNavigator=createSwitchNavigator({
   //Loading:LoadingScreen,
   loginFlow: createStackNavigator({
@@ -126,8 +127,10 @@ const switchNavigator=createSwitchNavigator({
     ReadyOrders:ReadyOrdersScreen,
     ShowPrescription:ShowPrescriptionScreen,
     UpdateAmount:UpdateAmountScreen,
+    EditProductForPharm:EditProductForPharmScreen,
     DoneOrdersForPharm:DoneOrdersForPharmScreen,
     ShowOrderForPharm:ShowOrderForPharmScreen,
+
     
  
 

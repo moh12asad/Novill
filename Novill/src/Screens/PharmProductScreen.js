@@ -31,7 +31,7 @@ const PharmProductScreen = (props) => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <ProductsDeletButton title="Edit" onPress={() => console.log('HRllooo')}></ProductsDeletButton>
+          <ProductsDeletButton title="Edit" onPress={() =>props.navigation.navigate('EditProductForPharm', { prod: prod, pharm: pharm }) }></ProductsDeletButton>
           <ProductsDeletButton title="Update quantity" onPress={() => props.navigation.navigate('UpdateAmount', { prod: prod, pharm: pharm })}></ProductsDeletButton>
           <ProductsDeletButton title="Delete" onPress={() => deleteproduct({ prod, pharm })}></ProductsDeletButton>
         </View>
@@ -40,6 +40,7 @@ const PharmProductScreen = (props) => {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

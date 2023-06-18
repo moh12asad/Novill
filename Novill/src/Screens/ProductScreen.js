@@ -65,7 +65,7 @@ const ProductScreen = (props) => {
         )}
      
         <Spacer/>
-        <View >
+        <View style={{bottom:40}} >
         <GreenButton title="Add to cart" onPress={() => AddToCart({ cart, prod, pharm, user,imageUri })}></GreenButton>
         <Text style={styles.subtitle}>{prod.price + "$"}</Text>
 </View>
@@ -97,7 +97,7 @@ fontWeight:'bold',
 bottom:10
 },
 dect:{
-  fontSize:20,
+  fontSize:15,
 color:"#474747",
 marginLeft:45,
 },

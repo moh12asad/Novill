@@ -37,7 +37,7 @@ const WaitingForPharmApproveScreen=(props)=>{
 </ImageBackground>*/
 <ImageBackground source={require("../Screens/images/BackGround1.jpg")} style={{ width: '100%', height: '100%' }}>
   <SafeAreaView style={{ height: '80%' }}>
-    <Text style={{ fontSize: 40, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for: {user.Fname} {user.Lname}</Text>
+    <Text style={{ fontSize: 30, fontWeight: 'bold', marginVertical: 5, left: 10, top: 5 }}>Order for: {user.Fname} {user.Lname}</Text>
     <Spacer />
     <View style={{bottom:-100}}>
     <Text style={styles.subtitle}>Ordered from pharm: {pharm.pname}, {pharm.location}</Text>

@@ -5,7 +5,7 @@ import {View,Button,StyleSheet,Text,FlatList,TouchableOpacity,ImageBackground,Im
 import Spacer from './Components/Spacer';
 import GlobalContex from './context/CContex';
 import Server from './api/Server';
-import OrderListComp from './Components/OrderListComponent';
+import OrderListComponent from './Components/OrderListComponent';
 
 
 
@@ -35,7 +35,7 @@ const OnGoingOrderForUserScreen=(props)=>{
         marginStart:10,
         top:-50}} 
               renderItem={({ item }) => {
-                return <OrderListComp  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,user)}}/>;
+                return <OrderListComponent  name={item.status} location={item.address.city}  onPress={()=>{handelOrderNavigate(item,user)}}/>;
               }}
             />
           </SafeAreaView>

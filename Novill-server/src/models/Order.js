@@ -65,6 +65,10 @@ const OrderSchema = new mongoose.Schema({
   },
   date:{
     type:Date,
+  },
+  pimage: {
+    type: String, // or any other type that is suitable for your use case
+    //required: false // change to true if the file upload is required during registration
   }
 
 });

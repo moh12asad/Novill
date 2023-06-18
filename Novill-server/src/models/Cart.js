@@ -9,6 +9,7 @@ const CartSchema = new mongoose.Schema({
   },
   pname:{
     type:String,
+    default:""
   },
   email:{
     type:String,
@@ -20,6 +21,9 @@ const CartSchema = new mongoose.Schema({
     of: String,
     default: new Map()
   },
+  pname1:{
+    type:String,
+  }
   
 });
   mongoose.model('Cart', CartSchema);

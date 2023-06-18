@@ -114,6 +114,7 @@ router.post('/signin', async (req, res) => {
       await user.comparePassword(password);
       //const token = jwt.sign({ userId: user._id }, 'MY_SECRET_KEY');
       //res.send({token});
+      console.log("user.product:\n===============================\n",user.cart.products,"\n===============================\n");
       res.status(200).send({message:'User Logged in successfully',user:user});
     } catch (err) {
       return res.status(422).send({ error: 'Invalid password or email' });
@@ -488,8 +489,25 @@ router.post('/AddToCart',async(req,res)=>{
     const imageUri=req.body.imageUri;
     const per=prod.prodname;
     console.log("\n------------\n",cart);
+    console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
+    /*const c4 = await Cart.findOne({_id:cart._id});
+    console.log("c4.pname is:",c4.pname);
+    if(pharm.pname!=user.cart.pname && user.cart.pname!="")
+    {
+      console.log(pharm.pname===c4.pname)
 
-  console.log("\n------------\nThe imageuri is: \n------------\n",imageUri,"\n------------\n");
+        console.log("4abeeeeeeeeeee",pharm.pname,"\n");
+        //console.log("hi hi here is the user.cart.pname:",c3.pname);
+        const c3 = await Cart.findOne({_id:cart._id});
+        c3.products=[];
+        c3.pname="";
+        c3.images = new Map();
+        await c3.save();/*
+        const u3 = await User.findOne({_id:user._id});
+        u3.cart = c3;
+        await u3.save();
+      //}
+    }*/
     await Cart.updateOne({_id: cart._id}, { $push: { products: prod }, $set: { Pharm: pharm }});
     await Cart.updateOne({_id: cart._id},{pname:pharm.pname});
     const c1 = await Cart.findOne({_id:cart._id});
@@ -539,9 +557,10 @@ router.post('/CreateOrderCash',async(req,res)=>{
   const pname=pharm.pname;
   const status='New';
   const date = new Date();
+  const pimage=pharm.image;
   console.log('---------------CreateOrder------------');
   console.log(cart,address,totalAmount,totalPrice);
-  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city,date});
+  const order = new Order({user,products,pharm,payMethod,address,prise,amount,status,pname,images,city,date,pimage});
   order.save();
   console.log("\n=================================The order images is:\n",order.images,"\n=================================\n");
   let cart1 = await Cart.findOne({_id:cart._id});

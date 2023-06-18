@@ -5,15 +5,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const ProductListComp = ({ name, price,image,onPress }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
+    <View>
 <View style={styles.views}>
       <Text style={styles.name}>{name}</Text>
      
 
       <Text style={styles.price}>{price}</Text>
       </View>
+      </View>
       <View style={styles.avatarContainer}>
                  <Image source={{ uri: image }} style={styles.image} />
 </View>
+
 
     </TouchableOpacity>
   );
